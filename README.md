@@ -9,7 +9,7 @@
 + Add a config file for supporting rules (default includes all rules)
 + Add terminal UI for progress and success/errors
 + Setup test suite
-+ Update project name, overview, and add logo
++ Update `README.md`: ToC, project name, overview, and add logo
 
 ## NOTES
 + [How to Write a Git Commit Message (Chris Beams)](https://chris.beams.io/posts/git-commit)
@@ -23,7 +23,10 @@
 ## Installation
 ..
 
-## Rules
+## Usage
+...
+
+### Rules
 ...
 
 ### Rules TODO
