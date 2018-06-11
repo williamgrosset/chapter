@@ -7,6 +7,7 @@
   + Add support for all commits not on remote
 + Execute audit program on a `hook` when `git push` is executed
 + Add a config file for supporting rules (default includes all rules)
++ Option to ignore and push regardless of errors
 + Add terminal UI for progress and success/errors
 + Setup test suite
 + Update `README.md`: ToC, project name, overview, and add logo
@@ -41,6 +42,9 @@
 
 # Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
+
+# Contributing 
+See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONTRIBUTING.md).
 
 # License
 [MIT](https://github.com/williamgrosset/chapter/blob/master/LICENSE)
