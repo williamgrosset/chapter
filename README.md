@@ -1,7 +1,7 @@
 ...**chapter** logo...
 
 ## TODO 
-+ Integrate with an open source proof-reading tool (e.g http://wiki.languagetool.org/public-http-api)
++ Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
 + Support location for appropriate `.git` directory location for project
 + Check last committed that is not on remote (current branch)
   + Add support for all commits not on remote
@@ -12,7 +12,10 @@
 + Update project name, overview, and add logo
 
 ## NOTES
-+ [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit)
++ [How to Write a Git Commit Message (Chris Beams)](https://chris.beams.io/posts/git-commit)
++ [Commit Message Guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53)
++ [What makes a good commit message (hackernoon)](https://hackernoon.com/what-makes-a-good-commit-message-995d23687ad)
++ [Writing good commit messages](https://github.com/erlang/otp/wiki/writing-good-commit-messages)
 
 ## Overview
 ..
