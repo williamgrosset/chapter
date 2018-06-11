@@ -1,6 +1,6 @@
 ...**chapter** logo...
 
-## TODO 
+# TODO 
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
 + Support location for appropriate `.git` directory location for project
 + Check last committed that is not on remote (current branch)
@@ -11,22 +11,22 @@
 + Setup test suite
 + Update `README.md`: ToC, project name, overview, and add logo
 
-## NOTES
+# NOTES
 + [How to Write a Git Commit Message (Chris Beams)](https://chris.beams.io/posts/git-commit)
 + [Commit Message Guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53)
 + [What makes a good commit message (hackernoon)](https://hackernoon.com/what-makes-a-good-commit-message-995d23687ad)
 + [Writing good commit messages](https://github.com/erlang/otp/wiki/writing-good-commit-messages)
 
-## Overview
+# Overview
 ..
 
-## Installation
+# Installation
 ..
 
-## Usage
+# Usage
 ...
 
-### Rules
+## Rules
 ...
 
 ### Rules TODO
@@ -39,8 +39,8 @@
 + Require X bullet points
 + Explicit rule for `Nit: ...` (format, character length)
 
-## Future
+# Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
 
-## License
+# License
 [MIT](https://github.com/williamgrosset/chapter/blob/master/LICENSE)
