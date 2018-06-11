@@ -1,12 +1,11 @@
 ...**chapter** logo...
 
 ## TODO 
-+ Integrate with an open source proof-reading tool (http://wiki.languagetool.org/public-http-api)
++ Integrate with an open source proof-reading tool (e.g http://wiki.languagetool.org/public-http-api)
 + Support location for appropriate `.git` directory location for project
 + Check last committed that is not on remote (current branch)
   + Add support for all commits not on remote
 + Execute audit program on a `hook` when `git push` is executed
-  + Audit to check basic rules
 + Add a config file for supporting rules (default includes all rules)
 + Add terminal UI for progress and success/errors
 + Setup test suite
@@ -21,16 +20,18 @@
 ## Installation
 ..
 
-### Rules
+## Rules
 ...
 
-#### Rules TODO
-+ JSON file (or alike for C++)
-+ Message length
+### Rules TODO
++ JSON file (or alike for C++ projects)
++ No-typos
++ Max-character length
 + Capitalization of each sentence
 + Include/exclude periods
-+ Require summary
++ Require summary (character length)
 + Require X bullet points
++ Explicit rule for `Nit: ...` (format, character length)
 
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
