@@ -12,8 +12,8 @@ bool containsTypos(string msg) {
     return true;
 }
 
-bool isFirstLetterCapitalized(int c) {
-    if (isupper(c)) {
+bool isFirstLetterCapitalized(string msg) {
+    if (isupper(msg[0])) {
        return true;
     } else {
        return false;
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
     
     printf("Beginning audit...\n");
 
-    if (isFirstLetterCapitalized(commit_msg[0])) {
+    if (isFirstLetterCapitalized(commit_msg)) {
         printf("No errors found.\n");
     } else {
         printf("Error: First letter must be capitalized.\n");
