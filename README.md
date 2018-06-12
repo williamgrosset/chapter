@@ -1,11 +1,11 @@
 ...**chapter** logo...
 
 ## TODO
-+ Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
 + Support location for appropriate `.git` directory location for project
 + Check last committed that is not on remote (current branch)
   + Add support for all commits not on remote
-+ Execute audit program on a `hook` when `git push` is executed
++ Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
++ Execute audit program on a `post-commit` hook 
 + Add a config file for supporting rules (default includes all rules)
 + Option to ignore and push regardless of errors
 + Add terminal UI for progress and success/errors
@@ -46,5 +46,5 @@ See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
 ## Contributing 
 See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONTRIBUTING.md).
 
-# License
+## License
 [MIT](https://github.com/williamgrosset/chapter/blob/master/LICENSE)
