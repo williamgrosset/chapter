@@ -2,9 +2,39 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <ctype.h>
 #include <unistd.h>
 #include <jamspell/spell_corrector.hpp>
 using namespace std;
+
+// TODO: Place audit methods in lib/
+bool containsTypos(string msg) {
+    return true;
+}
+
+bool isFirstLetterCapitalized(int c) {
+    if (isupper(c)) {
+       return true;
+    } else {
+       return false;
+    }
+}
+
+bool containsPeriod(string msg) {
+    return true;
+}
+
+bool isMaxLength(string msg) {
+    return true;
+}
+
+bool containsSummary(string msg) {
+    return true;
+}
+
+bool containsKeyPoints(string msg) {
+    return true;
+}
 
 int main(int argc, char* argv[]) {
     char buffer[255];
@@ -25,31 +55,14 @@ int main(int argc, char* argv[]) {
 
     string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
+    
+    printf("Beginning audit...\n");
+
+    if (isFirstLetterCapitalized(commit_msg[0])) {
+        printf("No errors found.\n");
+    } else {
+        printf("Error: First letter must be capitalized.\n");
+    }
 
     return 0;
-}
-
-// TODO: Place audit methods in lib/
-bool containsTypos(string msg) {
-    return true;
-}
-
-bool isFirstLetterCapital(string msg) {
-    return true;
-}
-
-bool containsPeriod(string msg) {
-    return true;
-}
-
-bool isMaxLength(string msg) {
-    return true;
-}
-
-bool containsSummary(string msg) {
-    return true;
-}
-
-bool containsKeyPoints(string msg) {
-    return true;
 }
