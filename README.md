@@ -37,7 +37,7 @@
 + Include/exclude periods
 + Require summary (character length)
 + Require X bullet points
-+ Explicit rule for `Nit: ...` (format, character length)
++ Explicit rule for `Nit: ...` and `WIP:...` (format, character length)
 
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).

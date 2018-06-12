@@ -33,6 +33,23 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-bool isFirstLetterCapitalized(string msg) {
+// TODO: Place audit methods in lib/
+bool containsTypos(string msg) {
+    return true;
+}
+
+bool isFirstLetterCapital(string msg) {
+    return true;
+}
+
+bool containsPeriod(string msg) {
+    return true;
+}
+
+bool isMaxLength(string msg) {
+    return true;
+}
+
+bool containsKeyPoints(string msg) {
     return true;
 }
