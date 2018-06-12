@@ -3,7 +3,6 @@
 ## TODO
 + Support location for appropriate `.git` directory location for project
 + Check last committed that is not on remote (current branch)
-  + Add support for all commits not on remote
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
 + Execute audit program on a `post-commit` hook 
 + Add a config file for supporting rules (default includes all rules)

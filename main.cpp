@@ -1,8 +1,9 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include <stdio.h>
 
+#include <string>
+#include <sstream>
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
@@ -17,19 +18,21 @@ int main(int argc, char* argv[]) {
     if (answer) {
         s_cwd = answer;
     }
-    printf("%s/.git/COMMIT_EDITMSG\n", s_cwd.c_str());
 
-    // Grab current directory and search .git folder
-    // Identify branch and last commit NOT on remote
-    // Print out text from commit message
-
-    string commit_msg = s_cwd + "./git/COMMIT_EDITMSG";
-    ifstream f(commit_msg.c_str());
+    string commit_msg_path = s_cwd + "/.git/COMMIT_EDITMSG";
+    ifstream f(commit_msg_path.c_str());
+    ostringstream out;
 
     if (f.is_open()) {
-      cout << f.rdbuf();
+        out << f.rdbuf();
     }
 
-    // TODO: AUDIT
+    string commit_msg = out.str();
+    printf("%s", commit_msg.c_str());
+
     return 0;
+}
+
+bool isFirstLetterCapitalized(string msg) {
+    return true;
 }
