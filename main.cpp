@@ -1,8 +1,4 @@
 #include <string>
-#include <vector>
-#include <stdio.h>
-
-#include <string>
 #include <sstream>
 #include <iostream>
 #include <fstream>
@@ -47,6 +43,10 @@ bool containsPeriod(string msg) {
 }
 
 bool isMaxLength(string msg) {
+    return true;
+}
+
+bool containsSummary(string msg) {
     return true;
 }
 
