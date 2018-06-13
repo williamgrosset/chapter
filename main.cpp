@@ -36,6 +36,8 @@ bool containsKeyPoints(std::string msg) {
 }
 
 int main(int argc, char* argv[]) {
+    NJamSpell::TSpellCorrector corrector;
+    corrector.LoadLangModel("model.bin");
     char buffer[255];
     char* answer = getcwd(buffer, sizeof(buffer));
     std::string s_cwd;
@@ -55,12 +57,12 @@ int main(int argc, char* argv[]) {
     std::string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
     
-    printf("Beginning audit...\n");
+    printf("Beginning audit... \U00002699\n");
 
-    NJamSpell::TSpellCorrector corrector;
+    corrector.FixFragment(std::wstring(commit_msg.begin(), commit_msg.end()));
 
     if (isFirstLetterCapitalized(commit_msg)) {
-        printf("No errors found.\n");
+        printf("No errors found. \U0001F3C6\n");
     } else {
         printf("Error: First letter must be capitalized.\n");
     }
