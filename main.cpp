@@ -59,12 +59,12 @@ int main(int argc, char* argv[]) {
     
     printf("Beginning audit... \U00002699\n");
 
-    corrector.FixFragment(std::wstring(commit_msg.begin(), commit_msg.end()));
+    commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
     if (isFirstLetterCapitalized(commit_msg)) {
         printf("No errors found. \U0001F3C6\n");
     } else {
-        printf("Error: First letter must be capitalized.\n");
+        printf("Error: First letter must be capitalized. \U0000274C\n");
     }
 
     return 0;
