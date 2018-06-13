@@ -5,14 +5,13 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <jamspell/spell_corrector.hpp>
-using namespace std;
 
 // TODO: Place audit methods in lib/
-bool containsTypos(string msg) {
+bool containsTypos(std::string msg) {
     return true;
 }
 
-bool isFirstLetterCapitalized(string msg) {
+bool isFirstLetterCapitalized(std::string msg) {
     if (isupper(msg[0])) {
        return true;
     } else {
@@ -20,43 +19,45 @@ bool isFirstLetterCapitalized(string msg) {
     }
 }
 
-bool containsPeriod(string msg) {
+bool containsPeriod(std::string msg) {
     return true;
 }
 
-bool isMaxLength(string msg) {
+bool isMaxLength(std::string msg) {
     return true;
 }
 
-bool containsSummary(string msg) {
+bool containsSummary(std::string msg) {
     return true;
 }
 
-bool containsKeyPoints(string msg) {
+bool containsKeyPoints(std::string msg) {
     return true;
 }
 
 int main(int argc, char* argv[]) {
     char buffer[255];
     char* answer = getcwd(buffer, sizeof(buffer));
-    string s_cwd;
+    std::string s_cwd;
 
     if (answer) {
         s_cwd = answer;
     }
 
-    string commit_msg_path = s_cwd + "/.git/COMMIT_EDITMSG";
-    ifstream f(commit_msg_path.c_str());
-    ostringstream out;
+    std::string commit_msg_path = s_cwd + "/.git/COMMIT_EDITMSG";
+    std::ifstream f(commit_msg_path.c_str());
+    std::ostringstream out;
 
     if (f.is_open()) {
         out << f.rdbuf();
     }
 
-    string commit_msg = out.str();
+    std::string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
     
     printf("Beginning audit...\n");
+
+    NJamSpell::TSpellCorrector corrector;
 
     if (isFirstLetterCapitalized(commit_msg)) {
         printf("No errors found.\n");
