@@ -99,7 +99,7 @@ int main(int argc, char* argv[]) {
     std::string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
     
-    printf("Beginning audit... \U00002699\n");
+    printf("/************ Commit message audit... \U00002699 ************/\n\n");
 
     commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
@@ -126,6 +126,8 @@ int main(int argc, char* argv[]) {
     if (!containsBulletPoints(commit_msg)) {
         printf("Error: 3 bullet points are required. \U0000274C\n");
     }
+
+    printf("\n/************ End of audit. \U00002699 ************/\n");
 
     return 0;
 }
