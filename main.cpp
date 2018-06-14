@@ -21,11 +21,12 @@ bool isFirstLetterCapitalized(std::string msg) {
 }
 
 bool containsCorrectNitFormat(std::string msg) {
+    std::string lowered_msg = msg;
     const boost::regex nit_pattern(".*(nit).*");
     const boost::regex nit_format_pattern("Nit:.*");
-    std::transform(msg.begin(), msg.end(), msg.begin(), ::tolower);
+    std::transform(lowered_msg.begin(), lowered_msg.end(), lowered_msg.begin(), ::tolower);
 
-    if (regex_match(msg, nit_pattern)) {
+    if (regex_match(lowered_msg, nit_pattern)) {
         if (!regex_match(msg, nit_format_pattern)) {
             return false;
         }

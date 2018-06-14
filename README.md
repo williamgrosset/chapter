@@ -37,6 +37,7 @@
 + Require summary (character length)
 + Require X bullet points
 + Explicit rule for `Nit: ...` and `WIP:...` (format, character length)
++ Test commit
 
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
