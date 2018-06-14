@@ -56,12 +56,18 @@ bool isSummaryMaxLength(std::string msg) {
 }
 
 bool containsDescription(std::string msg) {
-    // Formatting and character length
+    // TODO: Formatting and character length
+    const boost::regex desc_pattern("[a-zA-Z0-9_\\s]*\\n\\n([a-zA-Z0-9_\\s]*)");
+
+    if (!regex_match(msg, desc_pattern)) {
+        return false;
+    }
+
     return true;
 }
 
 bool containsBulletPoints(std::string msg) {
-    // Formatting and character length and # of bullets
+    // Formatting and # of bullets (default 3)
     return true;
 }
 
@@ -105,6 +111,10 @@ int main(int argc, char* argv[]) {
 
     if (isSummaryMaxLength(commit_msg)) {
         printf("Error: Summary must not exceed 50 characters. \U0000274C\n");
+    }
+
+    if (!containsDescription(commit_msg)) {
+        printf("Error: Description is required. \U0000274C\n");
     }
 
     return 0;
