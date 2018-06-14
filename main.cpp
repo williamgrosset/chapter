@@ -22,7 +22,7 @@ bool isFirstLetterCapitalized(std::string msg) {
 
 bool containsCorrectNitFormat(std::string msg) {
     std::string lowered_msg = msg;
-    const boost::regex nit_pattern(".*(nit).*");
+    const boost::regex nit_pattern(".*\\s(nit)\\s.*");
     const boost::regex nit_format_pattern("Nit:.*");
     std::transform(lowered_msg.begin(), lowered_msg.end(), lowered_msg.begin(), ::tolower);
 
@@ -36,14 +36,17 @@ bool containsCorrectNitFormat(std::string msg) {
 }
 
 bool isMaxLength(std::string msg) {
+    // Entire commit message
     return true;
 }
 
 bool containsSummary(std::string msg) {
+    // Formatting and character length
     return true;
 }
 
 bool containsKeyPoints(std::string msg) {
+    // Formatting and character length and # of bullets
     return true;
 }
 
@@ -73,7 +76,7 @@ int main(int argc, char* argv[]) {
 
     commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
-    if (isFirstLetterCapitalized(commit_msg)) {
+    if (!isFirstLetterCapitalized(commit_msg)) {
         printf("Error: First letter must be capitalized. \U0000274C\n");
     }
 
