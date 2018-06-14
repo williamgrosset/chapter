@@ -13,6 +13,7 @@ bool containsTypos(std::string msg) {
 }
 
 bool isFirstLetterCapitalized(std::string msg) {
+    // TODO: Capture summary out of msg (REGEX)
     if (isupper(msg[0])) {
         return true;
     } else {
@@ -20,7 +21,14 @@ bool isFirstLetterCapitalized(std::string msg) {
     }
 }
 
+bool isSummaryMinLength(std::string msg) {
+    // TODO: Capture summary out of msg (REGEX)
+    if (msg.length() > 18) return true;
+    return false;
+}
+
 bool isSummaryMaxLength(std::string msg) {
+    // TODO: Capture summary out of msg (REGEX)
     if (msg.length() > 50) return true;
     return false;
 }
@@ -56,7 +64,6 @@ bool containsCorrectWIPFormat(std::string msg) {
 }
 
 bool containsDescription(std::string msg) {
-    // TODO: Formatting and character length
     const boost::regex desc_pattern("[a-zA-Z0-9_\\s]*\\n\\n([a-zA-Z0-9_\\s]*)");
 
     if (!regex_match(msg, desc_pattern)) {
@@ -64,6 +71,20 @@ bool containsDescription(std::string msg) {
     }
 
     return true;
+}
+
+bool isDescriptionMaxLength(std::string msg) {
+    const boost::regex desc_pattern("[a-zA-Z0-9_\\s]*\\n\\n([a-zA-Z0-9_\\s]*)");
+
+    if (regex_match(msg, desc_pattern)) {
+        /*
+        if (desc.length() > 72) {
+            return true;
+        }*/
+        return true;
+    }
+
+    return false;
 }
 
 bool containsBulletPoints(std::string msg) {
@@ -104,7 +125,7 @@ int main(int argc, char* argv[]) {
     commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
     if (!isFirstLetterCapitalized(commit_msg)) {
-        printf("Error: First letter must be capitalized. \U0000274C\n");
+        printf("Error: First letter of summary must be capitalized. \U0000274C\n");
     }
 
     if (!containsCorrectNitFormat(commit_msg)) {
@@ -115,12 +136,20 @@ int main(int argc, char* argv[]) {
         printf("Error: \"WIP:\" commits must have the correct format. \U0000274C\n");
     }
 
+    if (isSummaryMinLength(commit_msg)) {
+        printf("Error: Summary must be above 18 characters. \U0000274C\n");
+    }
+
     if (isSummaryMaxLength(commit_msg)) {
         printf("Error: Summary must not exceed 50 characters. \U0000274C\n");
     }
 
     if (!containsDescription(commit_msg)) {
         printf("Error: Description is required. \U0000274C\n");
+    }
+
+    if (!isDescriptionMaxLength(commit_msg)) {
+        printf("Error: Description must not exceed 72 characters. \U0000274C\n");
     }
 
     if (!containsBulletPoints(commit_msg)) {
