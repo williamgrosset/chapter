@@ -35,18 +35,19 @@ bool containsCorrectNitFormat(std::string msg) {
     return true;
 }
 
-bool isStatementMaxLength(std::string msg) {
+bool isSummaryMaxLength(std::string msg) {
     // Check commit message statement length
-    // Default: 50 characters in length
+    // If above 50 (default) characters, return true
+    // Else return false
     return true;
 }
 
-bool containsSummary(std::string msg) {
+bool containsDescription(std::string msg) {
     // Formatting and character length
     return true;
 }
 
-bool containsKeyPoints(std::string msg) {
+bool containsBulletPoints(std::string msg) {
     // Formatting and character length and # of bullets
     return true;
 }

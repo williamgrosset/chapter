@@ -36,7 +36,7 @@
 + Max-character length
 + Capitalization of each sentence
 + Require summary (character length)
-+ Require X bullet points
++ Require X bullet points (hyphen, astericks, plus)
 + Explicit rule for `Nit: ...` and `WIP:...` (format, character length)
 
 ## Future
