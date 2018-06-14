@@ -51,10 +51,8 @@ bool containsCorrectWIPFormat(std::string msg) {
 }
 
 bool isSummaryMaxLength(std::string msg) {
-    // Check commit message statement length
-    // If above 50 (default) characters, return true
-    // Else return false
-    return true;
+    if (msg.length() > 50) return true;
+    return false;
 }
 
 bool containsDescription(std::string msg) {
@@ -97,13 +95,16 @@ int main(int argc, char* argv[]) {
         printf("Error: First letter must be capitalized. \U0000274C\n");
     }
 
-
     if (!containsCorrectNitFormat(commit_msg)) {
         printf("Error: \"Nit:\" commits must have the correct format. \U0000274C\n");
     }
 
     if (!containsCorrectWIPFormat(commit_msg)) {
         printf("Error: \"WIP:\" commits must have the correct format. \U0000274C\n");
+    }
+
+    if (isSummaryMaxLength(commit_msg)) {
+        printf("Error: Summary must not exceed 50 characters. \U0000274C\n");
     }
 
     return 0;
