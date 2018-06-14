@@ -35,8 +35,9 @@ bool containsCorrectNitFormat(std::string msg) {
     return true;
 }
 
-bool isMaxLength(std::string msg) {
-    // Entire commit message
+bool isStatementMaxLength(std::string msg) {
+    // Check commit message statement length
+    // Default: 50 characters in length
     return true;
 }
 

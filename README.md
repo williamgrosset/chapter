@@ -16,6 +16,7 @@
 + [Commit Message Guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53)
 + [What makes a good commit message (hackernoon)](https://hackernoon.com/what-makes-a-good-commit-message-995d23687ad)
 + [Writing good commit messages](https://github.com/erlang/otp/wiki/writing-good-commit-messages)
++ [Whats with the 50/72 rule](https://medium.com/@preslavrachev/what-s-with-the-50-72-rule-8a906f61f09c)
 
 ## Overview
 ..
@@ -37,7 +38,6 @@
 + Require summary (character length)
 + Require X bullet points
 + Explicit rule for `Nit: ...` and `WIP:...` (format, character length)
-+ Test commit
 
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
