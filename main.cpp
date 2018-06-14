@@ -20,6 +20,11 @@ bool isFirstLetterCapitalized(std::string msg) {
     }
 }
 
+bool isSummaryMaxLength(std::string msg) {
+    if (msg.length() > 50) return true;
+    return false;
+}
+
 bool containsCorrectNitFormat(std::string msg) {
     std::string lowered_msg = msg;
     const boost::regex nit_pattern(".*\\s(nit)\\s.*");
@@ -50,11 +55,6 @@ bool containsCorrectWIPFormat(std::string msg) {
     return true;
 }
 
-bool isSummaryMaxLength(std::string msg) {
-    if (msg.length() > 50) return true;
-    return false;
-}
-
 bool containsDescription(std::string msg) {
     // TODO: Formatting and character length
     const boost::regex desc_pattern("[a-zA-Z0-9_\\s]*\\n\\n([a-zA-Z0-9_\\s]*)");
@@ -67,7 +67,13 @@ bool containsDescription(std::string msg) {
 }
 
 bool containsBulletPoints(std::string msg) {
-    // Formatting and # of bullets (default 3)
+    // TODO: Formatting and # of bullets (default 3)
+    const boost::regex bullet_point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([\\+a-zA-Z0-9_\\s]*)");
+
+    if (!regex_match(msg, bullet_point_pattern)) {
+        return false;
+    }
+
     return true;
 }
 
@@ -115,6 +121,10 @@ int main(int argc, char* argv[]) {
 
     if (!containsDescription(commit_msg)) {
         printf("Error: Description is required. \U0000274C\n");
+    }
+
+    if (!containsBulletPoints(commit_msg)) {
+        printf("Error: 3 bullet points are required. \U0000274C\n");
     }
 
     return 0;
