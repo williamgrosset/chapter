@@ -34,7 +34,6 @@
 + No-typos
 + Max-character length
 + Capitalization of each sentence
-+ Include/exclude periods
 + Require summary (character length)
 + Require X bullet points
 + Explicit rule for `Nit: ...` and `WIP:...` (format, character length)

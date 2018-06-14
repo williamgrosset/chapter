@@ -4,6 +4,7 @@
 #include <fstream>
 #include <ctype.h>
 #include <unistd.h>
+#include <boost/regex.hpp>
 #include <jamspell/spell_corrector.hpp>
 
 // TODO: Place audit methods in lib/
@@ -13,13 +14,23 @@ bool containsTypos(std::string msg) {
 
 bool isFirstLetterCapitalized(std::string msg) {
     if (isupper(msg[0])) {
-       return true;
+        return true;
     } else {
-       return false;
+        return false;
     }
 }
 
-bool containsPeriod(std::string msg) {
+bool containsCorrectNitFormat(std::string msg) {
+    const boost::regex nit_pattern(".*(nit).*");
+    const boost::regex nit_format_pattern("Nit:.*");
+    std::transform(msg.begin(), msg.end(), msg.begin(), ::tolower);
+
+    if (regex_match(msg, nit_pattern)) {
+        if (!regex_match(msg, nit_format_pattern)) {
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -62,9 +73,12 @@ int main(int argc, char* argv[]) {
     commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
     if (isFirstLetterCapitalized(commit_msg)) {
-        printf("No errors found. \U0001F3C6\n");
-    } else {
         printf("Error: First letter must be capitalized. \U0000274C\n");
+    }
+
+
+    if (!containsCorrectNitFormat(commit_msg)) {
+        printf("Error: \"Nit:\" commits must have the correct format. \U0000274C\n");
     }
 
     return 0;
