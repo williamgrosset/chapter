@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
     std::string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
     
-    printf("/************ Commit message audit... \U00002699 ************/\n\n");
+    printf("/************ Commit message audit... \U00002699  ************/\n\n");
 
     commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
@@ -136,7 +136,7 @@ int main(int argc, char* argv[]) {
         printf("Error: \"WIP:\" commits must have the correct format. \U0000274C\n");
     }
 
-    if (isSummaryMinLength(commit_msg)) {
+    if (!isSummaryMinLength(commit_msg)) {
         printf("Error: Summary must be above 18 characters. \U0000274C\n");
     }
 
@@ -156,7 +156,7 @@ int main(int argc, char* argv[]) {
         printf("Error: 3 bullet points are required. \U0000274C\n");
     }
 
-    printf("\n/************ End of audit. \U00002699 ************/\n");
+    printf("\n/************     End of audit. \U00002699     ************/\n");
 
     return 0;
 }
