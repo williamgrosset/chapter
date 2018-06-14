@@ -35,6 +35,21 @@ bool containsCorrectNitFormat(std::string msg) {
     return true;
 }
 
+bool containsCorrectWIPFormat(std::string msg) {
+    std::string lowered_msg = msg;
+    const boost::regex WIP_pattern(".*\\s(wip)\\s.*");
+    const boost::regex WIP_format_pattern("WIP:.*");
+    std::transform(lowered_msg.begin(), lowered_msg.end(), lowered_msg.begin(), ::tolower);
+
+    if (regex_match(lowered_msg, WIP_pattern)) {
+        if (!regex_match(msg, WIP_format_pattern)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 bool isSummaryMaxLength(std::string msg) {
     // Check commit message statement length
     // If above 50 (default) characters, return true
@@ -85,6 +100,10 @@ int main(int argc, char* argv[]) {
 
     if (!containsCorrectNitFormat(commit_msg)) {
         printf("Error: \"Nit:\" commits must have the correct format. \U0000274C\n");
+    }
+
+    if (!containsCorrectWIPFormat(commit_msg)) {
+        printf("Error: \"WIP:\" commits must have the correct format. \U0000274C\n");
     }
 
     return 0;
