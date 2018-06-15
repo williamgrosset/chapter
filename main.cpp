@@ -144,12 +144,12 @@ int main(int argc, char* argv[]) {
         printf("\U0000274C Error: Summary must not exceed 50 characters. \n");
     }
 
-    if (!containsDescription(commit_msg)) {
+    if (containsDescription(commit_msg)) {
+        if (!isDescriptionMaxLength(commit_msg)) {
+            printf("\U0000274C Error: Description must not exceed 72 characters. \n");
+        }
+    } else {
         printf("\U0000274C Error: Description is required. \n");
-    }
-
-    if (!isDescriptionMaxLength(commit_msg)) {
-        printf("\U0000274C Error: Description must not exceed 72 characters. \n");
     }
 
     if (!containsBulletPoints(commit_msg)) {
