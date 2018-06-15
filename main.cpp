@@ -64,7 +64,7 @@ bool containsCorrectWIPFormat(std::string msg) {
 }
 
 bool containsDescription(std::string msg) {
-    const boost::regex desc_pattern("[a-zA-Z0-9_\\s]*\\n\\n([a-zA-Z0-9_\\s]*)");
+    const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
 
     if (!regex_match(msg, desc_pattern)) {
         return false;
@@ -74,14 +74,14 @@ bool containsDescription(std::string msg) {
 }
 
 bool isDescriptionMaxLength(std::string msg) {
-    const boost::regex desc_pattern("[a-zA-Z0-9_\\s]*\\n\\n([a-zA-Z0-9_\\s]*)");
+    const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
+    boost::smatch result;
 
-    if (regex_match(msg, desc_pattern)) {
-        /*
-        if (desc.length() > 72) {
+    if (boost::regex_search(msg, result, desc_pattern)) {
+        std::string submatch(result[1].first, result[1].second);
+        if (submatch.length() > 72) {
             return true;
-        }*/
-        return true;
+        }
     }
 
     return false;
