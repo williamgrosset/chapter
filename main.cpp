@@ -22,12 +22,12 @@ bool isFirstLetterCapitalized(std::string msg) {
 }
 
 bool isSummaryMinLength(std::string msg) {
-    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n\\n[a-zA-Z0-9_:\\.\\s]*");
+    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
         std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() > 18) {
+        if (submatch.length() < 18) {
             return true;
         }
     }
@@ -36,7 +36,7 @@ bool isSummaryMinLength(std::string msg) {
 }
 
 bool isSummaryMaxLength(std::string msg) {
-    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n\\n[a-zA-Z0-9_:\\.\\s]*");
+    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
