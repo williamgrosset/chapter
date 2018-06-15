@@ -13,12 +13,17 @@ bool containsTypos(std::string msg) {
 }
 
 bool isFirstLetterCapitalized(std::string msg) {
-    // TODO: Capture summary out of msg (REGEX)
-    if (isupper(msg[0])) {
-        return true;
-    } else {
-        return false;
+    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
+    boost::smatch result;
+
+    if (boost::regex_search(msg, result, summary_pattern)) {
+        std::string submatch(result[1].first, result[1].second);
+        if (isupper(submatch[0])) {
+            return true;
+        }
     }
+
+    return false;
 }
 
 bool isSummaryMinLength(std::string msg) {
