@@ -22,14 +22,30 @@ bool isFirstLetterCapitalized(std::string msg) {
 }
 
 bool isSummaryMinLength(std::string msg) {
-    // TODO: Capture summary out of msg (REGEX)
-    if (msg.length() > 18) return true;
+    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n\\n[a-zA-Z0-9_:\\.\\s]*");
+    boost::smatch result;
+
+    if (boost::regex_search(msg, result, summary_pattern)) {
+        std::string submatch(result[1].first, result[1].second);
+        if (submatch.length() > 18) {
+            return true;
+        }
+    }
+
     return false;
 }
 
 bool isSummaryMaxLength(std::string msg) {
-    // TODO: Capture summary out of msg (REGEX)
-    if (msg.length() > 50) return true;
+    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n\\n[a-zA-Z0-9_:\\.\\s]*");
+    boost::smatch result;
+
+    if (boost::regex_search(msg, result, summary_pattern)) {
+        std::string submatch(result[1].first, result[1].second);
+        if (submatch.length() > 50) {
+            return true;
+        }
+    }
+
     return false;
 }
 
@@ -136,7 +152,7 @@ int main(int argc, char* argv[]) {
         printf("\U0000274C Error: \"WIP:\" commits must have the correct format. \n");
     }
 
-    if (!isSummaryMinLength(commit_msg)) {
+    if (isSummaryMinLength(commit_msg)) {
         printf("\U0000274C Error: Summary must be above 18 characters. \n");
     }
 
