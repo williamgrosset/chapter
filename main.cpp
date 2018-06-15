@@ -120,43 +120,43 @@ int main(int argc, char* argv[]) {
     std::string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
     
-    printf("/************ Commit message audit... \U00002699  ************/\n\n");
+    printf("/************   \U00002699 Commit message audit...   ************/\n\n");
 
     commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
     if (!isFirstLetterCapitalized(commit_msg)) {
-        printf("Error: First letter of summary must be capitalized. \U0000274C\n");
+        printf("\U0000274C Error: First letter of summary must be capitalized. \n");
     }
 
     if (!containsCorrectNitFormat(commit_msg)) {
-        printf("Error: \"Nit:\" commits must have the correct format. \U0000274C\n");
+        printf("\U0000274C Error: \"Nit:\" commits must have the correct format. \n");
     }
 
     if (!containsCorrectWIPFormat(commit_msg)) {
-        printf("Error: \"WIP:\" commits must have the correct format. \U0000274C\n");
+        printf("\U0000274C Error: \"WIP:\" commits must have the correct format. \n");
     }
 
     if (!isSummaryMinLength(commit_msg)) {
-        printf("Error: Summary must be above 18 characters. \U0000274C\n");
+        printf("\U0000274C Error: Summary must be above 18 characters. \n");
     }
 
     if (isSummaryMaxLength(commit_msg)) {
-        printf("Error: Summary must not exceed 50 characters. \U0000274C\n");
+        printf("\U0000274C Error: Summary must not exceed 50 characters. \n");
     }
 
     if (!containsDescription(commit_msg)) {
-        printf("Error: Description is required. \U0000274C\n");
+        printf("\U0000274C Error: Description is required. \n");
     }
 
     if (!isDescriptionMaxLength(commit_msg)) {
-        printf("Error: Description must not exceed 72 characters. \U0000274C\n");
+        printf("\U0000274C Error: Description must not exceed 72 characters. \n");
     }
 
     if (!containsBulletPoints(commit_msg)) {
-        printf("Error: 3 bullet points are required. \U0000274C\n");
+        printf("\U0000274C Error: 3 bullet points are required. \n");
     }
 
-    printf("\n/************     End of audit. \U00002699     ************/\n");
+    printf("\n/************        \U00002699 End of audit.        ************/\n");
 
     return 0;
 }
