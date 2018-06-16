@@ -23,9 +23,12 @@
 ..
 
 ## Installation
++ Support bash script (?)
 ..
 
 ## Usage
++ How to run script manually
++ Run option `--verbose` for more details on commands
 ...
 
 ### Rules
@@ -39,6 +42,8 @@
 + Require summary (character length)
 + Require X bullet points (hyphen, astericks, plus)
 + Explicit rule for `Nit: ...` and `WIP:...` (format, character length)
++ Require UTF-8 characters
++ No Emoji
 
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).

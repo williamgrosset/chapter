@@ -7,10 +7,12 @@
 #include <boost/regex.hpp>
 
 bool containsTypos(const std::string msg) {
+    // TODO: Generate warning (instead of error) outlining all typos
     return true;
 }
 
 bool isFirstLetterCapitalized(const std::string msg) {
+    // TODO: If includes "Nit " or "WIP ", exclude and check summary
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
@@ -25,6 +27,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMinLength(const std::string msg) {
+    // TODO: Pass in length
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
@@ -39,6 +42,7 @@ bool isSummaryMinLength(const std::string msg) {
 }
 
 bool isSummaryMaxLength(const std::string msg) {
+    // TODO: Pass in length
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
@@ -93,6 +97,7 @@ bool containsDescription(const std::string msg) {
 }
 
 bool isDescriptionMaxLength(const std::string msg) {
+    // TODO: Pass in length
     const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
     boost::smatch result;
 
@@ -107,6 +112,7 @@ bool isDescriptionMaxLength(const std::string msg) {
 }
 
 bool containsBulletPoints(const std::string msg) {
+    // TODO: Pass in # of bullet points
     const boost::regex point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([[\\+|-|\\*]a-zA-Z0-9_\\s]{3})");
 
     if (!regex_match(msg, point_pattern)) {
