@@ -109,8 +109,7 @@ bool isDescriptionMaxLength(std::string msg) {
 }
 
 bool containsBulletPoints(std::string msg) {
-    // TODO: Formatting and # of bullets (default 3)
-    const boost::regex point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([[\\+|-|\\*]a-zA-Z0-9_\\s]*)");
+    const boost::regex point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([[\\+|-|\\*]a-zA-Z0-9_\\s]{3})");
 
     if (!regex_match(msg, point_pattern)) {
         return false;
