@@ -146,27 +146,40 @@ int main(int argc, char* argv[]) {
 
     if (!isFirstLetterCapitalized(commit_msg)) {
         printf("\U0000274C Error: First letter of summary must be capitalized. \n");
+    } else {
+        printf("\U00002705 Success: First letter of summary must be capitalized. \n");
     }
 
     if (!containsCorrectNitFormat(commit_msg)) {
         printf("\U0000274C Error: \"Nit:\" commits must have the correct format. \n");
+    } else {
+        printf("\U00002705 Success: \"Nit:\" commits must have the correct format. \n");
     }
 
     if (!containsCorrectWIPFormat(commit_msg)) {
         printf("\U0000274C Error: \"WIP:\" commits must have the correct format. \n");
+    } else {
+        printf("\U00002705 Success: \"WIP:\" commits must have the correct format. \n");
     }
 
     if (isSummaryMinLength(commit_msg)) {
         printf("\U0000274C Error: Summary must be above 18 characters. \n");
+    } else {
+        printf("\U00002705 Success: Summary must be above 18 characters. \n");
     }
 
     if (isSummaryMaxLength(commit_msg)) {
         printf("\U0000274C Error: Summary must not exceed 50 characters. \n");
+    } else {
+        printf("\U00002705 Success: Summary must not exceed 50 characters. \n");
     }
 
     if (containsDescription(commit_msg)) {
+        printf("\U00002705 Success: Description is required. \n");
         if (!isDescriptionMaxLength(commit_msg)) {
             printf("\U0000274C Error: Description must not exceed 72 characters. \n");
+        } else {
+            printf("\U00002705 Success: Description must not exceed 72 characters. \n");
         }
     } else {
         printf("\U0000274C Error: Description is required. \n");
@@ -174,6 +187,8 @@ int main(int argc, char* argv[]) {
 
     if (!containsBulletPoints(commit_msg)) {
         printf("\U0000274C Error: 3 bullet points are required. \n");
+    } else {
+        printf("\U00002705 Success: 3 bullet points are required. \n");
     }
 
     printf("\n/************        \U00002699 End of audit.        ************/\n");
