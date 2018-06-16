@@ -152,14 +152,10 @@ int main(int argc, char* argv[]) {
 
     if (!containsCorrectNitFormat(commit_msg)) {
         printf("\U0000274C Error: \"Nit:\" commits must have the correct format. \n");
-    } else {
-        printf("\U00002705 Success: \"Nit:\" commits must have the correct format. \n");
     }
 
     if (!containsCorrectWIPFormat(commit_msg)) {
         printf("\U0000274C Error: \"WIP:\" commits must have the correct format. \n");
-    } else {
-        printf("\U00002705 Success: \"WIP:\" commits must have the correct format. \n");
     }
 
     if (isSummaryMinLength(commit_msg)) {
