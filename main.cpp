@@ -8,16 +8,16 @@
 #include <jamspell/spell_corrector.hpp>
 
 // TODO: Place audit methods in lib/
-bool containsTypos(std::string msg) {
+bool containsTypos(const std::string msg) {
     return true;
 }
 
-bool isFirstLetterCapitalized(std::string msg) {
+bool isFirstLetterCapitalized(const std::string msg) {
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
-        std::string submatch(result[1].first, result[1].second);
+        const std::string submatch(result[1].first, result[1].second);
         if (isupper(submatch[0])) {
             return true;
         }
@@ -26,12 +26,12 @@ bool isFirstLetterCapitalized(std::string msg) {
     return false;
 }
 
-bool isSummaryMinLength(std::string msg) {
+bool isSummaryMinLength(const std::string msg) {
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
-        std::string submatch(result[1].first, result[1].second);
+        const std::string submatch(result[1].first, result[1].second);
         if (submatch.length() < 18) {
             return true;
         }
@@ -40,12 +40,12 @@ bool isSummaryMinLength(std::string msg) {
     return false;
 }
 
-bool isSummaryMaxLength(std::string msg) {
+bool isSummaryMaxLength(const std::string msg) {
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
-        std::string submatch(result[1].first, result[1].second);
+        const std::string submatch(result[1].first, result[1].second);
         if (submatch.length() > 50) {
             return true;
         }
@@ -54,7 +54,7 @@ bool isSummaryMaxLength(std::string msg) {
     return false;
 }
 
-bool containsCorrectNitFormat(std::string msg) {
+bool containsCorrectNitFormat(const std::string msg) {
     std::string lowered_msg = msg;
     const boost::regex nit_pattern(".*\\s(nit)\\s.*");
     const boost::regex nit_format_pattern("Nit:.*");
@@ -69,7 +69,7 @@ bool containsCorrectNitFormat(std::string msg) {
     return true;
 }
 
-bool containsCorrectWIPFormat(std::string msg) {
+bool containsCorrectWIPFormat(const std::string msg) {
     std::string lowered_msg = msg;
     const boost::regex WIP_pattern(".*\\s(wip)\\s.*");
     const boost::regex WIP_format_pattern("WIP:.*");
@@ -84,7 +84,7 @@ bool containsCorrectWIPFormat(std::string msg) {
     return true;
 }
 
-bool containsDescription(std::string msg) {
+bool containsDescription(const std::string msg) {
     const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
 
     if (!regex_match(msg, desc_pattern)) {
@@ -94,12 +94,12 @@ bool containsDescription(std::string msg) {
     return true;
 }
 
-bool isDescriptionMaxLength(std::string msg) {
+bool isDescriptionMaxLength(const std::string msg) {
     const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, desc_pattern)) {
-        std::string submatch(result[1].first, result[1].second);
+        const std::string submatch(result[1].first, result[1].second);
         if (submatch.length() > 72) {
             return true;
         }
@@ -108,7 +108,7 @@ bool isDescriptionMaxLength(std::string msg) {
     return false;
 }
 
-bool containsBulletPoints(std::string msg) {
+bool containsBulletPoints(const std::string msg) {
     const boost::regex point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([[\\+|-|\\*]a-zA-Z0-9_\\s]{3})");
 
     if (!regex_match(msg, point_pattern)) {
@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
         s_cwd = answer;
     }
 
-    std::string commit_msg_path = s_cwd + "/.git/COMMIT_EDITMSG";
+    const std::string commit_msg_path = s_cwd + "/.git/COMMIT_EDITMSG";
     std::ifstream f(commit_msg_path.c_str());
     std::ostringstream out;
 
