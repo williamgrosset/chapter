@@ -8,7 +8,8 @@
 
 /*
  * TODO:
- * + Update regex patterns
+ * + Update regex patterns to support UTF-8
+ * + Add constants to header file (regex patterns)
 */
 
 bool containsTypos(const std::string msg) {
@@ -32,7 +33,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("([a-zA-Z0-9_:,\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
+    const boost::regex summary_pattern("([a-zA-Z0-9_:,\\.\\s]*)\\n*[a-zA-Z0-9_:,\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
@@ -46,7 +47,7 @@ bool isSummaryMinLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("([a-zA-Z0-9_:,\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
+    const boost::regex summary_pattern("([a-zA-Z0-9_:,\\.\\s]*)\\n*[a-zA-Z0-9_:,\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
@@ -90,7 +91,7 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
+    const boost::regex desc_pattern("[a-zA-Z0-9_:,\\.\\s]*\\n\\n([a-zA-Z0-9_:,\\.\\s]*)");
 
     if (!regex_match(msg, desc_pattern)) {
         return false;
@@ -101,7 +102,7 @@ bool containsDescription(const std::string msg) {
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
     // TODO: Pass in length
-    const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
+    const boost::regex desc_pattern("[a-zA-Z0-9_:,\\.\\s]*\\n\\n([a-zA-Z0-9_:,\\.\\s]*)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, desc_pattern)) {
@@ -121,6 +122,10 @@ bool containsBulletPoints(const std::string msg, const int length) {
         return false;
     }
 
+    return true;
+}
+
+bool containsEmoji(const std::string msg) {
     return true;
 }
 
