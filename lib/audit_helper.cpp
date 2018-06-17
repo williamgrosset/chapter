@@ -26,14 +26,13 @@ bool isFirstLetterCapitalized(const std::string msg) {
     return false;
 }
 
-bool isSummaryMinLength(const std::string msg) {
-    // TODO: Pass in length
+bool isSummaryMinLength(const std::string msg, const int length) {
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
         const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() < 18) {
+        if (submatch.length() < length) {
             return true;
         }
     }
@@ -41,14 +40,13 @@ bool isSummaryMinLength(const std::string msg) {
     return false;
 }
 
-bool isSummaryMaxLength(const std::string msg) {
-    // TODO: Pass in length
+bool isSummaryMaxLength(const std::string msg, const int length) {
     const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
         const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() > 50) {
+        if (submatch.length() > length) {
             return true;
         }
     }
@@ -96,14 +94,14 @@ bool containsDescription(const std::string msg) {
     return true;
 }
 
-bool isDescriptionMaxLength(const std::string msg) {
+bool isDescriptionMaxLength(const std::string msg, const int length) {
     // TODO: Pass in length
     const boost::regex desc_pattern("[a-zA-Z0-9_:\\.\\s]*\\n\\n([a-zA-Z0-9_:\\.\\s]*)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, desc_pattern)) {
         const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() > 72) {
+        if (submatch.length() > length) {
             return true;
         }
     }
@@ -111,9 +109,8 @@ bool isDescriptionMaxLength(const std::string msg) {
     return false;
 }
 
-bool containsBulletPoints(const std::string msg) {
-    // TODO: Pass in # of bullet points
-    const boost::regex point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([[\\+|-|\\*]a-zA-Z0-9_\\s]{3})");
+bool containsBulletPoints(const std::string msg, const int length) {
+    const boost::regex point_pattern("[a-zA-Z0-9_\\s]*\\n\\n[a-zA-Z0-9_\\s]*\\n\\n([[\\+|-|\\*]a-zA-Z0-9_\\s]{" + std::to_string(length) + "})");
 
     if (!regex_match(msg, point_pattern)) {
         return false;
@@ -139,13 +136,13 @@ void displayAuditResults(const std::string commit_msg) {
         printf("\U0000274C Error: \"WIP:\" commits must have the correct format. \n");
     }
 
-    if (isSummaryMinLength(commit_msg)) {
+    if (isSummaryMinLength(commit_msg, 18)) {
         printf("\U0000274C Error: Summary must be above 18 characters. \n");
     } else {
         printf("\U00002705 Success: Summary must be above 18 characters. \n");
     }
 
-    if (isSummaryMaxLength(commit_msg)) {
+    if (isSummaryMaxLength(commit_msg, 50)) {
         printf("\U0000274C Error: Summary must not exceed 50 characters. \n");
     } else {
         printf("\U00002705 Success: Summary must not exceed 50 characters. \n");
@@ -153,7 +150,7 @@ void displayAuditResults(const std::string commit_msg) {
 
     if (containsDescription(commit_msg)) {
         printf("\U00002705 Success: Description is required. \n");
-        if (!isDescriptionMaxLength(commit_msg)) {
+        if (!isDescriptionMaxLength(commit_msg, 72)) {
             printf("\U0000274C Error: Description must not exceed 72 characters. \n");
         } else {
             printf("\U00002705 Success: Description must not exceed 72 characters. \n");
@@ -162,7 +159,7 @@ void displayAuditResults(const std::string commit_msg) {
         printf("\U0000274C Error: Description is required. \n");
     }
 
-    if (!containsBulletPoints(commit_msg)) {
+    if (!containsBulletPoints(commit_msg, 3)) {
         printf("\U0000274C Error: 3 bullet points are required. \n");
     } else {
         printf("\U00002705 Success: 3 bullet points are required. \n");
