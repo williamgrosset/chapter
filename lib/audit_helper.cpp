@@ -6,6 +6,11 @@
 #include <unistd.h>
 #include <boost/regex.hpp>
 
+/*
+ * TODO:
+ * + Update regex patterns
+*/
+
 bool containsTypos(const std::string msg) {
     // TODO: Generate warning (instead of error) outlining all typos
     return true;
@@ -27,7 +32,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
+    const boost::regex summary_pattern("([a-zA-Z0-9_:,\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
@@ -41,7 +46,7 @@ bool isSummaryMinLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("([a-zA-Z0-9_:\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
+    const boost::regex summary_pattern("([a-zA-Z0-9_:,\\.\\s]*)\\n*[a-zA-Z0-9_:\\.\\s]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
