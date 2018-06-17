@@ -24,7 +24,9 @@
 ..
 
 ## Installation
-+ Support bash script (?)
++ Update bash script for `post-commit`
++ Locate executable in `$HOME/bin` (?)
++ Ensure permissions are set `chmod +x .git/hooks/post-commit`
 ..
 
 ## Usage
