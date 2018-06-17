@@ -125,6 +125,7 @@ bool containsBulletPoints(const std::string msg, const int count) {
 }
 
 void displayAuditResults(const std::string commit_msg) {
+    printf("/*******************************************************/\n");
     printf("/************   \U00002699 Commit message audit...   ************/\n\n");
 
     if (!isFirstLetterCapitalized(commit_msg)) {
@@ -171,4 +172,5 @@ void displayAuditResults(const std::string commit_msg) {
     }
 
     printf("\n/************        \U00002699 End of audit.        ************/\n");
+    printf("/*******************************************************/\n");
 }
