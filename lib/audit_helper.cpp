@@ -33,7 +33,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("([\\u0080-\\uDB7F\\s]+)\\n*[\\u0080-\\uDB7F\\s]*");
+    const boost::regex summary_pattern("(\\u0080-\\uDB7F+)[\\n\\u0080-\\uDB7F]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
