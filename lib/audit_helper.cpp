@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <boost/regex.hpp>
+#include <jamspell/spell_corrector.hpp>
 
 /*
  * TODO:
@@ -125,8 +126,15 @@ bool containsBulletPoints(const std::string msg, const int count) {
 }
 
 void displayAuditResults(const std::string commit_msg) {
+    NJamSpell::TSpellCorrector corrector;
+    corrector.LoadLangModel("model.bin");
+
     printf("/*******************************************************/\n");
     printf("/************   \U00002699 Commit message audit...   ************/\n\n");
+
+    std::string commit_msg_mod = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
+
+    printf("%s\n", commit_msg_mod.c_str());
 
     if (!isFirstLetterCapitalized(commit_msg)) {
         printf("\U0000274C Error: First letter of summary must be capitalized. \n");

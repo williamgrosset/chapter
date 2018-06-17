@@ -6,11 +6,8 @@
 #include <unistd.h>
 #include <boost/regex.hpp>
 #include <lib/audit_helper.hpp>
-#include <jamspell/spell_corrector.hpp>
 
 int main(int argc, char* argv[]) {
-    NJamSpell::TSpellCorrector corrector;
-    corrector.LoadLangModel("model.bin");
     char buffer[255];
     char* answer = getcwd(buffer, sizeof(buffer));
     std::string s_cwd;
@@ -30,8 +27,6 @@ int main(int argc, char* argv[]) {
     std::string commit_msg = out.str();
     printf("%s", commit_msg.c_str());
     
-    // commit_msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
-
     displayAuditResults(commit_msg);
 
     return 0;
