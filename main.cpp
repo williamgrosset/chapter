@@ -1,10 +1,6 @@
-#include <string>
 #include <sstream>
-#include <iostream>
 #include <fstream>
-#include <ctype.h>
 #include <unistd.h>
-#include <boost/regex.hpp>
 #include <lib/results_logger.hpp>
 
 int main(int argc, char* argv[]) {
