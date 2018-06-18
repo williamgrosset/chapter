@@ -1,10 +1,10 @@
-bool containsTypos(std::string commit_msg);
-bool isFirstLetterCapitalized(std::string commit_msg);
-bool isSummaryMinLength(std::string commit_msg, int length);
-bool isSummaryMaxLength(std::string commit_msg, int length);
+bool containsBulletPoints(std::string commit_msg, int count);
 bool containsCorrectNitFormat(std::string commit_msg);
 bool containsCorrectWIPFormat(std::string commit_msg);
 bool containsDescription(std::string commit_msg);
-bool isDescriptionMinLength(std::string commit_msg, int length);
+bool containsTypos(std::string commit_msg);
 bool isDescriptionMaxLength(std::string commit_msg, int length);
-bool containsBulletPoints(std::string commit_msg, int count);
+bool isDescriptionMinLength(std::string commit_msg, int length);
+bool isFirstLetterCapitalized(std::string commit_msg);
+bool isSummaryMaxLength(std::string commit_msg, int length);
+bool isSummaryMinLength(std::string commit_msg, int length);
