@@ -1,9 +1,4 @@
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <fstream>
 #include <ctype.h>
-#include <unistd.h>
 #include <boost/regex.hpp>
 #include <lib/audit_helper.hpp>
 #include <jamspell/spell_corrector.hpp>
