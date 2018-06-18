@@ -1,1 +1,10 @@
-void displayAuditResults(std::string commit_msg);
+bool containsTypos(std::string commit_msg);
+bool isFirstLetterCapitalized(std::string commit_msg);
+bool isSummaryMinLength(std::string commit_msg, int length);
+bool isSummaryMaxLength(std::string commit_msg, int length);
+bool containsCorrectNitFormat(std::string commit_msg);
+bool containsCorrectWIPFormat(std::string commit_msg);
+bool containsDescription(std::string commit_msg);
+bool isDescriptionMinLength(std::string commit_msg, int length);
+bool isDescriptionMaxLength(std::string commit_msg, int length);
+bool containsBulletPoints(std::string commit_msg, int count);

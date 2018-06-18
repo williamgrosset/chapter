@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <boost/regex.hpp>
-#include <lib/audit_helper.hpp>
+#include <lib/results_logger.hpp>
 
 int main(int argc, char* argv[]) {
     char buffer[255];
