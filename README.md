@@ -11,6 +11,7 @@
 + Setup test suite
 + Update `README.md`: ToC, project name, overview, and add logo
 + Add GitHub badge to be downloaded (similar to Prettier)
++ Add ability to install via `brew`
 
 ## NOTES
 + [How to Write a Git Commit Message (Chris Beams)](https://chris.beams.io/posts/git-commit)

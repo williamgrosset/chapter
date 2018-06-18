@@ -101,6 +101,20 @@ bool containsDescription(const std::string msg) {
     return true;
 }
 
+bool isDescriptionMinLength(const std::string msg, const int length) {
+    const boost::regex desc_pattern("[\\u0080-\\uDB7F\\s]+\\n\\n([\\u0080-\\uDB7F\\s]+)");
+    boost::smatch result;
+
+    if (boost::regex_search(msg, result, desc_pattern)) {
+        const std::string submatch(result[1].first, result[1].second);
+        if (submatch.length() < length) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool isDescriptionMaxLength(const std::string msg, const int length) {
     const boost::regex desc_pattern("[\\u0080-\\uDB7F\\s]+\\n\\n([\\u0080-\\uDB7F\\s]+)");
     boost::smatch result;
@@ -134,6 +148,7 @@ void displayAuditResults(const std::string commit_msg) {
 
     std::string commit_msg_mod = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
+    printf("Testing spell check...\n");
     printf("%s\n", commit_msg_mod.c_str());
 
     if (!isFirstLetterCapitalized(commit_msg)) {
@@ -164,6 +179,12 @@ void displayAuditResults(const std::string commit_msg) {
 
     if (containsDescription(commit_msg)) {
         printf("\U00002705 Success: Description is required. \n");
+        if (!isDescriptionMinLength(commit_msg, 40)) {
+            printf("\U0000274C Error: Description must be above 40 characters. \n");
+        } else {
+            printf("\U00002705 Success: Description must be above 40 characters. \n");
+        }
+
         if (!isDescriptionMaxLength(commit_msg, 72)) {
             printf("\U0000274C Error: Description must not exceed 72 characters. \n");
         } else {
