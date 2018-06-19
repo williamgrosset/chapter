@@ -3,12 +3,12 @@
 
 /*
  * TODO:
- * + Update regex patterns to support UTF-8
- * + Add constants to header file (regex patterns)
-*/
+ * + Combine min/max and nit/WIP functions
+ */
+const std::string COMMIT_MSG_PATTERN = "\u0020-\u007E";
 
 bool containsBulletPoints(const std::string msg, const int count) {
-    const boost::regex point_pattern("[\\u0080-\\uDB7F\\s]+\\n\\n[\\u0080-\\uDB7F\\s]+\\n\\n([[\\+|-|\\*]\\s\\u0080-\\uDB7F\\s+]{" + std::to_string(count) + "})");
+    const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n[" + COMMIT_MSG_PATTERN + "]+\n\n([\\+|-|\\*" + COMMIT_MSG_PATTERN + "]{" + std::to_string(count) + "})");
 
     if (!regex_match(msg, point_pattern)) {
         return false;
@@ -48,7 +48,7 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex desc_pattern("[\\u0080-\\uDB7F\\s]+\\n\\n([\\u0080-\\uDB7F\\s]+)");
+    const boost::regex desc_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
 
     if (!regex_match(msg, desc_pattern)) {
         return false;
@@ -63,7 +63,7 @@ bool containsTypos(const std::string msg) {
 }
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
-    const boost::regex desc_pattern("[\\u0080-\\uDB7F\\s]+\\n\\n([\\u0080-\\uDB7F\\s]+)");
+    const boost::regex desc_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, desc_pattern)) {
@@ -77,7 +77,7 @@ bool isDescriptionMaxLength(const std::string msg, const int length) {
 }
 
 bool isDescriptionMinLength(const std::string msg, const int length) {
-    const boost::regex desc_pattern("[\\u0080-\\uDB7F\\s]+\\n\\n([\\u0080-\\uDB7F\\s]+)");
+    const boost::regex desc_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, desc_pattern)) {
@@ -92,7 +92,7 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 
 bool isFirstLetterCapitalized(const std::string msg) {
     // TODO: If includes "Nit " or "WIP ", exclude and check summary
-    const boost::regex summary_pattern("([\\u0080-\\uDB7F\\s]+)\\n*[\\u0080-\\uDB7F\\s]*");
+    const boost::regex summary_pattern("([" + COMMIT_MSG_PATTERN + "]+)[\n" + COMMIT_MSG_PATTERN + "]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
@@ -106,7 +106,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("([\\u0080-\\uDB7F\\s]+)\\n*[\\u0080-\\uDB7F\\s]*");
+    const boost::regex summary_pattern("([" + COMMIT_MSG_PATTERN + "]+)[\n" + COMMIT_MSG_PATTERN + "]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
@@ -120,7 +120,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summary_pattern("(\\u0080-\\uDB7F+)[\\n\\u0080-\\uDB7F]*");
+    const boost::regex summary_pattern("([" + COMMIT_MSG_PATTERN + "]+)[\n" + COMMIT_MSG_PATTERN + "]*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summary_pattern)) {
