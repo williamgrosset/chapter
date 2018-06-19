@@ -12,11 +12,11 @@ bool containsBulletPoints(const std::string msg, const int count) {
     const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+[\n\n[" + COMMIT_MSG_PATTERN + "]*]\n\n([\\+|-|\\*"
                                         + COMMIT_MSG_PATTERN + "]{" + std::to_string(count) + "})");
 
-    if (!regex_match(msg, point_pattern)) {
-        return false;
+    if (regex_match(msg, point_pattern)) {
+        return true;
     }
 
-    return true;
+    return false;
 }
 
 bool containsCorrectNitFormat(const std::string msg) {
