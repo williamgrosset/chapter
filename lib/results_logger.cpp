@@ -7,7 +7,7 @@ void displayAuditResults(const std::string commit_msg) {
     NJamSpell::TSpellCorrector corrector;
     corrector.LoadLangModel("model.bin");
 
-    printf("/************   \U00002699 Commit message audit...   ************/\n\n");
+    printf("************   \U00002699 Commit message audit...   ************\n\n");
 
     std::string commit_msg_mod = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
 
@@ -64,5 +64,5 @@ void displayAuditResults(const std::string commit_msg) {
         printf("\U0000274C Error: 3 bullet points are required. \n");
     }
 
-    printf("\n/************        \U00002699 End of audit.        ************/\n");
+    printf("\n************        \U00002699 End of audit.        ************\n");
 }

@@ -5,9 +5,10 @@
  * TODO:
  * + Combine min/max and nit/WIP functions
  * + Improve initial regex for nit/WIP
+ * + Update naming for pattern const
  */
 
-const std::string COMMIT_MSG_PATTERN = "\u0020-\u007E";
+const std::string COMMIT_MSG_PATTERN = "\u0021-\u007E\\s";
 
 bool containsBulletPoints(const std::string msg, const int count) {
     const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+[\n\n[" + COMMIT_MSG_PATTERN + "]*]\n\n([\\+|-|\\*"
@@ -53,11 +54,11 @@ bool containsCorrectWIPFormat(const std::string msg) {
 bool containsDescription(const std::string msg) {
     const boost::regex desc_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
 
-    if (!regex_match(msg, desc_pattern)) {
-        return false;
+    if (regex_match(msg, desc_pattern)) {
+        return true;
     }
 
-    return true;
+    return false;
 }
 
 bool containsTypos(const std::string msg) {
