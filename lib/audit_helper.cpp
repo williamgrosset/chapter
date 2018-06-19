@@ -9,7 +9,7 @@
 const std::string COMMIT_MSG_PATTERN = "\u0020-\u007E";
 
 bool containsBulletPoints(const std::string msg, const int count) {
-    const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n[" + COMMIT_MSG_PATTERN + "]+\n\n([\\+|-|\\*"
+    const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+[\n\n[" + COMMIT_MSG_PATTERN + "]*]\n\n([\\+|-|\\*"
                                         + COMMIT_MSG_PATTERN + "]{" + std::to_string(count) + "})");
 
     if (!regex_match(msg, point_pattern)) {
@@ -60,7 +60,9 @@ bool containsDescription(const std::string msg) {
 }
 
 bool containsTypos(const std::string msg) {
-    // TODO: Generate warning (instead of error) outlining all typos
+    // TODO:
+    //  + Generate warning (instead of error) outlining all typos
+    //  + Ignore nit and WIP
     return true;
 }
 
