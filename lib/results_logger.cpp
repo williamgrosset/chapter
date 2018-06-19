@@ -44,9 +44,9 @@ void displayAuditResults(const std::string commit_msg) {
         printf("\U00002705 Success: Description is required. \n");
 
         if (isDescriptionMinLength(commit_msg, 40)) {
-            printf("\U00002705 Success: Description must be above 40 characters. \n");
-        } else {
             printf("\U0000274C Error: Description must be above 40 characters. \n");
+        } else {
+            printf("\U00002705 Success: Description must be above 40 characters. \n");
         }
 
         if (isDescriptionMaxLength(commit_msg, 72)) {
