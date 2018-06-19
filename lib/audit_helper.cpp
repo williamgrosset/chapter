@@ -21,7 +21,7 @@ bool containsBulletPoints(const std::string msg, const int count) {
 
 bool containsCorrectNitFormat(const std::string msg) {
     std::string lowered_msg = msg;
-    const boost::regex nit_pattern(".*\\s(nit)\\s.*");
+    const boost::regex nit_pattern(".*(nit).*");
     const boost::regex nit_format_pattern("Nit:.*");
     std::transform(lowered_msg.begin(), lowered_msg.end(), lowered_msg.begin(), ::tolower);
 
