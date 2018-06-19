@@ -48,6 +48,7 @@
 + Explicit rule for `Nit: ...` and `WIP:...` (format, character length)
 + Require UTF-8 characters
 + No Emoji
++ Include JIRA ticket number
 
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
