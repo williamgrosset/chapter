@@ -6,13 +6,16 @@
  * + Combine min/max and nit/WIP functions
  * + Improve initial regex for nit/WIP
  * + Update naming for pattern const
+ * + Fix regex for identifying # of bullet points
  */
 
 const std::string COMMIT_MSG_PATTERN = "\u0021-\u007E\\s";
 
 bool containsBulletPoints(const std::string msg, const int count) {
-    const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+[\n\n[" + COMMIT_MSG_PATTERN + "]*]\n\n([\\+|-|\\*"
-                                        + COMMIT_MSG_PATTERN + "]{" + std::to_string(count) + "})");
+    // const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n[" + COMMIT_MSG_PATTERN + "]*\n\n([\\+|-|\\*"
+                                        // + COMMIT_MSG_PATTERN + "]{" + std::to_string(count) + "})");
+    const boost::regex point_pattern("[" + COMMIT_MSG_PATTERN + "]+\n\n[" + COMMIT_MSG_PATTERN + "]*\n\n(["
+                                        + COMMIT_MSG_PATTERN + "\n]+)");
 
     if (regex_match(msg, point_pattern)) {
         return true;
