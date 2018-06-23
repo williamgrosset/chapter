@@ -1,7 +1,17 @@
 {
+    "summary": {
+        "required": true,
+        "max_length": 50,
+        "min_length": 18 
+    },
     "description": {
         "required": true,
         "max_length": 72,
         "min_length": 40
-    }
+    },
+    "bullet_points": 3,
+    "allow_typos": false,
+    "summary_capital": true,
+    "nit_format": true,
+    "wip_format": true
 }
