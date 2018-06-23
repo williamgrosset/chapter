@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <lib/results_logger.hpp>
 
-int main(int argc, char* argv[]) {
+std::string getGitCommitMsgPath() {
     char buffer[255];
     char* answer = getcwd(buffer, sizeof(buffer));
     std::string s_cwd;
@@ -12,7 +12,11 @@ int main(int argc, char* argv[]) {
         s_cwd = answer;
     }
 
-    const std::string commit_msg_path = s_cwd + "/.git/COMMIT_EDITMSG";
+    return s_cwd + "/.git/COMMIT_EDITMSG";
+}
+
+int main(int argc, char* argv[]) {
+    const std::string commit_msg_path = getGitCommitMsgPath();
     std::ifstream f(commit_msg_path.c_str());
     std::ostringstream out;
 
