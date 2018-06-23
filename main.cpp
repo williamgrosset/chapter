@@ -3,16 +3,21 @@
 #include <unistd.h>
 #include <lib/results_logger.hpp>
 
+/*
+ * TODO:
+ * + Improve error handling
+ */
+
 const std::string getGitCommitMsgPath() {
     char buffer[255];
-    char* answer = getcwd(buffer, sizeof(buffer));
-    std::string s_cwd;
+    char* cwd = getcwd(buffer, sizeof(buffer));
 
-    if (answer) {
-        s_cwd = answer;
+    if (cwd) {
+        std::string s_cwd(cwd);
+        return s_cwd + "/.git/COMMIT_EDITMSG";
+    } else {
+        return "";
     }
-
-    return s_cwd + "/.git/COMMIT_EDITMSG";
 }
 
 int main(int argc, char* argv[]) {
