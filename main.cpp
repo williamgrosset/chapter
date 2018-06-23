@@ -23,14 +23,13 @@ const std::string getGitCommitMsgPath() {
 int main(int argc, char* argv[]) {
     const std::string commit_msg_path = getGitCommitMsgPath();
     std::ifstream f(commit_msg_path.c_str());
-    std::ostringstream out;
+    std::ostringstream s_stream;
 
     if (f.is_open()) {
-        out << f.rdbuf();
+        s_stream << f.rdbuf();
     }
 
-    std::string commit_msg = out.str();
-    printf("%s", commit_msg.c_str());
+    std::string commit_msg = s_stream.str();
     
     displayAuditResults(commit_msg);
 
