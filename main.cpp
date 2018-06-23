@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <lib/results_logger.hpp>
 
-std::string getGitCommitMsgPath() {
+const std::string getGitCommitMsgPath() {
     char buffer[255];
     char* answer = getcwd(buffer, sizeof(buffer));
     std::string s_cwd;
