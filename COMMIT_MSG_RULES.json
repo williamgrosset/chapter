@@ -1,0 +1,7 @@
+{
+    "description": {
+        "required": true,
+        "max_length": 72,
+        "min_length": 40
+    }
+}
