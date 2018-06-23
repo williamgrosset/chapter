@@ -5,7 +5,6 @@
  * TODO:
  * + Combine min/max and nit/WIP functions
  * + Improve initial regex for nit/WIP
- * + Update naming for pattern const
  * + Fix regex for identifying # of bullet points
  */
 

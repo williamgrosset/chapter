@@ -1,7 +1,7 @@
 #include <sstream>
 #include <fstream>
 #include <unistd.h>
-#include <lib/results_logger.hpp>
+#include <lib/console_printer.hpp>
 
 /*
  * TODO:
