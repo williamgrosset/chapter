@@ -35,7 +35,33 @@
 + Run option `--verbose` for more details on commands
 ...
 
-### Rules
+## Rules
++ Show example of warning/error
++ Rule in `COMMIT_MSG_RULES.json`
+
+### Typos
+...
+
+### Summary capitalization
+...
+
+### Summary min/max length
++ Positive integers only
++ ...
+
+### Description required
+...
+
+### Description min/max length
+...
+
+### Bullet points required
+...
+
+### `Nit:` format
+...
+
+### `WIP:` format
 ...
 
 ### Rules TODO
