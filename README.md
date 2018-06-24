@@ -11,7 +11,6 @@
 + Setup test suite
 + Update `README.md`: ToC, project name, overview, and add logo
 + Add GitHub badge to be downloaded (similar to Prettier)
-+ Add ability to install via `brew`
 
 ## NOTES
 + [How to Write a Git Commit Message (Chris Beams)](https://chris.beams.io/posts/git-commit)
@@ -25,19 +24,21 @@
 ..
 
 ## Installation
++ Move executable in `$HOME/bin` (?)
 + Update bash script for `post-commit`
-+ Locate executable in `$HOME/bin` (?)
 + Ensure permissions are set `chmod +x .git/hooks/post-commit`
-..
++ Add ability to install via `brew`
++ ...
 
 ## Usage
 + How to run script manually
 + Run option `--verbose` for more details on commands
-...
++ ...
 
 ## Rules
 + Show example of warning/error
 + Rule in `COMMIT_MSG_RULES.json`
++ ...
 
 ### Typos
 ...
@@ -45,23 +46,23 @@
 ### Summary capitalization
 ...
 
-### Summary min/max length
+### Summary length
 + Positive integers only
 + ...
 
 ### Description required
 ...
 
-### Description min/max length
+### Description length
 ...
 
 ### Bullet points required
 ...
 
-### `Nit:` format
+### Nit format
 ...
 
-### `WIP:` format
+### WIP format
 ...
 
 ### Rules TODO
@@ -82,7 +83,7 @@ See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
 ## Contributing 
 See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONTRIBUTING.md).
 
-## Repository
+## Integration 
 Chapter is integrated into this repository at commit message [#154](https://github.com/williamgrosset/chapter.git).
 
 ## License
