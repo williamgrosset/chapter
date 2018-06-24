@@ -1,1 +1,1 @@
-nlohmann::json readFile();
+nlohmann::json readConfigFile();

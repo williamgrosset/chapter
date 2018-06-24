@@ -1,5 +1,7 @@
 #include <ctype.h>
 #include <boost/regex.hpp>
+#include <nlohmann/json.hpp>
+#include <lib/json_helper.hpp>
 #include <lib/audit_helper.hpp>
 #include <jamspell/spell_corrector.hpp>
 
@@ -63,6 +65,8 @@ void displayAuditResults(const std::string commit_msg) {
     } else {
         printf("\U0000274C Error: 3 bullet points are required. \n");
     }
+
+    readConfigFile();
 
     printf("\n************        \U00002699 End of audit.        ************\n");
 }
