@@ -30,6 +30,9 @@
 + Add ability to install via `brew`
 + ...
 
+### JSON helper
++ `brew tap nlohmann/json` && `brew install nlohmann_json`
+
 ## Usage
 + How to run script manually
 + Run option `--verbose` for more details on commands
