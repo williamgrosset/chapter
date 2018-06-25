@@ -1,7 +1,7 @@
 #include <ctype.h>
 #include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
-#include <lib/json_helper.hpp>
+#include <lib/rule_retriever.hpp>
 #include <lib/audit_helper.hpp>
 #include <jamspell/spell_corrector.hpp>
 
