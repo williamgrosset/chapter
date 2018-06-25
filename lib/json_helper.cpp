@@ -18,14 +18,14 @@ nlohmann::json readConfigFile() {
   return j;
 }
 
-int getSummaryMaxLen() {
+int getSummaryMaxLength() {
   nlohmann::json j = readConfigFile();
   // if (isInt(j["sum_max_len"]))
   // if (j["sum_max_len"] > getSummaryMinLen())
   return j["sum_max_len"];
 }
 
-int getSummaryMinLen() {
+int getSummaryMinLength() {
   nlohmann::json j = readConfigFile();
   return j["sum_min_len"];
 }
@@ -35,12 +35,12 @@ bool requiresDescription() {
   return j["desc"]["required"];
 }
 
-int getDescriptionMaxLen() {
+int getDescriptionMaxLength() {
   nlohmann::json j = readConfigFile();
   return j["desc"]["max_len"];
 }
 
-int getDescriptionMinLen() {
+int getDescriptionMinLength() {
   nlohmann::json j = readConfigFile();
   return j["desc"]["min_len"];
 }

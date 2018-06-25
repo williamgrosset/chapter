@@ -1,8 +1,8 @@
-int getSummaryMaxLen();
-int getSummaryMinLen();
+int getSummaryMaxLength();
+int getSummaryMinLength();
 bool requiresDescription();
-int getDescriptionMaxLen();
-int getDescriptionMinLen();
+int getDescriptionMaxLength();
+int getDescriptionMinLength();
 int getBulletPoints();
 bool allowsTypos();
 bool requiresSummaryCapital();
