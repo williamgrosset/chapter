@@ -89,7 +89,7 @@ See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
 ## Contributing 
 See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONTRIBUTING.md).
 
-## Integration 
+## Internal Integration 
 Chapter is integrated into this repository at commit message [#154](https://github.com/williamgrosset/chapter.git).
 
 ## License
