@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
+#include <exception>
 #include <nlohmann/json.hpp>
 
 /*
@@ -9,6 +10,12 @@
  * + Verify type for each rule
  * + Improve error handling
  */
+
+class IntException: public std::exception {
+    virtual const char* what() const throw() {
+      return "\U0001F6A8 Error: Rule \"sum_max_len\" must be a positive integer.";
+    }
+} intExcp;
 
 std::ifstream readConfigFile() {
     char buffer[255];
@@ -32,22 +39,24 @@ nlohmann::json convertFileToJson() {
     return j;
 }
 
+int getSummaryMinLength() {
+    nlohmann::json j = convertFileToJson();
+    return j["sum_min_len"];
+}
+
 int getSummaryMaxLength() {
     nlohmann::json j = convertFileToJson();
     try {
       int maxLength = j["sum_max_len"];
+      if (maxLength <= 0 || maxLength < getSummaryMinLength()) {
+          throw intExcp;
+      }
+
       return maxLength;
-    } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"sum_max_len\" must be a positive integer.\n";
+    } catch(std::exception& e) {
+      std::cout << e.what() << "\n";
       std::exit(EXIT_FAILURE);
     }
-    // if (isInt(j["sum_max_len"]))
-    // if (j["sum_max_len"] > getSummaryMinLen())
-}
-
-int getSummaryMinLength() {
-    nlohmann::json j = convertFileToJson();
-    return j["sum_min_len"];
 }
 
 bool requiresDescription() {
