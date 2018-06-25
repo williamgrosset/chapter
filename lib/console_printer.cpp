@@ -66,7 +66,7 @@ void displayAuditResults(const std::string commit_msg) {
         printf("\U0000274C Error: 3 bullet points are required. \n");
     }
 
-    readConfigFile();
+    getSummaryMaxLen();
 
     printf("\n************        \U00002699 End of audit.        ************\n");
 }

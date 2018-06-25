@@ -1,1 +1,1 @@
-nlohmann::json readConfigFile();
+int getSummaryMaxLen();
