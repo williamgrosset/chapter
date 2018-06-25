@@ -8,21 +8,22 @@
  * + Improve error handling
  */
 
-const std::string getGitCommitMsgPath() {
+std::ifstream readGitCommitMsgFile() {
     char buffer[255];
     char* cwd = getcwd(buffer, sizeof(buffer));
 
     if (cwd) {
         std::string s_cwd(cwd);
-        return s_cwd + "/.git/COMMIT_EDITMSG";
+        std::ifstream f(s_cwd + "/.git/COMMIT_EDITMSG");
+        return f;
     } else {
-        return "";
+        std::ifstream f("/.git/COMMIT_EDITMSG");
+        return f;
     }
 }
 
 int main(int argc, char* argv[]) {
-    const std::string commit_msg_path = getGitCommitMsgPath();
-    std::ifstream f(commit_msg_path.c_str());
+    std::ifstream f = readGitCommitMsgFile();
     std::ostringstream s_stream;
 
     if (f.is_open()) {
