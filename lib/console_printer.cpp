@@ -2,7 +2,7 @@
 #include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
 #include <lib/rule_retriever.hpp>
-#include <lib/audit_helper.hpp>
+#include <lib/rule_auditor.hpp>
 #include <jamspell/spell_corrector.hpp>
 
 void displayAuditResults(const std::string commit_msg) {
