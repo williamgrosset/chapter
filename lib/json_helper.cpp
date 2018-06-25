@@ -4,6 +4,7 @@
 
 /*
  * TODO:
+ * + Read file initially and pass in JSON parameter
  * + Verify type for each rule
  */
 
@@ -19,6 +20,8 @@ nlohmann::json readConfigFile() {
 
 int getSummaryMaxLen() {
   nlohmann::json j = readConfigFile();
+  // if (isInt(j["sum_max_len"]))
+  // if (j["sum_max_len"] > getSummaryMinLen())
   return j["sum_max_len"];
 }
 

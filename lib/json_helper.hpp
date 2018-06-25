@@ -1,1 +1,10 @@
 int getSummaryMaxLen();
+int getSummaryMinLen();
+bool requiresDescription();
+int getDescriptionMaxLen();
+int getDescriptionMinLen();
+int getBulletPoints();
+bool allowsTypos();
+bool requiresSummaryCapital();
+bool requiresNitFormat();
+bool requiresWIPFormat();
