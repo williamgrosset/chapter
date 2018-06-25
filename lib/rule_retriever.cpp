@@ -34,9 +34,15 @@ nlohmann::json convertFileToJson() {
 
 int getSummaryMaxLength() {
     nlohmann::json j = convertFileToJson();
+    try {
+      int maxLength = j["sum_max_len"];
+      return maxLength;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"sum_max_len\" must be a positive integer.\n";
+      std::exit(EXIT_FAILURE);
+    }
     // if (isInt(j["sum_max_len"]))
     // if (j["sum_max_len"] > getSummaryMinLen())
-    return j["sum_max_len"];
 }
 
 int getSummaryMinLength() {

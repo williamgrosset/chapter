@@ -5,6 +5,11 @@
 #include <lib/rule_auditor.hpp>
 #include <jamspell/spell_corrector.hpp>
 
+/*
+ * TODO:
+ * + Remove success statements (add trophy statement)
+ */
+
 void displayAuditResults(const std::string commit_msg) {
     NJamSpell::TSpellCorrector corrector;
     corrector.LoadLangModel("model.bin");
