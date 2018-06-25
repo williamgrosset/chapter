@@ -62,6 +62,9 @@
 ### Bullet points required
 ...
 
+### Documentation format
+...
+
 ### Nit format
 ...
 

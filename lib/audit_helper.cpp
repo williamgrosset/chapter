@@ -23,6 +23,21 @@ bool containsBulletPoints(const std::string msg, const int count) {
     return false;
 }
 
+bool containsCorrectDocFormat(const std::string msg) {
+    std::string lowered_msg = msg;
+    const boost::regex doc_pattern(".*(documentation).*");
+    const boost::regex doc_format_pattern("Documentation:\\s.*");
+    std::transform(lowered_msg.begin(), lowered_msg.end(), lowered_msg.begin(), ::tolower);
+
+    if (regex_match(lowered_msg, doc_pattern)) {
+        if (!regex_match(msg, doc_format_pattern)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 bool containsCorrectNitFormat(const std::string msg) {
     std::string lowered_msg = msg;
     const boost::regex nit_pattern(".*(nit).*");
