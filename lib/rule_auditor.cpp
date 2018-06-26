@@ -2,9 +2,11 @@
 
 /*
  * TODO:
- * + Combine min/max and nit/WIP functions
- * + Improve initial regex for nit/WIP
+ * + Complete typos identification
+ * + Fix all regex patterns (lot of work here)
  * + Fix regex for identifying # of bullet points
+ * + Improve initial regex for nit/WIP
+ * + Combine min/max and nit/WIP functions
  */
 
 const std::string COMMIT_MSG_PATTERN = "\u0021-\u007E\\s";

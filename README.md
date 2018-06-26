@@ -1,12 +1,9 @@
 ...**chapter** logo...
 
 ## TODO
-+ Support location for appropriate `.git` directory location for project
-+ Check last committed that is not on remote (current branch)
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
 + Execute audit program on a `post-commit` hook 
 + Add a config file for supporting rules (default includes all rules)
-+ Option to ignore and push regardless of errors
 + Add terminal UI for progress and success/errors
 + Setup test suite
 + Update `README.md`: ToC, project name, overview, and add logo
@@ -16,18 +13,18 @@
 ..
 
 ## Installation
-+ Move executable in `$HOME/bin` (?)
++ Move executable in `$HOME/bin`
 + Update bash script for `post-commit`
 + Ensure permissions are set `chmod +x .git/hooks/post-commit`
-+ Add ability to install via `brew`
++ Ability to install directly via `brew` or shell script
 + ...
 
 ### JSON helper
 + `brew tap nlohmann/json` && `brew install nlohmann_json`
 
 ## Usage
-+ How to run script manually
-+ Run option `--verbose` for more details on commands
++ How to run script manually (?)
++ Run option `--verbose` for more details on commands (?)
 + ...
 
 ## Rules
@@ -42,8 +39,7 @@
 ...
 
 ### Summary length
-+ Positive integers only
-+ ...
+...
 
 ### Description required
 ...
@@ -85,7 +81,7 @@ See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
 See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONTRIBUTING.md).
 
 ## Internal Integration 
-Chapter is integrated into this repository at commit message [#154](https://github.com/williamgrosset/chapter.git).
+Chapter was integrated into this repository at commit message [#XXX](https://github.com/williamgrosset/chapter.git).
 
 ## License
 [MIT](https://github.com/williamgrosset/chapter/blob/master/LICENSE)
