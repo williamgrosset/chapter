@@ -4,14 +4,6 @@
 #include <exception>
 #include <nlohmann/json.hpp>
 
-/*
- * TODO:
- * + Read file initially and pass in JSON parameter
- * + Do not convert file to JSON for each method
- * + Verify type for each rule
- * + Improve error handling
- */
-
 std::ifstream readConfigFile() {
     char buffer[255];
     char* cwd = getcwd(buffer, sizeof(buffer));
