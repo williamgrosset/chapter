@@ -2,6 +2,8 @@
 
 ## TODO
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
++ Complete logic for all rules
++ Clean-up `console_printer` and all nits
 + Execute audit program on a `post-commit` hook 
 + Add a config file for supporting rules (default includes all rules)
 + Add terminal UI for progress and success/errors
