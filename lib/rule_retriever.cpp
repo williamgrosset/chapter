@@ -11,24 +11,6 @@
  * + Improve error handling
  */
 
-struct SumMinLengthExcp: public std::exception {
-    virtual const char* what() const throw() {
-      return "\U0001F6A8 Error: Rule \"sum_in_len\" must be a non-zero, positive integer.";
-    }
-};
-
-struct SumMaxLengthExcp: public std::exception {
-    virtual const char* what() const throw() {
-      return "\U0001F6A8 Error: Rule \"sum_max_len\" must be a non-zero, positive integer.";
-    }
-};
-
-struct DescReqExcp: public std::exception {
-    virtual const char* what() const throw() {
-      return "\U0001F6A8 Rule Error: Description required must be a boolean.";
-    }
-};
-
 std::ifstream readConfigFile() {
     char buffer[255];
     char* cwd = getcwd(buffer, sizeof(buffer));
@@ -56,13 +38,13 @@ int getSummaryMinLength() {
       nlohmann::json j = convertFileToJson();
       int minLength = j["sum_min_len"];
 
-      if (minLength <= 0) {
-          throw SumMinLengthExcp();
+      if (minLength <= 1) {
+          throw std::exception();
       }
 
       return minLength;
-    } catch(SumMinLengthExcp& e) {
-      std::cout << e.what() << "\n";
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"sum_min_len\" must be a non-zero, positive integer." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -72,13 +54,13 @@ int getSummaryMaxLength() {
       nlohmann::json j = convertFileToJson();
       int maxLength = j["sum_max_len"];
 
-      if (maxLength <= 0) {
-          throw SumMaxLengthExcp();
+      if (maxLength <= 1) {
+          throw std::exception();
       }
 
       return maxLength;
-    } catch(SumMaxLengthExcp& e) {
-      std::cout << e.what() << "\n";
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"sum_max_len\" must be a non-zero, positive integer." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -88,9 +70,11 @@ bool requiresDescription() {
       nlohmann::json j = convertFileToJson();
       bool requiresDesc = j["desc"]["required"];
 
+      std::cout << requiresDesc << "\n";
+
       return requiresDesc;
-    } catch(DescReqExcp& e) {
-      std::cout << e.what() << "\n";
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"desc_required\" must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }

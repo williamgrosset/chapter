@@ -9,7 +9,7 @@
     "bullet_points": 3,
     "allow_typos": false,
     "sum_capital": true,
-    "doc_format": true,
+    "nit_format": true,
     "nit_format": true,
     "wip_format": true
 }
