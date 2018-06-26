@@ -37,10 +37,10 @@ int main(int argc, char* argv[]) {
         s_stream << f.rdbuf();
     }
 
-    std::string commit_msg = s_stream.str();
+    std::string commitMsg = s_stream.str();
     nlohmann::json rulesJSON = convertFileToJson();
 
-    displayAuditResults(rulesJSON, commit_msg);
+    displayAuditResults(rulesJSON, commitMsg);
 
     return 0;
 }
