@@ -6,11 +6,6 @@
 #include <lib/rule_retriever.hpp>
 #include <lib/console_printer.hpp>
 
-/*
- * TODO:
- * + Improve error handling
- */
-
 std::ifstream readGitCommitMsgFile() {
     char buffer[255];
     char* cwd = getcwd(buffer, sizeof(buffer));
