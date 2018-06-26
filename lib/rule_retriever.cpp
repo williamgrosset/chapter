@@ -66,9 +66,7 @@ int getSummaryMaxLength(nlohmann::json rulesJSON) {
 
 bool requiresDescription(nlohmann::json rulesJSON) {
     try {
-      const bool requiresDesc = rulesJSON["desc"]["required"];
-
-      return requiresDesc;
+      return rulesJSON["desc"]["required"];
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Rule Error: Description required must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
@@ -122,9 +120,7 @@ int getBulletPoints(nlohmann::json rulesJSON) {
 
 bool allowsTypos(nlohmann::json rulesJSON) {
     try {
-      const bool allowsTypos = rulesJSON["allows_typos"];
-
-      return allowsTypos;
+      return rulesJSON["allows_typos"];
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Rule Error: Allow typos must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
@@ -133,9 +129,7 @@ bool allowsTypos(nlohmann::json rulesJSON) {
 
 bool requiresSummaryCapital(nlohmann::json rulesJSON) {
     try {
-      const bool requiresSumCapital = rulesJSON["sum_capital"];
-
-      return requiresSumCapital;
+      return rulesJSON["sum_capital"];
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Rule Error: Summary capital must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
@@ -144,9 +138,7 @@ bool requiresSummaryCapital(nlohmann::json rulesJSON) {
 
 bool requiresDocFormat(nlohmann::json rulesJSON) {
     try {
-      const bool requiresDocFormat = rulesJSON["doc_format"];
-
-      return requiresDocFormat;
+      return rulesJSON["doc_format"];
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Rule Error: Documentation format must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
@@ -155,9 +147,7 @@ bool requiresDocFormat(nlohmann::json rulesJSON) {
 
 bool requiresNitFormat(nlohmann::json rulesJSON) {
     try {
-      const bool requiresNitFormat = rulesJSON["nit_format"];
-
-      return requiresNitFormat;
+      return rulesJSON["nit_format"];
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Rule Error: Nit format must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
@@ -166,9 +156,7 @@ bool requiresNitFormat(nlohmann::json rulesJSON) {
 
 bool requiresWIPFormat(nlohmann::json rulesJSON) {
     try {
-      const bool requiresWIPFormat = rulesJSON["wip_format"];
-
-      return requiresWIPFormat;
+      return rulesJSON["wip_format"];
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Rule Error: WIP format must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
