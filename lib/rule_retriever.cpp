@@ -101,9 +101,9 @@ int getDescriptionMinLength(nlohmann::json rulesJSON) {
 
 int getBulletPoints(nlohmann::json rulesJSON) {
     try {
-        const int bulletPointsVal = rulesJSON["bullet_points"];
+        const int bulletPointsVal = rulesJSON["desc"]["bullet_points"];
 
-        if (bulletPointsVal < 2) {
+        if (bulletPointsVal < 0) {
             throw std::exception();
         }
 

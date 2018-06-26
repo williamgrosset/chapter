@@ -7,12 +7,16 @@
 
 /*
  * TODO:
- * + Remove success statements (add trophy statement)
+ * + Handle displaying typo errors
+ * + Check all rule types in config file before running audit
+ * + Remove success statements (add (\U0001F3C6) trophy statement for no errors/warnings)
  */
 
 void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) {
     NJamSpell::TSpellCorrector corrector;
     corrector.LoadLangModel("model.bin");
+    int summaryMinLength = getSummaryMinLength(rulesJSON);
+    int summaryMaxLength = getSummaryMaxLength(rulesJSON);
 
     std::cout << "************   \U00002699 Commit message audit...   ************\n";
 
@@ -35,14 +39,12 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         std::cout << "\U0000274C Error: \"WIP:\" commits must have the correct format." << "\n";
     }
 
-    int summaryMinLength = getSummaryMinLength(rulesJSON);
     if (isSummaryMinLength(commitMsg, summaryMinLength)) {
         std::cout << "\U0000274C Error: Summary must be above " << summaryMinLength << " characters.\n";
     } else {
         std::cout << "\U00002705 Success: Summary must be above " << summaryMinLength << " characters.\n";
     }
 
-    int summaryMaxLength = getSummaryMaxLength(rulesJSON);
     if (isSummaryMaxLength(commitMsg, summaryMaxLength)) {
         std::cout << "\U0000274C Error: Summary must not exceed " << summaryMaxLength << " characters.\n";
     } else {
@@ -53,6 +55,7 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         printf("\U00002705 Success: Description is required. \n");
         int descMinLength = getDescriptionMinLength(rulesJSON);
         int descMaxLength = getDescriptionMaxLength(rulesJSON);
+        int bulletPointsVal = getBulletPoints(rulesJSON);
 
         if (isDescriptionMinLength(commitMsg, descMinLength)) {
             std::cout << "\U0000274C Error: Description must be above " << descMinLength << " characters.\n";
@@ -65,15 +68,16 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         } else {
             std::cout << "\U00002705 Success: Description must not exceed " << descMaxLength << " characters.\n";
         }
+
+        if (bulletPointsVal != 0) {
+          if (containsBulletPoints(commitMsg, bulletPointsVal)) {
+              std::cout << "\U00002705 Success: " << bulletPointsVal << " bullet points are required. \n";
+          } else {
+              std::cout << "\U0000274C Error: " << bulletPointsVal << " bullet points are required. \n";
+          }
+        }
     } else {
         std::cout << "\U0000274C Error: Description is required. \n";
-    }
-
-    int bulletPointsVal = getBulletPoints(rulesJSON);
-    if (containsBulletPoints(commitMsg, bulletPointsVal)) {
-        std::cout << "\U00002705 Success: " << bulletPointsVal << " bullet points are required. \n";
-    } else {
-        std::cout << "\U0000274C Error: " << bulletPointsVal << " bullet points are required. \n";
     }
 
     std::cout << "************        \U00002699 End of audit.        ************\n";

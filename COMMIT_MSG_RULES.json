@@ -1,15 +1,15 @@
 {
     "sum_max_len": 50,
     "sum_min_len": 18,
+    "sum_capital": true,
     "desc": {
         "required": true,
         "max_len": 72,
-        "min_len:": 40
+        "min_len:": 40,
+        "bullet_points": 3
     },
-    "bullet_points": 3,
     "allow_typos": false,
-    "sum_capital": true,
-    "nit_format": true,
+    "doc_format": true,
     "nit_format": true,
     "wip_format": true
 }
