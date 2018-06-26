@@ -1,6 +1,8 @@
 #include <sstream>
 #include <fstream>
 #include <unistd.h>
+#include <nlohmann/json.hpp>
+#include <lib/rule_retriever.hpp>
 #include <lib/console_printer.hpp>
 
 /*
@@ -31,8 +33,9 @@ int main(int argc, char* argv[]) {
     }
 
     std::string commit_msg = s_stream.str();
-    
-    displayAuditResults(commit_msg);
+    nlohmann::json rulesJSON = convertFileToJson();
+
+    displayAuditResults(rulesJSON, commit_msg);
 
     return 0;
 }

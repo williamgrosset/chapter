@@ -34,10 +34,9 @@ nlohmann::json convertFileToJson() {
     return j;
 }
 
-int getSummaryMinLength() {
+int getSummaryMinLength(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const int minLength = j["sum_min_len"];
+      const int minLength = rulesJSON["sum_min_len"];
 
       if (minLength <= 1) {
           throw std::exception();
@@ -50,10 +49,9 @@ int getSummaryMinLength() {
     }
 }
 
-int getSummaryMaxLength() {
+int getSummaryMaxLength(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const int maxLength = j["sum_max_len"];
+      const int maxLength = rulesJSON["sum_max_len"];
 
       if (maxLength <= 1) {
           throw std::exception();
@@ -66,10 +64,9 @@ int getSummaryMaxLength() {
     }
 }
 
-bool requiresDescription() {
+bool requiresDescription(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const bool requiresDesc = j["desc"]["required"];
+      const bool requiresDesc = rulesJSON["desc"]["required"];
 
       return requiresDesc;
     } catch(const std::exception& e) {
@@ -78,10 +75,9 @@ bool requiresDescription() {
     }
 }
 
-int getDescriptionMaxLength() {
+int getDescriptionMaxLength(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const int descMaxLength = j["desc"]["max_len"];
+      const int descMaxLength = rulesJSON["desc"]["max_len"];
 
       if (descMaxLength <= 1) {
           throw std::exception();
@@ -94,10 +90,9 @@ int getDescriptionMaxLength() {
     }
 }
 
-int getDescriptionMinLength() {
+int getDescriptionMinLength(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const int descMinLength = j["desc"]["min_len"];
+      const int descMinLength = rulesJSON["desc"]["min_len"];
 
       if (descMinLength <= 1) {
           throw std::exception();
@@ -110,10 +105,9 @@ int getDescriptionMinLength() {
     }
 }
 
-int getBulletPoints() {
+int getBulletPoints(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const int bulletPointsVal = j["bullet_points"];
+      const int bulletPointsVal = rulesJSON["bullet_points"];
 
       if (bulletPointsVal < 2) {
           throw std::exception();
@@ -126,10 +120,9 @@ int getBulletPoints() {
     }
 }
 
-bool allowsTypos() {
+bool allowsTypos(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const bool allowsTypos = j["allows_typos"];
+      const bool allowsTypos = rulesJSON["allows_typos"];
 
       return allowsTypos;
     } catch(const std::exception& e) {
@@ -138,10 +131,9 @@ bool allowsTypos() {
     }
 }
 
-bool requiresSummaryCapital() {
+bool requiresSummaryCapital(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const bool requiresSumCapital = j["sum_capital"];
+      const bool requiresSumCapital = rulesJSON["sum_capital"];
 
       return requiresSumCapital;
     } catch(const std::exception& e) {
@@ -150,10 +142,9 @@ bool requiresSummaryCapital() {
     }
 }
 
-bool requiresDocFormat() {
+bool requiresDocFormat(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const bool requiresDocFormat = j["doc_format"];
+      const bool requiresDocFormat = rulesJSON["doc_format"];
 
       return requiresDocFormat;
     } catch(const std::exception& e) {
@@ -162,10 +153,9 @@ bool requiresDocFormat() {
     }
 }
 
-bool requiresNitFormat() {
+bool requiresNitFormat(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const bool requiresNitFormat = j["nit_format"];
+      const bool requiresNitFormat = rulesJSON["nit_format"];
 
       return requiresNitFormat;
     } catch(const std::exception& e) {
@@ -174,10 +164,9 @@ bool requiresNitFormat() {
     }
 }
 
-bool requiresWIPFormat() {
+bool requiresWIPFormat(nlohmann::json rulesJSON) {
     try {
-      nlohmann::json j = convertFileToJson();
-      const bool requiresWIPFormat = j["wip_format"];
+      const bool requiresWIPFormat = rulesJSON["wip_format"];
 
       return requiresWIPFormat;
     } catch(const std::exception& e) {

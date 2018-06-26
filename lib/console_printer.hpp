@@ -1,1 +1,1 @@
-void displayAuditResults(std::string commit_msg);
+void displayAuditResults(nlohmann::json rulesJSON, std::string commit_msg);
