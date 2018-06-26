@@ -12,7 +12,7 @@
  */
 
 struct SumMinLengthExcp: public std::exception {
-    const char* what() const throw() {
+    virtual const char* what() const throw() {
       return "\U0001F6A8 Error: Rule \"sum_in_len\" must be a non-zero, positive integer.";
     }
 };
