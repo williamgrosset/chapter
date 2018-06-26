@@ -5,11 +5,11 @@
 + Complete logic for all rules
 + Clean-up `console_printer` and all nits
 + Execute audit program on a `post-commit` hook 
-+ Add a config file for supporting rules (default includes all rules)
 + Add terminal UI for progress and success/errors
 + Setup test suite
-+ Update `README.md`: ToC, project name, overview, and add logo
++ Update `README.md`: ToC, content, overview, and add logo
 + Add GitHub badge to be downloaded (similar to Prettier)
++ Add other GitHub badges (e.g code coverage, build status)
 
 ## Overview
 ..
@@ -49,7 +49,7 @@
 ### Description length
 ...
 
-### Bullet points required
+### Bullet points 
 ...
 
 ### Documentation format
