@@ -70,8 +70,6 @@ bool requiresDescription() {
       nlohmann::json j = convertFileToJson();
       bool requiresDesc = j["desc"]["required"];
 
-      std::cout << requiresDesc << "\n";
-
       return requiresDesc;
     } catch(const std::exception& e) {
       std::cout << "\U0001F6A8 Error: Rule \"desc_required\" must be a boolean." << "\n";
@@ -80,41 +78,109 @@ bool requiresDescription() {
 }
 
 int getDescriptionMaxLength() {
-    nlohmann::json j = convertFileToJson();
-    return j["desc"]["max_len"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      int descMaxLength = j["desc"]["max_len"];
+
+      if (descMaxLength <= 1) {
+          throw std::exception();
+      }
+
+      return descMaxLength;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"desc_max_len\" must be a non-zero, positive integer." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 int getDescriptionMinLength() {
-    nlohmann::json j = convertFileToJson();
-    return j["desc"]["min_len"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      int descMinLength = j["desc"]["min_len"];
+
+      if (descMinLength <= 1) {
+          throw std::exception();
+      }
+
+      return descMinLength;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"desc_min_len\" must be a non-zero, positive integer." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 int getBulletPoints() {
-    nlohmann::json j = convertFileToJson();
-    return j["bullet_points"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      int bulletPointsVal = j["bullet_points"];
+
+      if (bulletPointsVal <= 1) {
+          throw std::exception();
+      }
+
+      return bulletPointsVal;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"bullet_points\" must be a non-zero, positive integer." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 bool allowsTypos() {
-    nlohmann::json j = convertFileToJson();
-    return j["allows_typos"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      bool allowsTypos = j["allows_typos"];
+
+      return allowsTypos;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"allows_typos\" must be a boolean." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 bool requiresSummaryCapital() {
-    nlohmann::json j = convertFileToJson();
-    return j["sum_capital"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      bool requiresSumCapital = j["sum_capital"];
+
+      return requiresSumCapital;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"sum_capital\" must be a boolean." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 bool requiresDocFormat() {
-    nlohmann::json j = convertFileToJson();
-    return j["doc_format"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      bool requiresDocFormat = j["doc_format"];
+
+      return requiresDocFormat;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"doc_format\" must be a boolean." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 bool requiresNitFormat() {
-    nlohmann::json j = convertFileToJson();
-    return j["nit_format"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      bool requiresNitFormat = j["nit_format"];
+
+      return requiresNitFormat;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"nit_format\" must be a boolean." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 bool requiresWIPFormat() {
-    nlohmann::json j = convertFileToJson();
-    return j["wip_format"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      bool requiresWIPFormat = j["wip_format"];
+
+      return requiresWIPFormat;
+    } catch(const std::exception& e) {
+      std::cout << "\U0001F6A8 Error: Rule \"wip_format\" must be a boolean." << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
