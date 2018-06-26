@@ -75,6 +75,9 @@
 + No Emoji
 + Include JIRA ticket number
 
+## Articles
+See [ARTICLES.md](https://github.com/williamgrosset/chapter/blob/master/ARTICLES.md).
+
 ## Future
 See [TODO.md](https://github.com/williamgrosset/chapter/blob/master/TODO.md).
 
