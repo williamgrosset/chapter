@@ -13,7 +13,7 @@
 
 class IntException: public std::exception {
     virtual const char* what() const throw() {
-      return "\U0001F6A8 Error: Rule \"sum_max_len\" must be a positive integer.";
+      return "\U0001F6A8 Rule configuration error: Integers must be non-zero and positive.";
     }
 } intExcp;
 
@@ -40,20 +40,32 @@ nlohmann::json convertFileToJson() {
 }
 
 int getSummaryMinLength() {
-    nlohmann::json j = convertFileToJson();
-    return j["sum_min_len"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      int minLength = j["sum_min_len"];
+
+      if (minLength <= 0) {
+          throw intExcp;
+      }
+
+      return minLength;
+    } catch(const std::exception& e) {
+      std::cout << e.what() << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 int getSummaryMaxLength() {
-    nlohmann::json j = convertFileToJson();
     try {
+      nlohmann::json j = convertFileToJson();
       int maxLength = j["sum_max_len"];
-      if (maxLength <= 0 || maxLength < getSummaryMinLength()) {
+
+      if (maxLength <= 0) {
           throw intExcp;
       }
 
       return maxLength;
-    } catch(std::exception& e) {
+    } catch(const std::exception& e) {
       std::cout << e.what() << "\n";
       std::exit(EXIT_FAILURE);
     }
