@@ -7,6 +7,7 @@
 /*
  * TODO:
  * + Read file initially and pass in JSON parameter
+ * + Do not convert file to JSON for each method
  * + Verify type for each rule
  * + Improve error handling
  */
@@ -114,13 +115,13 @@ int getBulletPoints() {
       nlohmann::json j = convertFileToJson();
       int bulletPointsVal = j["bullet_points"];
 
-      if (bulletPointsVal <= 1) {
+      if (bulletPointsVal < 2) {
           throw std::exception();
       }
 
       return bulletPointsVal;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"bullet_points\" must be a non-zero, positive integer." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Bullet points must be a positive integer above 1." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
