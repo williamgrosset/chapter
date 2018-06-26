@@ -45,7 +45,7 @@ int getSummaryMinLength() {
 
       return minLength;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"sum_min_len\" must be a non-zero, positive integer." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Summary min length must be a non-zero, positive integer." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -61,7 +61,7 @@ int getSummaryMaxLength() {
 
       return maxLength;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"sum_max_len\" must be a non-zero, positive integer." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Summary max length must be a non-zero, positive integer." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -73,7 +73,7 @@ bool requiresDescription() {
 
       return requiresDesc;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"desc_required\" must be a boolean." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Description required must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -89,7 +89,7 @@ int getDescriptionMaxLength() {
 
       return descMaxLength;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"desc_max_len\" must be a non-zero, positive integer." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Description max length must be a non-zero, positive integer." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -105,7 +105,7 @@ int getDescriptionMinLength() {
 
       return descMinLength;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"desc_min_len\" must be a non-zero, positive integer." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Description min length must be a non-zero, positive integer." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -133,7 +133,7 @@ bool allowsTypos() {
 
       return allowsTypos;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"allows_typos\" must be a boolean." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Allow typos must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -145,7 +145,7 @@ bool requiresSummaryCapital() {
 
       return requiresSumCapital;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"sum_capital\" must be a boolean." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Summary capital must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -157,7 +157,7 @@ bool requiresDocFormat() {
 
       return requiresDocFormat;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"doc_format\" must be a boolean." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Documentation format must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -169,7 +169,7 @@ bool requiresNitFormat() {
 
       return requiresNitFormat;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"nit_format\" must be a boolean." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: Nit format must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
@@ -181,7 +181,7 @@ bool requiresWIPFormat() {
 
       return requiresWIPFormat;
     } catch(const std::exception& e) {
-      std::cout << "\U0001F6A8 Error: Rule \"wip_format\" must be a boolean." << "\n";
+      std::cout << "\U0001F6A8 Rule Error: WIP format must be a boolean." << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
