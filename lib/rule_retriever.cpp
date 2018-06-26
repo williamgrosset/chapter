@@ -11,17 +11,23 @@
  * + Improve error handling
  */
 
-class SumMinLengthExcp: public std::exception {
-    virtual const char* what() const throw() {
+struct SumMinLengthExcp: public std::exception {
+    const char* what() const throw() {
       return "\U0001F6A8 Error: Rule \"sum_in_len\" must be a non-zero, positive integer.";
     }
-} sumMinLengthExcp;
+};
 
-class SumMaxLengthExcp: public std::exception {
+struct SumMaxLengthExcp: public std::exception {
     virtual const char* what() const throw() {
       return "\U0001F6A8 Error: Rule \"sum_max_len\" must be a non-zero, positive integer.";
     }
-} sumMaxLengthExcp;
+};
+
+struct DescReqExcp: public std::exception {
+    virtual const char* what() const throw() {
+      return "\U0001F6A8 Rule Error: Description required must be a boolean.";
+    }
+};
 
 std::ifstream readConfigFile() {
     char buffer[255];
@@ -51,11 +57,11 @@ int getSummaryMinLength() {
       int minLength = j["sum_min_len"];
 
       if (minLength <= 0) {
-          throw sumMinLengthExcp;
+          throw SumMinLengthExcp();
       }
 
       return minLength;
-    } catch(const std::exception& e) {
+    } catch(SumMinLengthExcp& e) {
       std::cout << e.what() << "\n";
       std::exit(EXIT_FAILURE);
     }
@@ -67,19 +73,26 @@ int getSummaryMaxLength() {
       int maxLength = j["sum_max_len"];
 
       if (maxLength <= 0) {
-          throw sumMaxLengthExcp;
+          throw SumMaxLengthExcp();
       }
 
       return maxLength;
-    } catch(const std::exception& e) {
+    } catch(SumMaxLengthExcp& e) {
       std::cout << e.what() << "\n";
       std::exit(EXIT_FAILURE);
     }
 }
 
 bool requiresDescription() {
-    nlohmann::json j = convertFileToJson();
-    return j["desc"]["required"];
+    try {
+      nlohmann::json j = convertFileToJson();
+      bool requiresDesc = j["desc"]["required"];
+
+      return requiresDesc;
+    } catch(DescReqExcp& e) {
+      std::cout << e.what() << "\n";
+      std::exit(EXIT_FAILURE);
+    }
 }
 
 int getDescriptionMaxLength() {
