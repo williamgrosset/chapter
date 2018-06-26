@@ -1,11 +1,11 @@
 nlohmann::json convertFileToJson();
+bool allowsTypos(nlohmann::json rulesJSON);
+int getBulletPoints(nlohmann::json rulesJSON);
+int getDescriptionMaxLength(nlohmann::json rulesJSON);
+int getDescriptionMinLength(nlohmann::json rulesJSON);
 int getSummaryMaxLength(nlohmann::json rulesJSON);
 int getSummaryMinLength(nlohmann::json rulesJSON);
 bool requiresDescription(nlohmann::json rulesJSON);
-int getDescriptionMaxLength(nlohmann::json rulesJSON);
-int getDescriptionMinLength(nlohmann::json rulesJSON);
-int getBulletPoints(nlohmann::json rulesJSON);
-bool allowsTypos(nlohmann::json rulesJSON);
-bool requiresSummaryCapital(nlohmann::json rulesJSON);
 bool requiresNitFormat(nlohmann::json rulesJSON);
+bool requiresSummaryCapital(nlohmann::json rulesJSON);
 bool requiresWIPFormat(nlohmann::json rulesJSON);
