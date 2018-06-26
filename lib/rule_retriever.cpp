@@ -107,6 +107,11 @@ bool requiresSummaryCapital() {
     return j["sum_capital"];
 }
 
+bool requiresDocFormat() {
+    nlohmann::json j = convertFileToJson();
+    return j["doc_format"];
+}
+
 bool requiresNitFormat() {
     nlohmann::json j = convertFileToJson();
     return j["nit_format"];
