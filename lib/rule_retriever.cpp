@@ -37,7 +37,7 @@ nlohmann::json convertFileToJson() {
 int getSummaryMinLength() {
     try {
       nlohmann::json j = convertFileToJson();
-      int minLength = j["sum_min_len"];
+      const int minLength = j["sum_min_len"];
 
       if (minLength <= 1) {
           throw std::exception();
@@ -53,7 +53,7 @@ int getSummaryMinLength() {
 int getSummaryMaxLength() {
     try {
       nlohmann::json j = convertFileToJson();
-      int maxLength = j["sum_max_len"];
+      const int maxLength = j["sum_max_len"];
 
       if (maxLength <= 1) {
           throw std::exception();
@@ -69,7 +69,7 @@ int getSummaryMaxLength() {
 bool requiresDescription() {
     try {
       nlohmann::json j = convertFileToJson();
-      bool requiresDesc = j["desc"]["required"];
+      const bool requiresDesc = j["desc"]["required"];
 
       return requiresDesc;
     } catch(const std::exception& e) {
@@ -81,7 +81,7 @@ bool requiresDescription() {
 int getDescriptionMaxLength() {
     try {
       nlohmann::json j = convertFileToJson();
-      int descMaxLength = j["desc"]["max_len"];
+      const int descMaxLength = j["desc"]["max_len"];
 
       if (descMaxLength <= 1) {
           throw std::exception();
@@ -97,7 +97,7 @@ int getDescriptionMaxLength() {
 int getDescriptionMinLength() {
     try {
       nlohmann::json j = convertFileToJson();
-      int descMinLength = j["desc"]["min_len"];
+      const int descMinLength = j["desc"]["min_len"];
 
       if (descMinLength <= 1) {
           throw std::exception();
@@ -113,7 +113,7 @@ int getDescriptionMinLength() {
 int getBulletPoints() {
     try {
       nlohmann::json j = convertFileToJson();
-      int bulletPointsVal = j["bullet_points"];
+      const int bulletPointsVal = j["bullet_points"];
 
       if (bulletPointsVal < 2) {
           throw std::exception();
@@ -129,7 +129,7 @@ int getBulletPoints() {
 bool allowsTypos() {
     try {
       nlohmann::json j = convertFileToJson();
-      bool allowsTypos = j["allows_typos"];
+      const bool allowsTypos = j["allows_typos"];
 
       return allowsTypos;
     } catch(const std::exception& e) {
@@ -141,7 +141,7 @@ bool allowsTypos() {
 bool requiresSummaryCapital() {
     try {
       nlohmann::json j = convertFileToJson();
-      bool requiresSumCapital = j["sum_capital"];
+      const bool requiresSumCapital = j["sum_capital"];
 
       return requiresSumCapital;
     } catch(const std::exception& e) {
@@ -153,7 +153,7 @@ bool requiresSummaryCapital() {
 bool requiresDocFormat() {
     try {
       nlohmann::json j = convertFileToJson();
-      bool requiresDocFormat = j["doc_format"];
+      const bool requiresDocFormat = j["doc_format"];
 
       return requiresDocFormat;
     } catch(const std::exception& e) {
@@ -165,7 +165,7 @@ bool requiresDocFormat() {
 bool requiresNitFormat() {
     try {
       nlohmann::json j = convertFileToJson();
-      bool requiresNitFormat = j["nit_format"];
+      const bool requiresNitFormat = j["nit_format"];
 
       return requiresNitFormat;
     } catch(const std::exception& e) {
@@ -177,7 +177,7 @@ bool requiresNitFormat() {
 bool requiresWIPFormat() {
     try {
       nlohmann::json j = convertFileToJson();
-      bool requiresWIPFormat = j["wip_format"];
+      const bool requiresWIPFormat = j["wip_format"];
 
       return requiresWIPFormat;
     } catch(const std::exception& e) {
