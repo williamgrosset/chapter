@@ -11,11 +11,17 @@
  * + Improve error handling
  */
 
-class IntException: public std::exception {
+class SumMinLengthExcp: public std::exception {
     virtual const char* what() const throw() {
-      return "\U0001F6A8 Rule configuration error: Integers must be non-zero and positive.";
+      return "\U0001F6A8 Error: Rule \"sum_in_len\" must be a non-zero, positive integer.";
     }
-} intExcp;
+} sumMinLengthExcp;
+
+class SumMaxLengthExcp: public std::exception {
+    virtual const char* what() const throw() {
+      return "\U0001F6A8 Error: Rule \"sum_max_len\" must be a non-zero, positive integer.";
+    }
+} sumMaxLengthExcp;
 
 std::ifstream readConfigFile() {
     char buffer[255];
@@ -45,7 +51,7 @@ int getSummaryMinLength() {
       int minLength = j["sum_min_len"];
 
       if (minLength <= 0) {
-          throw intExcp;
+          throw sumMinLengthExcp;
       }
 
       return minLength;
@@ -61,7 +67,7 @@ int getSummaryMaxLength() {
       int maxLength = j["sum_max_len"];
 
       if (maxLength <= 0) {
-          throw intExcp;
+          throw sumMaxLengthExcp;
       }
 
       return maxLength;
