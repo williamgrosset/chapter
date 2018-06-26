@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
-#include <unistd.h>
 #include <exception>
+#include <unistd.h>
 #include <nlohmann/json.hpp>
 
 std::ifstream readConfigFile() {

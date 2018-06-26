@@ -1,5 +1,4 @@
 #include <boost/regex.hpp>
-#include <jamspell/spell_corrector.hpp>
 
 /*
  * TODO:
