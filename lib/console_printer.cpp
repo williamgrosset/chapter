@@ -16,10 +16,10 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commit_msg)
 
     printf("************   \U00002699 Commit message audit...   ************\n");
 
-    std::string commit_msg_mod = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
-
-    printf("Testing spell check...\n");
-    printf("%s\n", commit_msg_mod.c_str());
+    // TODO:
+    // std::string commit_msg_mod = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commit_msg)));
+    // printf("Testing spell check...\n");
+    // printf("%s\n", commit_msg_mod.c_str());
 
     if (requiresSummaryCapital(rulesJSON) && isFirstLetterCapitalized(commit_msg)) {
         printf("\U00002705 Success: First letter of summary must be capitalized. \n");
