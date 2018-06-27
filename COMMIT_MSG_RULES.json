@@ -5,9 +5,9 @@
     "desc": {
         "required": true,
         "max_len": 72,
-        "min_len:": 40,
-        "bullet_points": 3
+        "min_len:": 40
     },
+    "bullet_points": 0,
     "allow_typos": false,
     "doc_format": true,
     "nit_format": true,

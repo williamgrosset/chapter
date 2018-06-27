@@ -17,6 +17,7 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
     corrector.LoadLangModel("model.bin");
     int summaryMinLength = getSummaryMinLength(rulesJSON);
     int summaryMaxLength = getSummaryMaxLength(rulesJSON);
+    int bulletPointsVal = getBulletPoints(rulesJSON);
 
     std::cout << "************   \U00002699 Commit message audit...   ************\n";
 
@@ -55,7 +56,6 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         printf("\U00002705 Success: Description is required. \n");
         int descMinLength = getDescriptionMinLength(rulesJSON);
         int descMaxLength = getDescriptionMaxLength(rulesJSON);
-        int bulletPointsVal = getBulletPoints(rulesJSON);
 
         if (isDescriptionMinLength(commitMsg, descMinLength)) {
             std::cout << "\U0000274C Error: Description must be above " << descMinLength << " characters.\n";
@@ -68,16 +68,16 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         } else {
             std::cout << "\U00002705 Success: Description must not exceed " << descMaxLength << " characters.\n";
         }
-
-        if (bulletPointsVal != 0) {
-          if (containsBulletPoints(commitMsg, bulletPointsVal)) {
-              std::cout << "\U00002705 Success: " << bulletPointsVal << " bullet points are required. \n";
-          } else {
-              std::cout << "\U0000274C Error: " << bulletPointsVal << " bullet points are required. \n";
-          }
-        }
     } else {
         std::cout << "\U0000274C Error: Description is required. \n";
+    }
+
+    if (bulletPointsVal != 0) {
+        if (containsBulletPoints(commitMsg, bulletPointsVal)) {
+            std::cout << "\U00002705 Success: " << bulletPointsVal << " bullet points are required. \n";
+        } else {
+            std::cout << "\U0000274C Error: " << bulletPointsVal << " bullet points are required. \n";
+        }
     }
 
     std::cout << "************        \U00002699 End of audit.        ************\n";

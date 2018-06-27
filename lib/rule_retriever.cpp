@@ -101,7 +101,7 @@ int getDescriptionMinLength(nlohmann::json rulesJSON) {
 
 int getBulletPoints(nlohmann::json rulesJSON) {
     try {
-        const int bulletPointsVal = rulesJSON["desc"]["bullet_points"];
+        const int bulletPointsVal = rulesJSON["bullet_points"];
 
         if (bulletPointsVal < 0) {
             throw std::exception();
@@ -109,7 +109,7 @@ int getBulletPoints(nlohmann::json rulesJSON) {
 
         return bulletPointsVal;
     } catch (const std::exception& e) {
-        std::cout << "\U0001F6A8 Rule Error: Bullet points must be a positive integer above 1.\n";
+        std::cout << "\U0001F6A8 Rule Error: Bullet points must be zero or a positive integer.\n";
         std::exit(EXIT_FAILURE);
     }
 }
