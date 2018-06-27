@@ -130,7 +130,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("([" + COMMIT_MSG_PATTERN + "]+)[\n" + COMMIT_MSG_PATTERN + "]*");
+    const boost::regex summaryPattern("([" + COMMIT_MSG_PATTERN + "]+).*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summaryPattern)) {
@@ -144,7 +144,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("([" + COMMIT_MSG_PATTERN + "]+)[\n" + COMMIT_MSG_PATTERN + "]*");
+    const boost::regex summaryPattern("([" + COMMIT_MSG_PATTERN + "]+).*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summaryPattern)) {
