@@ -1,13 +1,12 @@
 #include <ctype.h>
 #include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
-#include <lib/rule_retriever.hpp>
 #include <lib/rule_auditor.hpp>
+#include <lib/rule_retriever.hpp>
 #include <jamspell/spell_corrector.hpp>
 
 /*
  * TODO:
- * + Handle displaying typo errors
  * + Check all rule types in config file before running audit
  * + Remove success statements (add (\U0001F3C6) trophy statement for no errors/warnings)
  */
