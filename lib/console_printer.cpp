@@ -52,24 +52,26 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         std::cout << "\U00002705 Success: Summary must not exceed " << summaryMaxLength << " characters.\n";
     }
 
-    if (requiresDescription(rulesJSON) && containsDescription(commitMsg)) {
-        printf("\U00002705 Success: Description is required. \n");
-        int descMinLength = getDescriptionMinLength(rulesJSON);
-        int descMaxLength = getDescriptionMaxLength(rulesJSON);
+    if (requiresDescription(rulesJSON)) {
+        if (containsDescription(commitMsg)) {
+            printf("\U00002705 Success: Description is required. \n");
+            int descMinLength = getDescriptionMinLength(rulesJSON);
+            int descMaxLength = getDescriptionMaxLength(rulesJSON);
 
-        if (isDescriptionMinLength(commitMsg, descMinLength)) {
-            std::cout << "\U0000274C Error: Description must be above " << descMinLength << " characters.\n";
-        } else {
-            std::cout << "\U00002705 Success: Description must be above " << descMinLength << " characters.\n";
-        }
+            if (isDescriptionMinLength(commitMsg, descMinLength)) {
+                std::cout << "\U0000274C Error: Description must be above " << descMinLength << " characters.\n";
+            } else {
+                std::cout << "\U00002705 Success: Description must be above " << descMinLength << " characters.\n";
+            }
 
-        if (isDescriptionMaxLength(commitMsg, descMaxLength)) {
-            std::cout << "\U0000274C Error: Description must not exceed " << descMaxLength << " characters.\n";
+            if (isDescriptionMaxLength(commitMsg, descMaxLength)) {
+                std::cout << "\U0000274C Error: Description must not exceed " << descMaxLength << " characters.\n";
+            } else {
+                std::cout << "\U00002705 Success: Description must not exceed " << descMaxLength << " characters.\n";
+            }
         } else {
-            std::cout << "\U00002705 Success: Description must not exceed " << descMaxLength << " characters.\n";
+            std::cout << "\U0000274C Error: Description is required. \n";
         }
-    } else {
-        std::cout << "\U0000274C Error: Description is required. \n";
     }
 
     if (bulletPointsVal != 0) {

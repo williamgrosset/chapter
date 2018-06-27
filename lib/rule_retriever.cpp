@@ -68,9 +68,15 @@ int getSummaryMaxLength(nlohmann::json rulesJSON) {
 
 bool requiresDescription(nlohmann::json rulesJSON) {
     try {
-        return rulesJSON["desc"]["required"];
+        nlohmann::json j = rulesJSON["desc"];
+
+        if (j.empty()) {
+            return false;
+        }
+
+        return true;
     } catch (const std::exception& e) {
-        std::cout << "\U0001F6A8 Rule Error: Description required must be a boolean.\n";
+        std::cout << "\U0001F6A8 Rule Error: Description must be an object.\n";
         std::exit(EXIT_FAILURE);
     }
 }

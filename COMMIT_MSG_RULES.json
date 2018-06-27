@@ -3,7 +3,6 @@
     "sum_min_len": 18,
     "sum_capital": true,
     "desc": {
-        "required": true,
         "max_len": 72,
         "min_len:": 40
     },
