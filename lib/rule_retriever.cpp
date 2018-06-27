@@ -23,9 +23,15 @@ std::ifstream readConfigFile() {
 }
 
 nlohmann::json convertFileToJson() {
-    std::ifstream f = readConfigFile(); 
+    std::ifstream f = readConfigFile();
     nlohmann::json j;
-    f >> j;
+
+    try {
+        f >> j;
+    } catch (const std::exception& e) {
+        std::cout << "\U0001F6A8 Config File Error: Ensure your JSON file has correct syntax.\n";
+        std::exit(EXIT_FAILURE);
+    }
 
     return j;
 }
