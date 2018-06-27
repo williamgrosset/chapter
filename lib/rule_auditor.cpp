@@ -1,3 +1,4 @@
+#include <iostream>
 #include <boost/regex.hpp>
 
 /*
@@ -115,18 +116,39 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
     return false;
 }
 
+// TODO: Only check if correct Nit/Doc/WIP format
 bool isFirstLetterCapitalized(const std::string msg) {
-    // TODO:
-    // + Exclude keywords: (Nit:, WIP:, Documentation:) while checking summary
-    // + Search for first word and check if initial letter is uppercase
+    const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Documentation:" };
     const boost::regex summaryPattern("([" + VALID_CHARS_PATTERN + "]+)[\n" + VALID_CHARS_PATTERN + "]*");
-    boost::smatch result;
+    const boost::regex wordPattern("$\\s?([a-zA-Z]+).*");
+    boost::smatch summaryResult;
+    boost::smatch initialWordResult;
 
-    if (boost::regex_search(msg, result, summaryPattern)) {
-        const std::string submatch(result[1].first, result[1].second);
-        if (isupper(submatch[0])) {
-            return true;
+    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
+        std::string summary(summaryResult[1].first, summaryResult[1].second);
+
+        // If exclusions included, remove them from the string
+        for (const std::string formatWord : excludedStrings) {
+            const size_t initialPos = summary.find(formatWord);
+            if (initialPos != summary.npos) {
+                summary.replace(initialPos, formatWord.length(), "");
+                break;
+            }
         }
+
+        // Regex to capture first word in summary
+        if (boost::regex_search(summary, initialWordResult, wordPattern)) {
+            const std::string initialWord(initialWordResult[1].first, initialWordResult[1].second);
+
+            if (isupper(initialWord[0])) {
+                return true;
+            }
+
+            return false;
+        }
+
+        // If first set of characters is not a word
+        return true;
     }
 
     return false;
