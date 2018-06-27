@@ -88,7 +88,7 @@ bool containsTypos(const std::string msg) {
 }
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
-    const boost::regex descPattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
+    const boost::regex descPattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "\n]+)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, descPattern)) {
@@ -102,7 +102,7 @@ bool isDescriptionMaxLength(const std::string msg, const int length) {
 }
 
 bool isDescriptionMinLength(const std::string msg, const int length) {
-    const boost::regex descPattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
+    const boost::regex descPattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "\n]+)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, descPattern)) {
