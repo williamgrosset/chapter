@@ -10,13 +10,13 @@
  * + Combine min/max and nit/WIP functions
  */
 
-const std::string VALID_CHARS_PATTERN = "\u0021-\u007E\\s";
+const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
 
 bool containsBulletPoints(const std::string msg, const int count) {
-    // const boost::regex point_pattern("[" + VALID_CHARS_PATTERN + "]+\n\n[" + VALID_CHARS_PATTERN + "]*\n\n([\\+|-|\\*"
-                                        // + VALID_CHARS_PATTERN + "]{" + std::to_string(count) + "})");
-    const boost::regex pointPattern("[" + VALID_CHARS_PATTERN + "]+\n\n[" + VALID_CHARS_PATTERN + "]*\n\n(["
-                                        + VALID_CHARS_PATTERN + "\n]+)");
+    // const boost::regex point_pattern("[" + VALID_MSG_CHARS + "]+\n\n[" + VALID_MSG_CHARS + "]*\n\n([\\+|-|\\*"
+                                        // + VALID_MSG_CHARS + "]{" + std::to_string(count) + "})");
+    const boost::regex pointPattern("[" + VALID_MSG_CHARS + "]+\n\n[" + VALID_MSG_CHARS + "]*\n\n(["
+                                        + VALID_MSG_CHARS + "\n]+)");
 
     if (regex_match(msg, pointPattern)) {
         return true;
@@ -71,7 +71,7 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex descPattern("[" + VALID_CHARS_PATTERN + "]+\n\n([" + VALID_CHARS_PATTERN + "\n]+)");
+    const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
     // exclude pattern \n[\+\-\*]\\sText here
 
     if (regex_match(msg, descPattern)) {
@@ -89,7 +89,7 @@ bool containsTypos(const std::string msg) {
 }
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
-    const boost::regex descPattern("[" + VALID_CHARS_PATTERN + "]+\n\n([" + VALID_CHARS_PATTERN + "\n]+)");
+    const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, descPattern)) {
@@ -103,7 +103,7 @@ bool isDescriptionMaxLength(const std::string msg, const int length) {
 }
 
 bool isDescriptionMinLength(const std::string msg, const int length) {
-    const boost::regex descPattern("[" + VALID_CHARS_PATTERN + "]+\n\n([" + VALID_CHARS_PATTERN + "\n]+)");
+    const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, descPattern)) {
@@ -119,7 +119,7 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 // TODO: Only check if correct Nit/Doc/WIP format
 bool isFirstLetterCapitalized(const std::string msg) {
     const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Documentation:" };
-    const boost::regex summaryPattern("([" + VALID_CHARS_PATTERN + "]+)[\n" + VALID_CHARS_PATTERN + "]*");
+    const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+)[\n" + VALID_MSG_CHARS + "]*");
     const boost::regex wordPattern("$\\s?([a-zA-Z]+).*");
     boost::smatch summaryResult;
     boost::smatch initialWordResult;
@@ -155,7 +155,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("([" + VALID_CHARS_PATTERN + "]+).*");
+    const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+).*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summaryPattern)) {
@@ -169,7 +169,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("([" + VALID_CHARS_PATTERN + "]+).*");
+    const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+).*");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summaryPattern)) {
