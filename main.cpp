@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     }
 
     std::string commitMsg = s_stream.str();
-    nlohmann::json rulesJSON = convertFileToJson();
+    nlohmann::json rulesJSON = convertFileToJSON();
 
     displayAuditResults(rulesJSON, commitMsg);
 
