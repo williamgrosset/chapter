@@ -17,7 +17,7 @@ std::ifstream readConfigFile() {
             throw std::exception();
         }
     } catch (const std::exception& e) {
-        std::cout << "\U0001F6A8 Config File Error: Reading configuration rules failed.\n";
+        std::cout << "\U0001F6A8 Config File Error: Could not find configuration rules file.\n";
         std::exit(EXIT_FAILURE);
     }
 }
