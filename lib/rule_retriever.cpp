@@ -70,7 +70,9 @@ bool requiresDescription(nlohmann::json rulesJSON) {
     try {
         nlohmann::json j = rulesJSON["desc"];
 
-        if (j.empty()) {
+        if (!j.is_object()) {
+            throw std::exception();
+        } else if (j.empty()) {
             return false;
         }
 
