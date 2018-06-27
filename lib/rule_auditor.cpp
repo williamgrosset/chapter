@@ -70,7 +70,8 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex descPattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "]+)");
+    const boost::regex descPattern("[" + COMMIT_MSG_PATTERN + "]+\n\n([" + COMMIT_MSG_PATTERN + "\n]+)");
+    // exclude pattern \n[\+\-\*]\\sText here
 
     if (regex_match(msg, descPattern)) {
         return true;
@@ -115,7 +116,9 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 }
 
 bool isFirstLetterCapitalized(const std::string msg) {
-    // TODO: If includes "Nit " or "WIP ", exclude and check summary
+    // TODO:
+    // + Exclude keywords: (Nit:, WIP:, Documentation:) while checking summary
+    // + Search for first word and check if initial letter is uppercase
     const boost::regex summaryPattern("([" + COMMIT_MSG_PATTERN + "]+)[\n" + COMMIT_MSG_PATTERN + "]*");
     boost::smatch result;
 
