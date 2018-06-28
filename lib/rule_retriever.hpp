@@ -1,5 +1,5 @@
 nlohmann::json convertFileToJSON();
-bool allowsTypos(nlohmann::json rulesJSON);
+bool identifyTypos(nlohmann::json rulesJSON);
 int getBulletPoints(nlohmann::json rulesJSON);
 int getDescriptionMaxLength(nlohmann::json rulesJSON);
 int getDescriptionMinLength(nlohmann::json rulesJSON);

@@ -128,9 +128,9 @@ int getBulletPoints(nlohmann::json rulesJSON) {
     }
 }
 
-bool allowsTypos(nlohmann::json rulesJSON) {
+bool identifyTypos(nlohmann::json rulesJSON) {
     try {
-        return rulesJSON["allows_typos"];
+        return rulesJSON["identify_typos"];
     } catch (const std::exception& e) {
         std::cout << "\U0001F6A8 Rule Error: Allow typos must be a boolean.\n";
         std::exit(EXIT_FAILURE);
