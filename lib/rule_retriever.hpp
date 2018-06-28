@@ -6,6 +6,7 @@ int getDescriptionMinLength(nlohmann::json rulesJSON);
 int getSummaryMaxLength(nlohmann::json rulesJSON);
 int getSummaryMinLength(nlohmann::json rulesJSON);
 bool requiresDescription(nlohmann::json rulesJSON);
+bool requiresDocFormat(nlohmann::json rulesJSON);
 bool requiresNitFormat(nlohmann::json rulesJSON);
 bool requiresSummaryCapital(nlohmann::json rulesJSON);
 bool requiresWIPFormat(nlohmann::json rulesJSON);

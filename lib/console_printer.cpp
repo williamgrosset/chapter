@@ -17,6 +17,9 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
     int summaryMinLength = getSummaryMinLength(rulesJSON);
     int summaryMaxLength = getSummaryMaxLength(rulesJSON);
     int bulletPointsVal = getBulletPoints(rulesJSON);
+    bool reqNitFormat = requiresNitFormat(rulesJSON);
+    bool reqWIPFormat = requiresWIPFormat(rulesJSON);
+    bool reqDocFormat = requiresDocFormat(rulesJSON);
 
     std::cout << "************   \U00002699 Commit message audit...   ************\n";
 
@@ -25,10 +28,12 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
     // printf("Testing spell check...\n");
     // printf("%s\n", commit_msg_mod.c_str());
 
-    if (requiresSummaryCapital(rulesJSON) && isFirstLetterCapitalized(commitMsg)) {
-        std::cout << "\U00002705 Success: First letter of summary must be capitalized." << "\n";
-    } else {
-        std::cout << "\U0000274C Error: First letter of summary must be capitalized." << "\n";
+    if (reqNitFormat && reqWIPFormat && reqDocFormat) {
+        if (requiresSummaryCapital(rulesJSON) && isFirstLetterCapitalized(commitMsg)) {
+            std::cout << "\U00002705 Success: First letter of summary must be capitalized." << "\n";
+        } else {
+            std::cout << "\U0000274C Error: First letter of summary must be capitalized." << "\n";
+        }
     }
 
     if (requiresNitFormat(rulesJSON) && !containsCorrectNitFormat(commitMsg)) {

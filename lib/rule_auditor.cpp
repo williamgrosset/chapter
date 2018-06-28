@@ -107,7 +107,6 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
     return false;
 }
 
-// TODO: Only check if correct Nit/Doc/WIP format
 bool isFirstLetterCapitalized(const std::string msg) {
     const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Documentation:" };
     const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+)[\n" + VALID_MSG_CHARS + "]*");
