@@ -50,7 +50,7 @@ bool containsCorrectNitFormat(const std::string msg) {
 }
 
 bool containsCorrectWIPFormat(const std::string msg) {
-    const boost::regex WIPPattern(".*\\s?([[W|w]ip|WIP]):?\\s.*");
+    const boost::regex WIPPattern(".*\\s?([[Wip|wip|WIP]):?\\s.*");
 
     if (regex_match(msg, WIPPattern)) {
         if (msg.substr(0, 5).compare("WIP: ") != 0) {
