@@ -39,11 +39,10 @@ bool containsCorrectDocFormat(const std::string msg) {
 }
 
 bool containsCorrectNitFormat(const std::string msg) {
-    const boost::regex nitPattern(".*\\s([N|n]it):?\\s.*");
-    const boost::regex nitFormatPattern("Nit:\\s.*");
+    const boost::regex nitPattern(".*\\s?([N|n]it):?\\s.*");
 
     if (regex_match(msg, nitPattern)) {
-        if (!regex_match(msg, nitFormatPattern)) {
+        if (msg.substr(0, 5).compare("Nit: ") != 0) {
             return false;
         }
     }
