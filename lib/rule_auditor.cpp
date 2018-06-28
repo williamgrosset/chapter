@@ -110,14 +110,12 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 bool isFirstLetterCapitalized(const std::string msg) {
     const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Documentation:" };
     const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+)[\n" + VALID_MSG_CHARS + "]*");
-    const boost::regex wordPattern("$\\s?([a-zA-Z]+).*");
     boost::smatch summaryResult;
-    boost::smatch initialWordResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
         std::string summary(summaryResult[1].first, summaryResult[1].second);
 
-        // If exclusions included, remove them from the string
+        // If one of the excludedStrings is included, remove from the string
         for (const std::string formatWord : excludedStrings) {
             const size_t initialPos = summary.find(formatWord);
             if (initialPos != summary.npos) {
@@ -126,7 +124,10 @@ bool isFirstLetterCapitalized(const std::string msg) {
             }
         }
 
-        // Regex to capture first word in summary
+        // Capture initial word in summary 
+        const boost::regex wordPattern("$\\s?([a-zA-Z]+).*");
+        boost::smatch initialWordResult;
+
         if (boost::regex_search(summary, initialWordResult, wordPattern)) {
             const std::string initialWord(initialWordResult[1].first, initialWordResult[1].second);
 
@@ -137,7 +138,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
             return false;
         }
 
-        // If first set of characters is not a word
+        // Return true if first set of characters is not a word
         return true;
     }
 
