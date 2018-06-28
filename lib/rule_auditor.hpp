@@ -1,4 +1,5 @@
 bool containsBulletPoints(const std::string commit_msg, const int count);
+bool containsCorrectDocFormat(const std::string commit_msg);
 bool containsCorrectNitFormat(const std::string commit_msg);
 bool containsCorrectWIPFormat(const std::string commit_msg);
 bool containsDescription(const std::string commit_msg);

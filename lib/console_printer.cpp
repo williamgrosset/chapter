@@ -44,6 +44,10 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         std::cout << "\U0000274C Error: \"WIP:\" commits must have the correct format." << "\n";
     }
 
+    if (requiresDocFormat(rulesJSON) && !containsCorrectDocFormat(commitMsg)) {
+        std::cout << "\U0000274C Error: \"Documentation:\" commits must have the correct format." << "\n";
+    }
+
     if (isSummaryMinLength(commitMsg, summaryMinLength)) {
         std::cout << "\U0000274C Error: Summary must be above " << summaryMinLength << " characters.\n";
     } else {
