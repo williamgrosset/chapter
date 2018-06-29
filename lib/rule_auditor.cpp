@@ -62,8 +62,18 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
-    // exclude pattern \n[\+\-\*]\\sText here
+    //const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
+    const boost::regex descPattern("(?:[\u0020-\u007E]+\\n\\n){1}([" + VALID_MSG_CHARS +
+                                      "\\n]+)(?:\\n+\\+[" + VALID_MSG_CHARS + "]+){3}");
+
+    // 1. Exclude pattern from original regex
+    // 2. Capture description in seperate regex identifying bullet points
+    boost::smatch descResult;
+
+    if (boost::regex_search(msg, descResult, descPattern)) {
+        const std::string submatch(descResult[1].first, descResult[1].second);
+        std::cout << submatch;
+    }
 
     if (regex_match(msg, descPattern)) {
         return true;
@@ -145,6 +155,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
     return false;
 }
 
+// TODO: Fix regex capture error
 bool isSummaryMaxLength(const std::string msg, const int length) {
     const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+).*");
     boost::smatch result;
