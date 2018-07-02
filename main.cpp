@@ -14,7 +14,7 @@ std::ifstream readGitCommitMsgFile() {
     try {
         if (cwd) {
             std::string s_cwd(cwd);
-            std::ifstream f(s_cwd + "/test.txt");
+            std::ifstream f(s_cwd + "/.git/COMMIT_EDITMSG");
             return f;
         } else {
             throw std::exception();
@@ -25,11 +25,9 @@ std::ifstream readGitCommitMsgFile() {
     }
 }
 
-// TODO: Also remove '\n' characters
 void removeComments(std::string& msg) {
     for (int i = 0; i < msg.length(); i++) {
-        // TODO: Handle MSG with initial comment
-        if (msg[i - 1] == '\n' && msg[i] == '#') {
+        if ((msg[i - 1] == '\n' || i == 0) && msg[i] == '#') {
             int j = i;
 
             // Look for end of comment
@@ -56,7 +54,6 @@ int main(int argc, char* argv[]) {
     nlohmann::json rulesJSON = convertFileToJSON();
 
     removeComments(commitMsg);
-    std::cout << "RESULT:\n" << commitMsg;
     displayAuditResults(rulesJSON, commitMsg);
 
     return 0;
