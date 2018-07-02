@@ -1,16 +1,13 @@
 Test
 # test
+# 3rd line
 And another commit
 # test2
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
-#
 # Date:      Fri Jun 29 14:18:44 2018 -0700
 And another line
 # On branch master
 # Your branch is ahead of 'origin/master' by 74 commits.
 #   (use "git push" to publish your local commits)
-#
-# Changes to be committed:
-#       modified:   chapter.o
 #

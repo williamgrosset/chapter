@@ -28,17 +28,17 @@ std::ifstream readGitCommitMsgFile() {
 // TODO: Also remove '\n' characters
 void removeComments(std::string& msg) {
     for (int i = 0; i < msg.length(); i++) {
-        if (i != 0) {
-            if (msg[i - 1] == '\n' && msg[i] == '#') {
-                int j = i;
+        // TODO: Handle MSG with initial comment
+        if (msg[i - 1] == '\n' && msg[i] == '#') {
+            int j = i;
 
-                // Look for position of next "\n"
-                while (msg[j] != '\n') {
-                    j++;
-                }
-
-                msg.replace(i, j - i, "");
+            // Look for end of comment
+            while (msg[j] != '\n') {
+                j++;
             }
+
+            msg.replace(i, j - i + 1, "");
+            i = i - 1;
         }
     }
 }
@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
     nlohmann::json rulesJSON = convertFileToJSON();
 
     removeComments(commitMsg);
-    std::cout << "RESULT: " << commitMsg << "\n";
+    std::cout << "RESULT:\n" << commitMsg;
     displayAuditResults(rulesJSON, commitMsg);
 
     return 0;
