@@ -86,5 +86,8 @@ See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONT
 ## Internal Integration 
 Chapter was integrated into this repository at commit message [#XXX](https://github.com/williamgrosset/chapter.git).
 
+## Disclaimer
+Chapter is in early stages of development — use with caution.
+
 ## License
 [MIT](https://github.com/williamgrosset/chapter/blob/master/LICENSE)
