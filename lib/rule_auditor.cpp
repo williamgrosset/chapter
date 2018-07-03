@@ -4,10 +4,11 @@
 /*
  * TODO:
  * + Complete typos identification
- * + Fix all regex patterns (lot of work here)
- * + Fix regex for identifying # of bullet points
- * + Improve initial regex for nit/WIP
- * + Combine min/max and nit/WIP functions
+ * + Fix all regex patterns
+ *   + Description & min/max
+ *   + Summary & min/max
+ *   + Doc/nit/WIP format
+ *   + Summary capitalization
  */
 
 const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
@@ -118,7 +119,7 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 }
 
 bool isFirstLetterCapitalized(const std::string msg) {
-    const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Documentation:" };
+    const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Docs:" };
     const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+)[\n" + VALID_MSG_CHARS + "]*");
     boost::smatch summaryResult;
 
