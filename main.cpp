@@ -30,7 +30,7 @@ void removeComments(std::string& msg) {
         if ((msg[i - 1] == '\n' || i == 0) && msg[i] == '#') {
             int j = i;
 
-            // Look for end of comment
+            // Look for end of line
             while (msg[j] != '\n') {
                 j++;
             }

@@ -20,7 +20,7 @@ void removePointsFromDesc(std::string& description) {
         if ((description[i - 1] == '\n' || i == 0) && description[i] == '+') {
             int j = i;
 
-            // Look for end of comment
+            // Look for end of line
             while (description[j] != '\n') {
                 j++;
             }
@@ -110,12 +110,14 @@ bool containsDescription(const std::string msg) {
 }
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
-    const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
-    boost::smatch result;
+    const boost::regex descPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    boost::smatch descResult;
 
-    if (boost::regex_search(msg, result, descPattern)) {
-        const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() > length) {
+    if (boost::regex_search(msg, descResult, descPattern)) {
+        std::string description(descResult[1].first, descResult[1].second);
+        removePointsFromDesc(description);
+
+        if (description.length() > length) {
             return true;
         }
     }
@@ -124,12 +126,14 @@ bool isDescriptionMaxLength(const std::string msg, const int length) {
 }
 
 bool isDescriptionMinLength(const std::string msg, const int length) {
-    const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
-    boost::smatch result;
+    const boost::regex descPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    boost::smatch descResult;
 
-    if (boost::regex_search(msg, result, descPattern)) {
-        const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() < length) {
+    if (boost::regex_search(msg, descResult, descPattern)) {
+        std::string description(descResult[1].first, descResult[1].second);
+        removePointsFromDesc(description);
+
+        if (description.length() < length) {
             return true;
         }
     }
