@@ -27,7 +27,6 @@ bool containsBulletPoints(const std::string msg, const int count) {
 }
 
 bool containsCorrectDocFormat(const std::string msg) {
-    // Ignore case
     const boost::regex docPattern(".*\\s?(documentation|doc[s]|todo?):?\\s.*", boost::regex::icase);
 
     if (regex_match(msg, docPattern)) {
@@ -64,7 +63,6 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    //const boost::regex descPattern("[" + VALID_MSG_CHARS + "]+\n\n([" + VALID_MSG_CHARS + "\n]+)");
     const boost::regex descPattern("(?:[\u0020-\u007E]+\\n\\n){1}([" + VALID_MSG_CHARS +
                                       "\\n]+)(?:\\n+\\+[" + VALID_MSG_CHARS + "]+){3}");
 
@@ -157,9 +155,18 @@ bool isFirstLetterCapitalized(const std::string msg) {
     return false;
 }
 
-// TODO: Fix regex capture error
+bool containsSummary(const std::string msg) {
+    const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
+
+    if (regex_match(msg, summaryPattern)) {
+        return true;
+    }
+
+    return false;
+}
+
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+).*");
+    const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summaryPattern)) {
@@ -173,7 +180,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+).*");
+    const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
     boost::smatch result;
 
     if (boost::regex_search(msg, result, summaryPattern)) {
