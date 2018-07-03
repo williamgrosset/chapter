@@ -27,10 +27,11 @@ bool containsBulletPoints(const std::string msg, const int count) {
 }
 
 bool containsCorrectDocFormat(const std::string msg) {
+    // Ignore case
     const boost::regex docPattern(".*\\s?([D|d]ocumentation|[D|d]oc[s]?):?\\s.*");
 
     if (regex_match(msg, docPattern)) {
-        if (msg.substr(0, 5).compare("Docs: ") != 0) {
+        if (msg.substr(0, 6).compare("Docs: ") != 0) {
             return false;
         }
     }
@@ -51,7 +52,7 @@ bool containsCorrectNitFormat(const std::string msg) {
 }
 
 bool containsCorrectWIPFormat(const std::string msg) {
-    const boost::regex WIPPattern(".*\\s?([[Wip|wip|WIP]):?\\s.*");
+    const boost::regex WIPPattern(".*\\s?(WIP|Wip|wip|work\\sin\\sprogress):?\\s.*");
 
     if (regex_match(msg, WIPPattern)) {
         if (msg.substr(0, 5).compare("WIP: ") != 0) {
