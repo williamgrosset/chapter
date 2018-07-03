@@ -29,7 +29,7 @@ bool containsCorrectDocFormat(const std::string msg) {
     const boost::regex docPattern(".*\\s?([D|d]ocumentation|[D|d]oc[s]?):?\\s.*");
 
     if (regex_match(msg, docPattern)) {
-        if (msg.substr(0, 15).compare("Documentation: ") != 0) {
+        if (msg.substr(0, 5).compare("Docs: ") != 0) {
             return false;
         }
     }
