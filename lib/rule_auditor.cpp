@@ -191,11 +191,11 @@ bool containsSummary(const std::string msg) {
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
     const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
-    boost::smatch result;
+    boost::smatch summaryResult;
 
-    if (boost::regex_search(msg, result, summaryPattern)) {
-        const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() > length) {
+    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
+        const std::string summary(summaryResult[1].first, summaryResult[1].second);
+        if (summary.length() > length) {
             return true;
         }
     }
@@ -205,11 +205,11 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 
 bool isSummaryMinLength(const std::string msg, const int length) {
     const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
-    boost::smatch result;
+    boost::smatch summaryResult;
 
-    if (boost::regex_search(msg, result, summaryPattern)) {
-        const std::string submatch(result[1].first, result[1].second);
-        if (submatch.length() < length) {
+    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
+        const std::string summary(summaryResult[1].first, summaryResult[1].second);
+        if (summary.length() < length) {
             return true;
         }
     }
