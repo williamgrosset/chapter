@@ -8,10 +8,10 @@
 #include <lib/console_printer.hpp>
 
 std::ifstream readGitCommitMsgFile() {
-    char buffer[255];
-    char* cwd = getcwd(buffer, sizeof(buffer));
-
     try {
+        char buffer[255];
+        char* cwd = getcwd(buffer, sizeof(buffer));
+
         if (cwd) {
             std::string s_cwd(cwd);
             std::ifstream f(s_cwd + "/.git/COMMIT_EDITMSG");
