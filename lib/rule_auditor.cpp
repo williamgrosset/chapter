@@ -14,6 +14,30 @@
 
 const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
 
+void removePointsFromDesc(std::string& description) {
+    // Remove bullet points from description
+    for (int i = 0; i < description.length(); i++) {
+        if ((description[i - 1] == '\n' || i == 0) && description[i] == '+') {
+            int j = i;
+
+            // Look for end of comment
+            while (description[j] != '\n') {
+                j++;
+            }
+
+            description.replace(i, j - i + 1, "");
+            i = i - 1;
+        }
+    }
+
+    const int length = description.length();
+
+    // Remove last '\n' character if captured with double new line
+    if (description[length - 2] == '\n' && description[length - 1] == '\n') {
+        description.replace(length - 1, 1, "");
+    }
+}
+
 bool containsTypos(const std::string msg) {
     // TODO:
     //  + Generate warning (instead of error) outlining all typos
@@ -70,17 +94,16 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex descPattern("(?:[\u0020-\u007E]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)(?:\\n+\\+[" +
-                                      VALID_MSG_CHARS + "]+){3}");
+    const boost::regex descPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
     boost::smatch descResult;
 
     if (boost::regex_search(msg, descResult, descPattern)) {
-        const std::string submatch(descResult[1].first, descResult[1].second);
-        std::cout << submatch;
-    }
+        std::string description(descResult[1].first, descResult[1].second);
+        removePointsFromDesc(description);
 
-    if (regex_match(msg, descPattern)) {
-        return true;
+        if (description.length() > 0) {
+            return true;
+        }
     }
 
     return false;
