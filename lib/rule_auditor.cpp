@@ -14,7 +14,13 @@
 
 const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
 
-void normalizeEndOfCapture() {}
+void normalizeEndOfCapture(std::string& text) {
+    // Remove last '\n' character if captured with double new line
+    const int length = text.length();
+    if (text[length - 2] == '\n' && text[length - 1] == '\n') {
+        text.replace(length - 1, 1, "");
+    }
+}
 
 void removePointsFromDesc(std::string& description) {
     for (int i = 0; i < description.length(); i++) {
@@ -31,12 +37,7 @@ void removePointsFromDesc(std::string& description) {
         }
     }
 
-    const int length = description.length();
-
-    // Remove last '\n' character if captured with double new line
-    if (description[length - 2] == '\n' && description[length - 1] == '\n') {
-        description.replace(length - 1, 1, "");
-    }
+    normalizeEndOfCapture(description);
 }
 
 void removeDescFromPoints(std::string& description) {
@@ -56,12 +57,7 @@ void removeDescFromPoints(std::string& description) {
         }
     }
 
-    const int length = description.length();
-
-    // Remove last '\n' character if captured with double new line
-    if (description[length - 2] == '\n' && description[length - 1] == '\n') {
-        description.replace(length - 1, 1, "");
-    }
+    normalizeEndOfCapture(description);
 }
 
 bool containsTypos(const std::string msg) {
