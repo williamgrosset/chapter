@@ -27,7 +27,8 @@ bool containsBulletPoints(const std::string msg, const int count) {
 }
 
 bool containsCorrectDocFormat(const std::string msg) {
-    const boost::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s", boost::regex::icase);
+    const boost::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s",
+                                      boost::regex::icase);
 
     if (regex_match(msg, docPattern)) {
         if (msg.substr(0, 6).compare("Docs: ") != 0) {
