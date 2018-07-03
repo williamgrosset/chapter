@@ -5,7 +5,7 @@
  * TODO:
  * + Move typo checking logic into seperate file
  *   + Keep containsTypo(msg) in rule_auditor.cpp
- * + Fix and audit all regex patterns
+ * + Fix, audit, and clean-up all regex patterns
  *   + Description & min/max
  *   + Summary & min/max
  *   + Summary capitalization
@@ -22,10 +22,8 @@ bool containsTypos(const std::string msg) {
 }
 
 bool containsBulletPoints(const std::string msg, const int count) {
-    // const boost::regex point_pattern("[" + VALID_MSG_CHARS + "]+\n\n[" + VALID_MSG_CHARS + "]*\n\n([\\+|-|\\*"
-                                        // + VALID_MSG_CHARS + "]{" + std::to_string(count) + "})");
-    const boost::regex pointPattern("[" + VALID_MSG_CHARS + "]+\n\n[" + VALID_MSG_CHARS + "]*\n\n(["
-                                        + VALID_MSG_CHARS + "\n]+)");
+    const boost::regex pointPattern("[" + VALID_MSG_CHARS + "]+\n\n[" + VALID_MSG_CHARS + "]*\n\n([" + VALID_MSG_CHARS 
+                                        + "\n]+)");
 
     if (regex_match(msg, pointPattern)) {
         return true;
@@ -72,8 +70,8 @@ bool containsCorrectWIPFormat(const std::string msg) {
 }
 
 bool containsDescription(const std::string msg) {
-    const boost::regex descPattern("(?:[\u0020-\u007E]+\\n\\n){1}([" + VALID_MSG_CHARS +
-                                      "\\n]+)(?:\\n+\\+[" + VALID_MSG_CHARS + "]+){3}");
+    const boost::regex descPattern("(?:[\u0020-\u007E]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)(?:\\n+\\+[" +
+                                      VALID_MSG_CHARS + "]+){3}");
     boost::smatch descResult;
 
     if (boost::regex_search(msg, descResult, descPattern)) {
