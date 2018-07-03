@@ -7,8 +7,8 @@
  * + Fix all regex patterns
  *   + Description & min/max
  *   + Summary & min/max
- *   + Doc/nit/WIP format
  *   + Summary capitalization
+ *   + Bullet points
  */
 
 const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
@@ -27,7 +27,7 @@ bool containsBulletPoints(const std::string msg, const int count) {
 }
 
 bool containsCorrectDocFormat(const std::string msg) {
-    const boost::regex docPattern(".*\\s?(documentation|doc[s]|todo?):?\\s.*", boost::regex::icase);
+    const boost::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s", boost::regex::icase);
 
     if (regex_match(msg, docPattern)) {
         if (msg.substr(0, 6).compare("Docs: ") != 0) {
@@ -39,7 +39,7 @@ bool containsCorrectDocFormat(const std::string msg) {
 }
 
 bool containsCorrectNitFormat(const std::string msg) {
-    const boost::regex nitPattern(".*\\s?(nit):?\\s.*", boost::regex::icase);
+    const boost::regex nitPattern("\\s?(nit):?\\s", boost::regex::icase);
 
     if (regex_match(msg, nitPattern)) {
         if (msg.substr(0, 5).compare("Nit: ") != 0) {
@@ -51,7 +51,7 @@ bool containsCorrectNitFormat(const std::string msg) {
 }
 
 bool containsCorrectWIPFormat(const std::string msg) {
-    const boost::regex WIPPattern(".*\\s?(wip|work\\sin\\sprogress):?\\s.*", boost::regex::icase);
+    const boost::regex WIPPattern("\\s?(wip|work\\sin\\sprogress):?\\s", boost::regex::icase);
 
     if (regex_match(msg, WIPPattern)) {
         if (msg.substr(0, 5).compare("WIP: ") != 0) {
@@ -65,9 +65,6 @@ bool containsCorrectWIPFormat(const std::string msg) {
 bool containsDescription(const std::string msg) {
     const boost::regex descPattern("(?:[\u0020-\u007E]+\\n\\n){1}([" + VALID_MSG_CHARS +
                                       "\\n]+)(?:\\n+\\+[" + VALID_MSG_CHARS + "]+){3}");
-
-    // 1. Exclude pattern from original regex
-    // 2. Capture description in seperate regex identifying bullet points
     boost::smatch descResult;
 
     if (boost::regex_search(msg, descResult, descPattern)) {
