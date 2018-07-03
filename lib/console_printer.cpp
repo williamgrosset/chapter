@@ -7,8 +7,8 @@
 
 /*
  * TODO:
- * + Check all rule types in config file before running audit
- * + Remove success statements (add (\U0001F3C6) trophy statement for no errors/warnings)
+ * + Check all rule types in config file before running audit (in main.cpp)
+ * + Remove success statements (add (\U0001F3C6) trophy statement for no warnings/errors)
  */
 
 void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) {

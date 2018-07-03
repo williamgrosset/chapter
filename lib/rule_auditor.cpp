@@ -3,8 +3,9 @@
 
 /*
  * TODO:
- * + Complete typos identification
- * + Fix all regex patterns
+ * + Move typo checking logic into seperate file
+ *   + Keep containsTypo(msg) in rule_auditor.cpp
+ * + Fix and audit all regex patterns
  *   + Description & min/max
  *   + Summary & min/max
  *   + Summary capitalization
@@ -12,6 +13,13 @@
  */
 
 const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
+
+bool containsTypos(const std::string msg) {
+    // TODO:
+    //  + Generate warning (instead of error) outlining all typos
+    //  + Ignore nit and WIP
+    return true;
+}
 
 bool containsBulletPoints(const std::string msg, const int count) {
     // const boost::regex point_pattern("[" + VALID_MSG_CHARS + "]+\n\n[" + VALID_MSG_CHARS + "]*\n\n([\\+|-|\\*"
@@ -78,13 +86,6 @@ bool containsDescription(const std::string msg) {
     }
 
     return false;
-}
-
-bool containsTypos(const std::string msg) {
-    // TODO:
-    //  + Generate warning (instead of error) outlining all typos
-    //  + Ignore nit and WIP
-    return true;
 }
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
