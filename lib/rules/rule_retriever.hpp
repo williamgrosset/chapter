@@ -6,7 +6,7 @@ int getDescriptionMaxLength(nlohmann::json rulesJSON);
 int getDescriptionMinLength(nlohmann::json rulesJSON);
 int getSummaryMaxLength(nlohmann::json rulesJSON);
 int getSummaryMinLength(nlohmann::json rulesJSON);
-bool hasRuleErrorThrown();
+bool hasRuleErrorThrown(nlohmann::json rulesJSON);
 bool identifyTypos(nlohmann::json rulesJSON);
 bool requiresBulletPoints(nlohmann::json rulesJSON);
 bool requiresDescription(nlohmann::json rulesJSON);

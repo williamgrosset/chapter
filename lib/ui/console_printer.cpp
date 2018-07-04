@@ -14,18 +14,16 @@
 void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) {
     std::cout << "************   \U00002699 Commit message audit...   ************\n\n";
 
-    int summaryMinLength = getSummaryMinLength(rulesJSON);
-    int summaryMaxLength = getSummaryMaxLength(rulesJSON);
-    int bulletPointsCount = getBulletPointsCount(rulesJSON);
-    bool reqNitFormat = requiresNitFormat(rulesJSON);
-    bool reqWIPFormat = requiresWIPFormat(rulesJSON);
-    bool reqDocFormat = requiresDocFormat(rulesJSON);
-
-    // 1. Check JSON rules for any errors
-    // 2. Execute audit
-    if (hasRuleErrorThrown()) {
+    if (hasRuleErrorThrown(rulesJSON)) {
         std::cout << "\nPlease fix your rules configuration file for correct attributes and value types.\n";
     } else {
+      int summaryMinLength = getSummaryMinLength(rulesJSON);
+      int summaryMaxLength = getSummaryMaxLength(rulesJSON);
+      int bulletPointsCount = getBulletPointsCount(rulesJSON);
+      bool reqNitFormat = requiresNitFormat(rulesJSON);
+      bool reqWIPFormat = requiresWIPFormat(rulesJSON);
+      bool reqDocFormat = requiresDocFormat(rulesJSON);
+
       if (reqNitFormat && reqWIPFormat && reqDocFormat) {
           if (requiresSummaryCapital(rulesJSON) && !isFirstLetterCapitalized(commitMsg)) {
               std::cout << "\U0000274C Error: First letter of summary must be capitalized." << "\n";

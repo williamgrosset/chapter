@@ -242,6 +242,25 @@ bool requiresWIPFormat(nlohmann::json rulesJSON) {
     }
 }
 
-bool hasRuleErrorThrown() {
+bool hasRuleErrorThrown(nlohmann::json rulesJSON) {
+    if (requiresBulletPoints(rulesJSON)) {
+        getBulletPointsCount(rulesJSON);
+        getBulletPointsMaxLength(rulesJSON);
+        getBulletPointsMinLength(rulesJSON);
+    }
+
+    if (requiresDescription(rulesJSON)) {
+        getDescriptionMaxLength(rulesJSON);
+        getDescriptionMinLength(rulesJSON);
+    }
+
+    getSummaryMaxLength(rulesJSON);
+    getSummaryMinLength(rulesJSON);
+    identifyTypos(rulesJSON);
+    requiresSummaryCapital(rulesJSON);
+    requiresDocFormat(rulesJSON);
+    requiresNitFormat(rulesJSON);
+    requiresWIPFormat(rulesJSON);
+
     return errorExists;
 }
