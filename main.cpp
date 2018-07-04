@@ -44,7 +44,6 @@ void removeComments(std::string& msg) {
 int main(int argc, char* argv[]) {
     std::ifstream f = readGitCommitMsgFile();
     std::ostringstream s_stream;
-    boost::smatch comments;
 
     if (f.is_open()) {
         s_stream << f.rdbuf();

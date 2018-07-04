@@ -67,7 +67,7 @@ bool containsTypos(const std::string msg) {
     return true;
 }
 
-bool containsBulletPoints(const std::string msg, const int count) {
+bool containsBulletPoints(const std::string msg, const int requiredCount) {
     const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
     boost::smatch pointResult;
 
@@ -75,10 +75,18 @@ bool containsBulletPoints(const std::string msg, const int count) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        std::cout << "AFTER:\n";
-        std::cout << points;
+        int count = 0;
+        const int length = points.length();
 
-        if (points.length() > 0) {
+        for (int i = 0; i < length; i++) {
+            if (points[i] == '\n') count++;
+        }
+        
+        if (length > 0 && count == 0) {
+            count++;
+        }
+
+        if (count == requiredCount) {
             return true;
         }
     }
