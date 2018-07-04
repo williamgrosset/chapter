@@ -14,50 +14,50 @@
 
 const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
 
-void normalizeEndOfCapture(std::string& text) {
+void normalizeEndOfCapture(std::string& capture) {
     // Remove last '\n' character if captured with double new line
-    const int length = text.length();
-    if (text[length - 2] == '\n' && text[length - 1] == '\n') {
-        text.replace(length - 1, 1, "");
+    const int length = capture.length();
+    if (capture[length - 2] == '\n' && capture[length - 1] == '\n') {
+        capture.replace(length - 1, 1, "");
     }
 }
 
-void removePointsFromDesc(std::string& description) {
-    for (int i = 0; i < description.length(); i++) {
-        if ((description[i - 1] == '\n' || i == 0) && description[i] == '+') {
+void removePointsFromDesc(std::string& msg) {
+    for (int i = 0; i < msg.length(); i++) {
+        if ((msg[i - 1] == '\n' || i == 0) && msg[i] == '+') {
             int j = i;
 
             // Look for end of line
-            while (description[j] != '\n') {
+            while (msg[j] != '\n') {
                 j++;
             }
 
-            description.replace(i, j - i + 1, "");
+            msg.replace(i, j - i + 1, "");
             i = i - 1;
         }
     }
 
-    normalizeEndOfCapture(description);
+    normalizeEndOfCapture(msg);
 }
 
-void removeDescFromPoints(std::string& description) {
+void removeDescFromPoints(std::string& msg) {
     std::cout << "BEFORE:\n";
-    std::cout << description;
-    for (int i = 0; i < description.length(); i++) {
-        if ((description[i - 1] == '\n' || i == 0) && description[i] != '+') {
+    std::cout << msg;
+    for (int i = 0; i < msg.length(); i++) {
+        if ((msg[i - 1] == '\n' || i == 0) && msg[i] != '+') {
             int j = i;
 
             // Look for end of line
-            while (description[j] != '\n') {
+            while (msg[j] != '\n') {
                 j++;
             }
 
-            description.replace(i, j - i + 1, "");
+            msg.replace(i, j - i + 1, "");
             i = i - 1;
         }
     }
 
-    normalizeEndOfCapture(description);
+    normalizeEndOfCapture(msg);
 }
 
 bool containsTypos(const std::string msg) {
@@ -68,14 +68,13 @@ bool containsTypos(const std::string msg) {
 }
 
 bool containsBulletPoints(const std::string msg, const int count) {
-    const boost::regex descPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
-    boost::smatch descResult;
+    const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    boost::smatch pointResult;
 
-    if (boost::regex_search(msg, descResult, descPattern)) {
-        const std::string description(descResult[1].first, descResult[1].second);
-        std::string points(description);
-
+    if (boost::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
+
         std::cout << "AFTER:\n";
         std::cout << points;
 
@@ -180,7 +179,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
         std::string summary(summaryResult[1].first, summaryResult[1].second);
 
-        // If one of the excludedStrings is included, remove from the string
+        // If one of excludedStrings is included, remove from string
         for (const std::string formatWord : excludedStrings) {
             const size_t initialPos = summary.find(formatWord);
             if (initialPos != summary.npos) {
