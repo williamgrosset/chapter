@@ -1,8 +1,8 @@
 #include <ctype.h>
 #include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
-#include <lib/rule_auditor.hpp>
-#include <lib/rule_retriever.hpp>
+#include <lib/rules/rule_retriever.hpp>
+#include <lib/rules/rule_auditor.hpp>
 #include <jamspell/spell_corrector.hpp>
 
 /*

@@ -4,8 +4,8 @@
 #include <unistd.h>
 #include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
-#include <lib/rule_retriever.hpp>
-#include <lib/console_printer.hpp>
+#include <lib/rules/rule_retriever.hpp>
+#include <lib/ui/console_printer.hpp>
 
 std::ifstream readGitCommitMsgFile() {
     try {
