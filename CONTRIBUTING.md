@@ -1,2 +1,2 @@
 ## Contributing
-No pull requests (currently) unless consulted with owner of repository.
+No pull requests (currently) unless consulted with [William Grosset](mailto:williamhgrosset@gmail.com).
