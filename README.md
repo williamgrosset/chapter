@@ -50,7 +50,13 @@
 ### Description length
 ...
 
-### Bullet points 
+### Bullet points required
+...
+
+### Bullet points count
+...
+
+### Bullet points length
 ...
 
 ### Documentation format
