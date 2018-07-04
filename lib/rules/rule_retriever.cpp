@@ -80,7 +80,9 @@ bool requiresDescription(nlohmann::json rulesJSON) {
     try {
         nlohmann::json j = rulesJSON["desc"];
 
-        if (!j.is_object()) {
+        if (j.is_null()) {
+            return false;
+        } else if (!j.is_object()) {
             throw std::exception();
         } else if (j.empty()) {
             return false;
@@ -130,7 +132,9 @@ bool requiresBulletPoints(nlohmann::json rulesJSON) {
     try {
         nlohmann::json j = rulesJSON["bullet_points"];
 
-        if (!j.is_object()) {
+        if (j.is_null()) {
+            return false;
+        } else if (!j.is_object()) {
             throw std::exception();
         } else if (j.empty()) {
             return false;
