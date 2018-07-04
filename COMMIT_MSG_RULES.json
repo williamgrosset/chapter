@@ -1,18 +1,18 @@
 {
-    "sum_max_len": 50,
-    "sum_min_len": 18,
-    "sum_capital": true,
-    "desc": {
-        "max_len": 72,
-        "min_len": 40
-    },
     "bullet_points": {
         "count": 3,
         "max_len": 60,
         "min_len": 24
     },
-    "identify_typos": false,
+    "desc": {
+        "max_len": 72,
+        "min_len": 40
+    },
     "doc_format": true,
+    "identify_typos": false,
     "nit_format": true,
+    "sum_capital": true,
+    "sum_max_len": 50,
+    "sum_min_len": 18,
     "wip_format": true
 }
