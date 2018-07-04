@@ -58,7 +58,7 @@ void removeDescFromPoints(std::string& msg) {
     normalizeEndOfCapture(msg);
 }
 
-int getBulletPointCount(const std::string points) {
+int getBulletPointsCount(const std::string points) {
     const int length = points.length();
     int count = 0;
 
@@ -81,9 +81,37 @@ bool containsBulletPoints(const std::string msg, const int requiredCount) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        if (getBulletPointCount(points) == requiredCount) {
+        if (getBulletPointsCount(points) == requiredCount) {
             return true;
         }
+    }
+
+    return false;
+}
+
+bool isBulletPointsMaxLength(const std::string msg, const int length) {
+    const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    boost::smatch pointResult;
+
+    if (boost::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].first, pointResult[1].second);
+        removeDescFromPoints(points);
+
+        return points.length() - getBulletPointsCount(points) > length;
+    }
+
+    return false;
+}
+
+bool isBulletPointsMinLength(const std::string msg, const int length) {
+    const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    boost::smatch pointResult;
+
+    if (boost::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].first, pointResult[1].second);
+        removeDescFromPoints(points);
+
+        return points.length() - getBulletPointsCount(points) < length;
     }
 
     return false;
