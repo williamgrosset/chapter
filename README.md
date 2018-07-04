@@ -44,19 +44,19 @@
 ### Summary length
 ...
 
-### Description required
+### Description
 ...
 
-### Description length
+#### Description length
 ...
 
-### Bullet points required
+### Bullet points
 ...
 
-### Bullet points count
+#### Bullet points count
 ...
 
-### Bullet points length
+#### Bullet points length
 ...
 
 ### Documentation format

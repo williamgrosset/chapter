@@ -24,7 +24,7 @@ void normalizeEndOfCapture(std::string& capture) {
 
 void removePointsFromDesc(std::string& msg) {
     for (int i = 0; i < msg.length(); i++) {
-        if ((msg[i - 1] == '\n' || i == 0) && msg[i] == '+') {
+        if ((msg[i - 1] == '\n' || i == 0) && (msg[i] == '+' || msg[i] == '*' || msg[i] == '-')) {
             int j = i;
 
             // Look for end of line
@@ -42,7 +42,7 @@ void removePointsFromDesc(std::string& msg) {
 
 void removeDescFromPoints(std::string& msg) {
     for (int i = 0; i < msg.length(); i++) {
-        if ((msg[i - 1] == '\n' || i == 0) && msg[i] != '+') {
+        if ((msg[i - 1] == '\n' || i == 0) && msg[i] != '+' && msg[i] != '*' && msg[i] != '-') {
             int j = i;
 
             // Look for end of line
