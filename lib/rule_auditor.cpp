@@ -41,8 +41,6 @@ void removePointsFromDesc(std::string& msg) {
 }
 
 void removeDescFromPoints(std::string& msg) {
-    std::cout << "BEFORE:\n";
-    std::cout << msg;
     for (int i = 0; i < msg.length(); i++) {
         if ((msg[i - 1] == '\n' || i == 0) && msg[i] != '+') {
             int j = i;
@@ -60,11 +58,19 @@ void removeDescFromPoints(std::string& msg) {
     normalizeEndOfCapture(msg);
 }
 
-bool containsTypos(const std::string msg) {
-    // TODO:
-    //  + Generate warning (instead of error) outlining all typos
-    //  + Ignore nit and WIP
-    return true;
+int getBulletPointCount(const std::string points) {
+    const int length = points.length();
+    int count = 0;
+
+    for (int i = 0; i < length; i++) {
+        if (points[i] == '\n') count++;
+    }
+
+    if (length > 0 && count == 0) {
+        count++;
+    }
+
+    return count;
 }
 
 bool containsBulletPoints(const std::string msg, const int requiredCount) {
@@ -75,18 +81,7 @@ bool containsBulletPoints(const std::string msg, const int requiredCount) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        int count = 0;
-        const int length = points.length();
-
-        for (int i = 0; i < length; i++) {
-            if (points[i] == '\n') count++;
-        }
-        
-        if (length > 0 && count == 0) {
-            count++;
-        }
-
-        if (count == requiredCount) {
+        if (getBulletPointCount(points) == requiredCount) {
             return true;
         }
     }
@@ -253,4 +248,11 @@ bool isSummaryMinLength(const std::string msg, const int length) {
     }
 
     return false;
+}
+
+bool containsTypos(const std::string msg) {
+    // TODO:
+    //  + Generate warning (instead of error) outlining all typos
+    //  + Ignore nit and WIP
+    return true;
 }
