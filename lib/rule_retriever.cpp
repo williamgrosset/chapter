@@ -113,17 +113,64 @@ int getDescriptionMinLength(nlohmann::json rulesJSON) {
     }
 }
 
-int getBulletPoints(nlohmann::json rulesJSON) {
+bool requiresBulletPoints(nlohmann::json rulesJSON) {
     try {
-        const int bulletPointsVal = rulesJSON["bullet_points"];
+        nlohmann::json j = rulesJSON["bullet_points"];
 
-        if (bulletPointsVal < 0) {
+        if (!j.is_object()) {
+            throw std::exception();
+        } else if (j.empty()) {
+            return false;
+        }
+
+        return true;
+    } catch (const std::exception& e) {
+        std::cout << "\U0001F6A8 Rule Error: Bullet points must be an object.\n";
+        std::exit(EXIT_FAILURE);
+    }
+}
+
+int getBulletPointsCount(nlohmann::json rulesJSON) {
+    try {
+        const int bulletPointsCount = rulesJSON["bullet_points"]["count"];
+
+        if (bulletPointsCount < 0) {
             throw std::exception();
         }
 
-        return bulletPointsVal;
+        return bulletPointsCount;
     } catch (const std::exception& e) {
-        std::cout << "\U0001F6A8 Rule Error: Bullet points must be zero or a positive integer.\n";
+        std::cout << "\U0001F6A8 Rule Error: Bullet points count must be zero or a positive integer.\n";
+        std::exit(EXIT_FAILURE);
+    }
+}
+
+int getBulletPointsMinLength(nlohmann::json rulesJSON) {
+    try {
+        const int minLength = rulesJSON["bullet_points"]["min_len"];
+
+        if (minLength <= 1) {
+            throw std::exception();
+        }
+
+        return minLength;
+    } catch (const std::exception& e) {
+        std::cout << "\U0001F6A8 Rule Error: Bullet points min length must be a non-zero, positive integer.\n";
+        std::exit(EXIT_FAILURE);
+    }
+}
+
+int getBulletPointsMaxLength(nlohmann::json rulesJSON) {
+    try {
+        const int maxLength = rulesJSON["bullet_points"]["max_len"];
+
+        if (maxLength <= 1) {
+            throw std::exception();
+        }
+
+        return maxLength;
+    } catch (const std::exception& e) {
+        std::cout << "\U0001F6A8 Rule Error: Bullet points max length must be a non-zero, positive integer.\n";
         std::exit(EXIT_FAILURE);
     }
 }

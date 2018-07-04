@@ -58,7 +58,7 @@ void removeDescFromPoints(std::string& msg) {
     normalizeEndOfCapture(msg);
 }
 
-int getBulletPointsCount(const std::string points) {
+int getBulletPointCount(const std::string points) {
     const int length = points.length();
     int count = 0;
 
@@ -81,7 +81,7 @@ bool containsBulletPoints(const std::string msg, const int requiredCount) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        if (getBulletPointsCount(points) == requiredCount) {
+        if (getBulletPointCount(points) == requiredCount) {
             return true;
         }
     }
@@ -97,7 +97,7 @@ bool isBulletPointsMaxLength(const std::string msg, const int length) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        return points.length() - getBulletPointsCount(points) > length;
+        return points.length() - getBulletPointCount(points) > length;
     }
 
     return false;
@@ -111,7 +111,7 @@ bool isBulletPointsMinLength(const std::string msg, const int length) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        return points.length() - getBulletPointsCount(points) < length;
+        return points.length() - getBulletPointCount(points) < length;
     }
 
     return false;

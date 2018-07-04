@@ -17,7 +17,7 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
 
     int summaryMinLength = getSummaryMinLength(rulesJSON);
     int summaryMaxLength = getSummaryMaxLength(rulesJSON);
-    int bulletPointsVal = getBulletPoints(rulesJSON);
+    int bulletPointsCount = getBulletPointsCount(rulesJSON);
     bool reqNitFormat = requiresNitFormat(rulesJSON);
     bool reqWIPFormat = requiresWIPFormat(rulesJSON);
     bool reqDocFormat = requiresDocFormat(rulesJSON);
@@ -72,9 +72,20 @@ void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) 
         }
     }
 
-    if (bulletPointsVal != 0) {
-        if (!containsBulletPoints(commitMsg, bulletPointsVal)) {
-            std::cout << "\U0000274C Error: " << bulletPointsVal << " bullet points are required. \n";
+    if (requiresBulletPoints(rulesJSON)) {
+        if (containsBulletPoints(commitMsg, bulletPointsCount)) {
+            int bpMinLength = getBulletPointsMinLength(rulesJSON);
+            int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
+
+            if (isBulletPointsMinLength(commitMsg, bpMinLength)) {
+                std::cout << "\U0000274C Error: Bullet points must be above " << bpMinLength << " characters.\n";
+            }
+
+            if (isBulletPointsMaxLength(commitMsg, bpMaxLength)) {
+                std::cout << "\U0000274C Error: Bullet points must not exceed " << bpMaxLength << " characters.\n";
+            }
+        } else {
+            std::cout << "\U0000274C Error: " << bulletPointsCount << " bullet points are required. \n";
         }
     }
 
