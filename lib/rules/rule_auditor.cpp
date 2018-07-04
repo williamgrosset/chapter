@@ -3,8 +3,10 @@
 
 /*
  * TODO:
+ * + Convert to Class
  * + Move typo checking logic into seperate file
  *   + Keep containsTypo(msg) in rule_auditor.cpp
+ * + Refactor and minimize logic for removePointsFromDesc & removeDescFromPoints
  * + Fix, audit, and clean-up all regex patterns
  *   + Description & min/max
  *   + Summary & min/max

@@ -4,6 +4,11 @@
 #include <unistd.h>
 #include <nlohmann/json.hpp>
 
+/*
+ * TODO:
+ * + Convert to Class (remove global var)
+ */
+
 // Temp global variable
 bool errorExists = false;
 
