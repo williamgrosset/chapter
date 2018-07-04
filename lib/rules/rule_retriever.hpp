@@ -1,5 +1,4 @@
 nlohmann::json convertFileToJSON();
-bool identifyTypos(nlohmann::json rulesJSON);
 int getBulletPointsCount(nlohmann::json rulesJSON);
 int getBulletPointsMaxLength(nlohmann::json rulesJSON);
 int getBulletPointsMinLength(nlohmann::json rulesJSON);
@@ -7,6 +6,8 @@ int getDescriptionMaxLength(nlohmann::json rulesJSON);
 int getDescriptionMinLength(nlohmann::json rulesJSON);
 int getSummaryMaxLength(nlohmann::json rulesJSON);
 int getSummaryMinLength(nlohmann::json rulesJSON);
+bool hasRuleErrorThrown();
+bool identifyTypos(nlohmann::json rulesJSON);
 bool requiresBulletPoints(nlohmann::json rulesJSON);
 bool requiresDescription(nlohmann::json rulesJSON);
 bool requiresDocFormat(nlohmann::json rulesJSON);
