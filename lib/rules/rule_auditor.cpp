@@ -14,7 +14,7 @@
  *   + Bullet points
  */
 
-const std::string VALID_MSG_CHARS = "\u0021-\u007E\\s";
+const std::string VALID_MSG_CHARS = "\u0020-\u007E";
 
 void normalizeEndOfCapture(std::string& capture) {
     // Remove last '\n' character if captured with double new line
@@ -243,7 +243,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool containsSummary(const std::string msg) {
-    const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
 
     if (regex_match(msg, summaryPattern)) {
         return true;
@@ -253,7 +253,7 @@ bool containsSummary(const std::string msg) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
     boost::smatch summaryResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
@@ -267,7 +267,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("^([\u0020-\u007E]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
     boost::smatch summaryResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
