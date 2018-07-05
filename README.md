@@ -8,6 +8,7 @@
 ## Table of Contents
 - [Overview](#overview)
 - [Usage](#usage)
+  * [Badge](#badge)
 - [Rules](#rules)
   * [Typos](#typos)
   * [No Emoji](#no-emoji)
@@ -30,17 +31,23 @@
 Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. You determine your own conventions and structure of messages through custom rules defined below. Adding this tool to your project can help ensure that commit messages become concise, standardized, and informative.
 
 ## Usage
-0. JSON helper: `brew tap nlohmann/json` && `brew install nlohmann_json`
-1. Compile and and move executable (`chapter.o`) into your `$HOME/` directory:
+1. Compile and move executable into your `$HOME/` directory:
 ```bash
 make
 mv ./chapter.o $HOME/
+```
 2. Update the `post-commit` hook:
 ```bash
 #!/bin/bash
 $HOME/chapter.o
 ```
 3. Create the `COMMIT_MSG_RULES.json` file in your project directory.
+
+### Badge
+Show the world that you use Chapter: [![commit style: chapter](https://img.shields.io/badge/commit%20style-chapter-red.svg)](https://github.com/williamgrosset/chapter)
+```md
+[![commit style: chapter](https://img.shields.io/badge/commit%20style-chapter-red.svg)](https://github.com/williamgrosset/chapter)
+```
 
 ## Rules
 Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your current project's top-level directory. Rules determine the structure and behaviour of commit messages. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
