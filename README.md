@@ -1,6 +1,6 @@
 <p align="center">
-  <br /><br /><br />
-  <img src="https://fontmeme.com/permalink/180705/3c40c879b0da9658f295901ff1c02ff6.png" alt="old-english-fonts" border="0">
+  <br />
+  <img src="https://fontmeme.com/permalink/180705/a447e6adbbc9c3f3c5f967c39ed0f7a1.png" alt="old-english-fonts" border="0">
   <br /><br />
   <img src="https://img.shields.io/badge/commit%20style-chapter-red.svg" />
 </p>
