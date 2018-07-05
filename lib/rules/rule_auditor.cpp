@@ -83,9 +83,7 @@ bool containsBulletPoints(const std::string msg, const int requiredCount) {
         std::string points(pointResult[1].first, pointResult[1].second);
         removeDescFromPoints(points);
 
-        if (getBulletPointCount(points) == requiredCount) {
-            return true;
-        }
+        return getBulletPointCount(points) == requiredCount;
     }
 
     return false;
@@ -164,9 +162,7 @@ bool containsDescription(const std::string msg) {
         std::string description(descResult[1].first, descResult[1].second);
         removePointsFromDesc(description);
 
-        if (description.length() > 0) {
-            return true;
-        }
+        return description.length() > 0;
     }
 
     return false;
@@ -180,9 +176,7 @@ bool isDescriptionMaxLength(const std::string msg, const int length) {
         std::string description(descResult[1].first, descResult[1].second);
         removePointsFromDesc(description);
 
-        if (description.length() > length) {
-            return true;
-        }
+        return description.length() > length;
     }
 
     return false;
@@ -196,9 +190,7 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
         std::string description(descResult[1].first, descResult[1].second);
         removePointsFromDesc(description);
 
-        if (description.length() < length) {
-            return true;
-        }
+        return description.length() < length;
     }
 
     return false;
@@ -228,11 +220,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
         if (boost::regex_search(summary, initialWordResult, wordPattern)) {
             const std::string initialWord(initialWordResult[1].first, initialWordResult[1].second);
 
-            if (isupper(initialWord[0])) {
-                return true;
-            }
-
-            return false;
+            return isupper(initialWord[0]);
         }
 
         // Return true if first set of characters is not a word
@@ -244,12 +232,7 @@ bool isFirstLetterCapitalized(const std::string msg) {
 
 bool containsSummary(const std::string msg) {
     const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
-
-    if (regex_match(msg, summaryPattern)) {
-        return true;
-    }
-
-    return false;
+    return regex_match(msg, summaryPattern);
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
@@ -258,9 +241,8 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
         const std::string summary(summaryResult[1].first, summaryResult[1].second);
-        if (summary.length() > length) {
-            return true;
-        }
+
+        return summary.length() > length;
     }
 
     return false;
@@ -272,9 +254,8 @@ bool isSummaryMinLength(const std::string msg, const int length) {
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
         const std::string summary(summaryResult[1].first, summaryResult[1].second);
-        if (summary.length() < length) {
-            return true;
-        }
+
+        return summary.length() < length;
     }
 
     return false;
