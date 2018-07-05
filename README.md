@@ -1,5 +1,5 @@
 <p align="center">
-  ...**chapter** logo...<br /><br />
+  <img src="https://fontmeme.com/permalink/180705/3c40c879b0da9658f295901ff1c02ff6.png" alt="old-english-fonts" border="0"><br /><br />
   <img src="https://img.shields.io/badge/commit%20style-chapter-red.svg" />
 </p>
 
