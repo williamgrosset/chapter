@@ -27,7 +27,7 @@
 - [License](#license)
 
 ## Overview
-Chapter provides structure, formatation, and conventions for writing commit messages amongst other developers on a project.
+Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. Chapter allows the ability to determine your own formatting of messages through custom rules defined below. Adding this tool to your project can help ensure that commit messages become standardized and informative.
 
 ## Usage
 0. JSON helper: `brew tap nlohmann/json` && `brew install nlohmann_json`
