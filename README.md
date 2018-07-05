@@ -73,19 +73,29 @@ Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your proje
 ```
 
 ### Typos
-Typos are identified via a trained neural net (credits to [JamSpell](https://github.com/bakwc/JamSpell)). The value for this rule type must be a **boolean** and is **required**:
+Identify typos via trained neural net from [JamSpell](https://github.com/bakwc/JamSpell). Rule must be a **boolean**:
 ```json
 "identify_typos": true
 ```
 
 ### No Emoji
-...
+Prevent messages from including emojis. Rule must be a **boolean**:
+```json
+"no_emoji": true
+```
 
 ### Summary Capitalization
-...
+Summary must be capitalized. Rule must be a **boolean**:
+```json
+"sum_capital": true
+```
 
 ### Summary Length
-...
+Define maximum and minimum length of summary. Both rules must be a non-zero, positive **integer**:
+```json
+"sum_max_len": 50,
+"sum_min_len": 18
+```
 
 ### Documentation Format
 ...
