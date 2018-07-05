@@ -28,7 +28,7 @@
 - [License](#license)
 
 ## Overview
-..
+Chapter is an open source C++ tool for adding conventions and rules with Git commit messages. 
 
 ## Usage
 + Move executable in `$HOME/bin`
@@ -39,9 +39,26 @@
 + ...
 
 ## Rules
-+ Show example of warning/error
-+ Rule in `COMMIT_MSG_RULES.json`
-+ ...
+Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your current project's top-level directory. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
+```json
+{
+    "bullet_points": {
+        "count": 3,
+        "max_len": 50,
+        "min_len": 12
+    },
+    "desc": {
+        "max_len": 72,
+        "min_len": 40
+    },
+    "doc_format": false,
+    "identify_typos": true,
+    "nit_format": true,
+    "sum_capital": true,
+    "sum_max_len": 50,
+    "sum_min_len": 18,
+    "wip_format": true
+}
 
 ### Typos
 ...
