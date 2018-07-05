@@ -3,22 +3,37 @@
   <img src="https://img.shields.io/badge/commit%20style-chapter-red.svg" />
 </p>
 
+## Table of Contents
+- [Overview](#overview)
+- [Usage](#usage)
+- [Rules](#rules)
+  * [Typos](#typos)
+  * [No Emoji](#no-emoji)
+  * [Summary Capitalization](#summary-capitalization)
+  * [Summary Length](#summary-length)
+  * [Documentation Format](#documentation-format)
+  * [Nit Format](#nit-format)
+  * [WIP Format](#wip-format)
+  * [Ticket Number](#ticket-number)
+  * [Description Length](#description-length)
+  * [Bullet Points Count](#bullet-points-count)
+  * [Bullet Points Length](#bullet-points-length)
+- [Articles](#articles)
+- [Future](#future)
+- [Contributing](#contributing)
+- [Internal Integration](#internal-integration)
+- [Disclaimer](#disclaimer)
+- [License](#license)
+
 ## Overview
 ..
 
-## Installation
+## Usage
 + Move executable in `$HOME/bin`
 + Update bash script for `post-commit`
 + Ensure permissions are set `chmod +x .git/hooks/post-commit`
 + Ability to install directly via `brew` or shell script
-+ ...
-
-### JSON helper
-+ `brew tap nlohmann/json` && `brew install nlohmann_json`
-
-## Usage
-+ How to run script manually (?)
-+ Run option `--verbose` for more details on commands (?)
++ JSON helper: `brew tap nlohmann/json` && `brew install nlohmann_json`
 + ...
 
 ## Rules
