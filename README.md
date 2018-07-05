@@ -73,7 +73,10 @@ Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your proje
 ```
 
 ### Typos
-...
+Typos are identified via a trained neural net (credits to [JamSpell](https://github.com/bakwc/JamSpell)). The value for this rule type must be a **boolean** and is **required**:
+```json
+"identify_typos": true
+```
 
 ### No Emoji
 ...
