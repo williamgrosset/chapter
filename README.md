@@ -1,4 +1,7 @@
-...**chapter** logo...
+<p align="center">
+  ...**chapter** logo...<br /><br />
+  <img src="https://img.shields.io/badge/commit%20style-chapter-red.svg" />
+</p>
 
 ## Overview
 ..
