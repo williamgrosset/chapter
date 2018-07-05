@@ -28,7 +28,7 @@
 - [License](#license)
 
 ## Overview
-Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. You determine your own conventions and structure of messages through custom rules defined below. Adding this tool to your project can help ensure that commit messages become concise, standardized, and informative.
+Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. You determine your own conventions and structure of messages through a list of custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative.
 
 ## Usage
 1. Compile and move executable into your `$HOME/` directory:
@@ -36,12 +36,12 @@ Chapter is a open-source, C++ tool that provides conventions for writing Git com
 make
 mv ./chapter.o $HOME/
 ```
-2. Update the `post-commit` hook:
+2. Update the `post-commit` hook in your project directory:
 ```bash
 #!/bin/bash
 $HOME/chapter.o
 ```
-3. Create the `COMMIT_MSG_RULES.json` file in your project directory.
+3. Create the `COMMIT_MSG_RULES.json` file in your project directory. See [Rules](#rules) below.
 
 ### Badge
 Show the world that you use Chapter: [![commit style: chapter](https://img.shields.io/badge/commit%20style-chapter-red.svg)](https://github.com/williamgrosset/chapter)
@@ -50,7 +50,7 @@ Show the world that you use Chapter: [![commit style: chapter](https://img.shiel
 ```
 
 ## Rules
-Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your current project's top-level directory. Rules determine the structure and behaviour of commit messages. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
+Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your project's top-level directory. Rules determine the structure and behaviour of commit messages. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
 ```json
 {
     "bullet_points": {
