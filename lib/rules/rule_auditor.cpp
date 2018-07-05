@@ -76,7 +76,7 @@ int getBulletPointCount(const std::string points) {
 }
 
 bool containsBulletPoints(const std::string msg, const int requiredCount) {
-    const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
     boost::smatch pointResult;
 
     if (boost::regex_search(msg, pointResult, pointPattern)) {
@@ -92,7 +92,7 @@ bool containsBulletPoints(const std::string msg, const int requiredCount) {
 }
 
 bool isBulletPointsMaxLength(const std::string msg, const int length) {
-    const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
     boost::smatch pointResult;
 
     if (boost::regex_search(msg, pointResult, pointPattern)) {
@@ -106,7 +106,7 @@ bool isBulletPointsMaxLength(const std::string msg, const int length) {
 }
 
 bool isBulletPointsMinLength(const std::string msg, const int length) {
-    const boost::regex pointPattern("^(?:[\u0020-\u007E]+\\n\\n){1}([\u0020-\u007E\\n]+)");
+    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
     boost::smatch pointResult;
 
     if (boost::regex_search(msg, pointResult, pointPattern)) {
