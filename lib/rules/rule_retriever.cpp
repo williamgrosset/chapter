@@ -82,15 +82,13 @@ bool requiresDescription(nlohmann::json rulesJSON) {
 
         if (j.is_null()) {
             return false;
-        } else if (!j.is_object()) {
+        } else if (!j.is_object() || j.empty()) {
             throw std::exception();
-        } else if (j.empty()) {
-            return false;
         }
 
         return true;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Description must be an object.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Description must be an object with max_length and min_length.\n";
         if (!errorExists) errorExists = true;
         return false;
     }
@@ -134,15 +132,13 @@ bool requiresBulletPoints(nlohmann::json rulesJSON) {
 
         if (j.is_null()) {
             return false;
-        } else if (!j.is_object()) {
+        } else if (!j.is_object() || j.empty()) {
             throw std::exception();
-        } else if (j.empty()) {
-            return false;
         }
 
         return true;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points must be an object.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points must be an object with count, max_length, and min_length.\n";
         if (!errorExists) errorExists = true;
         return false;
     }
@@ -200,7 +196,7 @@ bool identifyTypos(nlohmann::json rulesJSON) {
     try {
         return rulesJSON["identify_typos"];
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Allow typos must be a boolean.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Identify typos must be a boolean.\n";
         if (!errorExists) errorExists = true;
         return false;
     }
