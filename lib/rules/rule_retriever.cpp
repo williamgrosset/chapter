@@ -25,7 +25,7 @@ std::ifstream readConfigFile() {
             throw std::exception();
         }
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Config File Error: Could not find configuration rules file.\n";
+        std::cout << "  \U0001F6A8 Could not find COMMIT_MSG_RULES.json file.\n";
         std::exit(EXIT_FAILURE);
     }
 }
@@ -37,7 +37,7 @@ nlohmann::json convertFileToJSON() {
     try {
         f >> j;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Config File Error: Ensure your JSON file has correct syntax.\n";
+        std::cout << "  \U0001F6A8 Converting file to JSON failed. Ensure correct syntax.\n";
         std::exit(EXIT_FAILURE);
     }
 

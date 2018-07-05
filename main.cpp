@@ -20,7 +20,7 @@ std::ifstream readGitCommitMsgFile() {
             throw std::exception();
         }
     } catch (const std::exception& e) {
-        std::cout << "\U0001F6A8 Commit Msg File Error: Could not find Git commit message file.\n";
+        std::cout << "\U0001F6A8 Could not find Git commit message file.\n";
         std::exit(EXIT_FAILURE);
     }
 }
