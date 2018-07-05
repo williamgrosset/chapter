@@ -26,34 +26,34 @@
 ### Typos
 ...
 
-### Summary capitalization
+### No Emoji
 ...
 
-### Summary length
+### Summary Capitalization
 ...
 
-### Description
+### Summary Length
 ...
 
-#### Description length
+### Documentation Format
 ...
 
-### Bullet points
+### Nit Format
 ...
 
-#### Bullet points count
+### WIP Format
 ...
 
-#### Bullet points length
+### Ticket Number
 ...
 
-### Documentation format
+### Description Length
 ...
 
-### Nit format
+### Bullet Points Count
 ...
 
-### WIP format
+### Bullet Points Length
 ...
 
 ## Articles
