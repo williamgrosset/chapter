@@ -16,7 +16,6 @@
   * [Documentation Format](#documentation-format)
   * [Nit Format](#nit-format)
   * [WIP Format](#wip-format)
-  * [Ticket Number](#ticket-number)
   * [Description Length](#description-length)
   * [Bullet Points Count](#bullet-points-count)
   * [Bullet Points Length](#bullet-points-length)
@@ -28,18 +27,20 @@
 - [License](#license)
 
 ## Overview
-Chapter is an open source C++ tool for adding conventions and rules with Git commit messages. 
+Chapter provides structure, formatation, and conventions for writing commit messages amongst other developers on a project.
 
 ## Usage
-+ Move executable in `$HOME/bin`
-+ Update bash script for `post-commit`
-+ Ensure permissions are set `chmod +x .git/hooks/post-commit`
-+ Ability to install directly via `brew` or shell script
-+ JSON helper: `brew tap nlohmann/json` && `brew install nlohmann_json`
-+ ...
+0. JSON helper: `brew tap nlohmann/json` && `brew install nlohmann_json`
+1. Compile and and move executable into `$HOME/bin`.
+2. Update bash script for `post-commit`. Ensure permissions are set `chmod +x .git/hooks/post-commit`:
+```bash
+...script here...
+```
+3. Create the `COMMIT_MSG_RULES.json` file and place into your project directory.
+4. TOOD: Ability to install directly via `brew` or shell script
 
 ## Rules
-Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your current project's top-level directory. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
+Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your current project's top-level directory. Rules determine the structure and behaviour of commit messages. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
 ```json
 {
     "bullet_points": {
@@ -59,6 +60,7 @@ Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your curre
     "sum_min_len": 18,
     "wip_format": true
 }
+```
 
 ### Typos
 ...
@@ -79,9 +81,6 @@ Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your curre
 ...
 
 ### WIP Format
-...
-
-### Ticket Number
 ...
 
 ### Description Length
