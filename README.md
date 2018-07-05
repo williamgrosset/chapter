@@ -27,17 +27,20 @@
 - [License](#license)
 
 ## Overview
-Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. Chapter allows the ability to determine your own formatting of messages through custom rules defined below. Adding this tool to your project can help ensure that commit messages become standardized and informative.
+Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. You determine your own conventions and structure of messages through custom rules defined below. Adding this tool to your project can help ensure that commit messages become concise, standardized, and informative.
 
 ## Usage
 0. JSON helper: `brew tap nlohmann/json` && `brew install nlohmann_json`
-1. Compile and and move executable into `$HOME/bin`.
-2. Update bash script for `post-commit`. Ensure permissions are set `chmod +x .git/hooks/post-commit`:
+1. Compile and and move executable (`chapter.o`) into your `$HOME/` directory:
 ```bash
-...script here...
+make
+mv ./chapter.o $HOME/
+2. Update the `post-commit` hook:
+```bash
+#!/bin/bash
+$HOME/chapter.o
 ```
-3. Create the `COMMIT_MSG_RULES.json` file and place into your project directory.
-4. TOOD: Ability to install directly via `brew` or shell script
+3. Create the `COMMIT_MSG_RULES.json` file in your project directory.
 
 ## Rules
 Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your current project's top-level directory. Rules determine the structure and behaviour of commit messages. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
