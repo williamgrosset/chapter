@@ -4,13 +4,7 @@
 #include <unistd.h>
 #include <nlohmann/json.hpp>
 
-/*
- * TODO:
- * + Convert to Class (remove global var)
- */
-
-// Temp global variable
-bool errorExists = false;
+bool ruleErrorExists = false;
 
 std::ifstream readConfigFile() {
     try {
@@ -54,7 +48,7 @@ int getSummaryMinLength(nlohmann::json rulesJSON) {
         return minLength;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Summary min length must be a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -70,7 +64,7 @@ int getSummaryMaxLength(nlohmann::json rulesJSON) {
         return maxLength;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Summary max length must be a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -88,7 +82,7 @@ bool requiresDescription(nlohmann::json rulesJSON) {
         return true;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Description must be an object with max_length and min_length.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -104,7 +98,7 @@ int getDescriptionMaxLength(nlohmann::json rulesJSON) {
         return descMaxLength;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Description max length must be a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -120,7 +114,7 @@ int getDescriptionMinLength(nlohmann::json rulesJSON) {
         return descMinLength;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Description min length must be a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -138,7 +132,7 @@ bool requiresBulletPoints(nlohmann::json rulesJSON) {
         return true;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Bullet points must be an object with count, max_length, and min_length.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -154,7 +148,7 @@ int getBulletPointsCount(nlohmann::json rulesJSON) {
         return bulletPointsCount;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Bullet points count must be zero or a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -170,7 +164,7 @@ int getBulletPointsMinLength(nlohmann::json rulesJSON) {
         return minLength;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Bullet points min length must be a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -186,7 +180,7 @@ int getBulletPointsMaxLength(nlohmann::json rulesJSON) {
         return maxLength;
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Bullet points max length must be a positive integer.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
 }
@@ -196,7 +190,7 @@ bool identifyTypos(nlohmann::json rulesJSON) {
         return rulesJSON["identify_typos"];
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Identify typos must be a boolean.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -206,7 +200,7 @@ bool requiresSummaryCapital(nlohmann::json rulesJSON) {
         return rulesJSON["sum_capital"];
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Summary capital must be a boolean.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -216,7 +210,7 @@ bool requiresDocFormat(nlohmann::json rulesJSON) {
         return rulesJSON["doc_format"];
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Documentation format must be a boolean.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -226,7 +220,7 @@ bool requiresNitFormat(nlohmann::json rulesJSON) {
         return rulesJSON["nit_format"];
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Nit format must be a boolean.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -236,7 +230,7 @@ bool requiresWIPFormat(nlohmann::json rulesJSON) {
         return rulesJSON["wip_format"];
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: WIP format must be a boolean.\n";
-        if (!errorExists) errorExists = true;
+        if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
 }
@@ -261,5 +255,5 @@ bool verifyIfRuleErrorExists(nlohmann::json rulesJSON) {
     requiresNitFormat(rulesJSON);
     requiresWIPFormat(rulesJSON);
 
-    return errorExists;
+    return ruleErrorExists;
 }
