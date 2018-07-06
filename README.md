@@ -11,7 +11,6 @@
   * [Badge](#badge)
 - [Rules](#rules)
   * [Typos](#typos)
-  * [No Emoji](#no-emoji)
   * [Summary Capitalization](#summary-capitalization)
   * [Summary Length](#summary-length)
   * [Documentation Format](#documentation-format)
