@@ -17,9 +17,8 @@
   * [Documentation Format](#documentation-format)
   * [Nit Format](#nit-format)
   * [WIP Format](#wip-format)
-  * [Description Length](#description-length)
-  * [Bullet Points Count](#bullet-points-count)
-  * [Bullet Points Length](#bullet-points-length)
+  * [Description](#description)
+  * [Bullet Points](#bullet-points)
 - [Articles](#articles)
 - [Future](#future)
 - [Contributing](#contributing)
@@ -73,7 +72,7 @@ Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your proje
 ```
 
 ### Typos
-Identify typos via trained neural net from [JamSpell](https://github.com/bakwc/JamSpell). Rule must be a **boolean**:
+Identify typos via a trained neural net from [JamSpell](https://github.com/bakwc/JamSpell). Rule must be a **boolean**:
 ```json
 "identify_typos": true
 ```
@@ -85,7 +84,7 @@ Prevent messages from including emojis. Rule must be a **boolean**:
 ```
 
 ### Summary Capitalization
-Summary must be capitalized. Rule must be a **boolean**:
+Require summary to be capitalized. Rule must be a **boolean**:
 ```json
 "sum_capital": true
 ```
@@ -98,22 +97,56 @@ Define maximum and minimum length of summary. Both rules must be a non-zero, pos
 ```
 
 ### Documentation Format
-...
+Require formatting for messages related to documentation. Rule must be a **boolean**:
+```json
+"doc_format": true
+```
+
+#### Required Format
+```md
+Docs: Insert summary text here 
+```
 
 ### Nit Format
-...
+Require formatting for messages related to nits. Rule must be a **boolean**:
+```json
+"nit_format": true
+```
+
+#### Required Format
+```md
+Nit: Insert summary text here 
+```
 
 ### WIP Format
-...
+Require formatting for messages related to work in progress. Rule must be a **boolean**:
+```json
+"wip_format": true
+```
 
-### Description Length
-...
+#### Required Format
+```md
+WIP: Insert summary text here 
+```
 
-### Bullet Points Count
-...
+### Description
+Define maximum and minimum length of description. Rule must not exist (description not required) or be an **object** with `max_length` and `min_length`, both as non-zero, positive **integers**:
+```json
+"desc": {
+    "max_len": 72,
+    "min_len": 40 
+}
+```
 
-### Bullet Points Length
-...
+### Bullet Points
+Define count, maximum and minimum length of bullet points. Rule must not exist (bullet points not required) or be an **object** with `count`, `max_length`, and `min_length`, all as non-zero, positive **integers**:
+```json
+"bullet_points": {
+    "count": 3,
+    "max_len": 50,
+    "min_len": 12
+}
+```
 
 ## Articles
 See [ARTICLES.md](https://github.com/williamgrosset/chapter/blob/master/ARTICLES.md).
