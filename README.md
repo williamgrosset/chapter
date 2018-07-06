@@ -27,7 +27,7 @@
 - [License](#license)
 
 ## Overview
-Chapter is an open-source, C++ tool that provides conventions for writing Git commit messages. After every `git commit`, an audit script will display warnings and errors in your terminal regarding your commit message. You determine your own conventions and structure of messages through a list of custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative amongst other developers.
+Chapter is an open-source, C++ tool that provides conventions for Git commit messages. After every `git commit`, an audit script will display warnings and errors in your terminal regarding your commit message. You determine your own conventions and rules of messages through custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative amongst other developers.
 
 ## Usage
 1. Compile and move executable into your `$HOME/` directory:
@@ -182,7 +182,7 @@ See [CONTRIBUTING.md](https://github.com/williamgrosset/chapter/blob/master/CONT
 Chapter was integrated into this repository at commit message [#XXX](https://github.com/williamgrosset/chapter.git).
 
 ## Disclaimer
-Chapter is in early stages of development — use with caution.
+Chapter is in early stages of development (**writing tests**) — use with caution.
 
 ## License
 [MIT](https://github.com/williamgrosset/chapter/blob/master/LICENSE)
