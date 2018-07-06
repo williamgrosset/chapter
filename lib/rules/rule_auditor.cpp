@@ -1,19 +1,6 @@
 #include <iostream>
 #include <boost/regex.hpp>
 
-/*
- * TODO:
- * + Convert to Class
- * + Move typo checking logic into seperate file
- *   + Keep containsTypo(msg) in rule_auditor.cpp
- * + Refactor and minimize logic for removePointsFromDesc & removeDescFromPoints
- * + Fix, audit, and clean-up all regex patterns
- *   + Description & min/max
- *   + Summary & min/max
- *   + Summary capitalization
- *   + Bullet points
- */
-
 const std::string VALID_MSG_CHARS = "\u0020-\u007E";
 
 void normalizeEndOfCapture(std::string& capture) {
