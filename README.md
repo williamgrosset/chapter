@@ -32,7 +32,7 @@ Chapter is an open-source, C++ tool that provides conventions for writing Git co
 ## Usage
 1. Compile and move executable into your `$HOME/` directory:
 ```bash
-make
+make fresh
 mv ./chapter.o $HOME/
 ```
 2. Update the `post-commit` hook in your project directory:
