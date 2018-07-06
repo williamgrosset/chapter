@@ -142,8 +142,8 @@ Define maximum and minimum length of description. Rule must not exist (descripti
 ```md
 Insert summary text here
 
-Insert description here regarding more details about the commit message
-and other details.
+Insert description here regarding more details about the commit changes
+and whatever else.
 ```
 
 ### Bullet Points
@@ -161,12 +161,12 @@ Bullet points are on their own line starting with one of the characters: `+`, `*
 ```md
 Insert summary text here
 
-Insert description here regarding more details about the commit message
-and other details.
+Insert description here regarding more details about the commit changes
+and whatever else.
 
-+ More details regarding feature
-+ Concise details of description
-+ And other details.
++ Key points regarding feature
++ Shorter than summary
++ And anything else.
 ```
 
 ## Articles
