@@ -113,7 +113,7 @@ Require formatting for messages related to nits. Rule must be a **boolean**:
 "nit_format": true
 ```
 
-#### Required Format
+#### Format
 ```md
 Nit: Insert summary text here 
 ```
@@ -124,7 +124,7 @@ Require formatting for messages related to work in progress. Rule must be a **bo
 "wip_format": true
 ```
 
-#### Required Format
+#### Format
 ```md
 WIP: Insert summary text here 
 ```
@@ -138,14 +138,35 @@ Define maximum and minimum length of description. Rule must not exist (descripti
 }
 ```
 
+#### Format
+```md
+Insert summary text here
+
+Insert description here regarding more details about the commit message
+and other details.
+```
+
 ### Bullet Points
 Define count, maximum and minimum length of bullet points. Rule must not exist (bullet points not required) or be an **object** with `count`, `max_length`, and `min_length`, all as non-zero, positive **integers**:
 ```json
 "bullet_points": {
     "count": 3,
-    "max_len": 50,
+    "max_len": 80,
     "min_len": 12
 }
+```
+
+#### Format
+Bullet points are on their own line starting with one of the characters: `+`, `*`, `-`.
+```md
+Insert summary text here
+
+Insert description here regarding more details about the commit message
+and other details.
+
++ More details regarding feature
++ Concise details of description
++ And other details.
 ```
 
 ## Articles
