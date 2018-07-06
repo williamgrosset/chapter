@@ -7,8 +7,7 @@
 + Execute audit program on a `post-commit` hook 
 + Add terminal UI for progress and success/errors
 + Setup test suite
-+ Update `README.md`: ToC, content, overview, and add logo
-+ Add GitHub badge to be downloaded (similar to Prettier)
++ Update `README.md`: demo
 + Add other GitHub badges (e.g code coverage, build status)
 
 ### Long Term
