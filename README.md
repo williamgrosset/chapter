@@ -90,7 +90,7 @@ Require summary to be capitalized. Rule must be a **boolean**:
 ```
 
 ### Summary Length
-Define maximum and minimum length of summary. Both rules must be a non-zero, positive **integer**:
+Define maximum and minimum length of summary. Both rules must be a positive **integer**:
 ```json
 "sum_max_len": 50,
 "sum_min_len": 18
@@ -130,7 +130,7 @@ WIP: Insert summary text here
 ```
 
 ### Description
-Define maximum and minimum length of description. Rule must not exist (description not required) or be an **object** with `max_length` and `min_length`, both as non-zero, positive **integers**:
+Define maximum and minimum length of description. Rule must not exist (description not required) or be an **object** with `max_length` and `min_length`, both as positive **integers**:
 ```json
 "desc": {
     "max_len": 72,
@@ -147,7 +147,7 @@ and other details.
 ```
 
 ### Bullet Points
-Define count, maximum and minimum length of bullet points. Rule must not exist (bullet points not required) or be an **object** with `count`, `max_length`, and `min_length`, all as non-zero, positive **integers**:
+Define count, maximum and minimum length of bullet points. Rule must not exist (bullet points not required) or be an **object** with `count`, `max_length`, and `min_length`, all as positive **integers**:
 ```json
 "bullet_points": {
     "count": 3,

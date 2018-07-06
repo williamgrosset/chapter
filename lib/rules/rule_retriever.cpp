@@ -54,7 +54,7 @@ int getSummaryMinLength(nlohmann::json rulesJSON) {
 
         return minLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Summary min length must be a non-zero, positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Summary min length must be a positive integer.\n";
         if (!errorExists) errorExists = true;
         return -1;
     }
@@ -70,7 +70,7 @@ int getSummaryMaxLength(nlohmann::json rulesJSON) {
 
         return maxLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Summary max length must be a non-zero, positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Summary max length must be a positive integer.\n";
         if (!errorExists) errorExists = true;
         return -1;
     }
@@ -104,7 +104,7 @@ int getDescriptionMaxLength(nlohmann::json rulesJSON) {
 
         return descMaxLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Description max length must be a non-zero, positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Description max length must be a positive integer.\n";
         if (!errorExists) errorExists = true;
         return -1;
     }
@@ -120,7 +120,7 @@ int getDescriptionMinLength(nlohmann::json rulesJSON) {
 
         return descMinLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Description min length must be a non-zero, positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Description min length must be a positive integer.\n";
         if (!errorExists) errorExists = true;
         return -1;
     }
@@ -170,7 +170,7 @@ int getBulletPointsMinLength(nlohmann::json rulesJSON) {
 
         return minLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points min length must be a non-zero, positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points min length must be a positive integer.\n";
         if (!errorExists) errorExists = true;
         return -1;
     }
@@ -186,7 +186,7 @@ int getBulletPointsMaxLength(nlohmann::json rulesJSON) {
 
         return maxLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points max length must be a non-zero, positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points max length must be a positive integer.\n";
         if (!errorExists) errorExists = true;
         return -1;
     }
