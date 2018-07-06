@@ -13,7 +13,7 @@
 void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) {
     std::cout << "************   \U00002699 Commit message audit...   ************\n\n";
 
-    if (hasRuleErrorThrown(rulesJSON)) {
+    if (verifyIfRuleErrorExists(rulesJSON)) {
         std::cout << std::endl << "    Please fix your rules configuration file for" << std::endl
                   << "    correct attributes and value types." << std::endl << std::endl
                   << "    See https://github.com/williamgrosset/chapter/README.md" << std::endl;

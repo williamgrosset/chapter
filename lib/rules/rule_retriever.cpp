@@ -241,7 +241,7 @@ bool requiresWIPFormat(nlohmann::json rulesJSON) {
     }
 }
 
-bool hasRuleErrorThrown(nlohmann::json rulesJSON) {
+bool verifyIfRuleErrorExists(nlohmann::json rulesJSON) {
     if (requiresBulletPoints(rulesJSON)) {
         getBulletPointsCount(rulesJSON);
         getBulletPointsMaxLength(rulesJSON);
