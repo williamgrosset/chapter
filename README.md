@@ -77,12 +77,6 @@ Identify typos via a trained neural net from [JamSpell](https://github.com/bakwc
 "identify_typos": true
 ```
 
-### No Emoji
-Prevent messages from including emojis. Rule must be a **boolean**:
-```json
-"no_emoji": true
-```
-
 ### Summary Capitalization
 Require summary to be capitalized. Rule must be a **boolean**:
 ```json

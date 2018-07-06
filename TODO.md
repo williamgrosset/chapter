@@ -25,5 +25,6 @@
 
 ### Rules
 + Require issue number
-+ Exclude requirement of description/bullet points if `nit` commit
 + 72-line break for description
++ No emoji
++ Exclude requirement of description/bullet points if `nit` commit
