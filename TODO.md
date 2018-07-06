@@ -19,8 +19,9 @@
 + tweet
 
 ### Long Term
-+ Ruling support for different size of changes (per commit)
 + Add ability to toggle server-side Git hook to require commit message changes
++ 72-line break for description
++ Ruling support for different size of changes (per commit)
 
 ### Rules
 + Issue Number
