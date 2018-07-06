@@ -30,8 +30,7 @@ std::ifstream readConfigFile() {
     }
 }
 
-nlohmann::json convertFileToJSON() {
-    std::ifstream f = readConfigFile();
+nlohmann::json convertFileToJSON(std::ifstream f) {
     nlohmann::json j;
 
     try {

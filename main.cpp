@@ -25,6 +25,16 @@ std::ifstream readGitCommitMsgFile() {
     }
 }
 
+std::string convertFileToStr(std::ifstream f) {
+    std::ostringstream s_stream;
+
+    if (f.is_open()) {
+        s_stream << f.rdbuf();
+    }
+
+    return s_stream.str();
+}
+
 void removeComments(std::string& msg) {
     for (int i = 0; i < msg.length(); i++) {
         if ((msg[i - 1] == '\n' || i == 0) && msg[i] == '#') {
@@ -42,15 +52,8 @@ void removeComments(std::string& msg) {
 }
 
 int main(int argc, char* argv[]) {
-    std::ifstream f = readGitCommitMsgFile();
-    std::ostringstream s_stream;
-
-    if (f.is_open()) {
-        s_stream << f.rdbuf();
-    }
-
-    std::string commitMsg = s_stream.str();
-    nlohmann::json rulesJSON = convertFileToJSON();
+    std::string commitMsg = convertFileToStr(readGitCommitMsgFile()); 
+    nlohmann::json rulesJSON = convertFileToJSON(readConfigFile());
 
     removeComments(commitMsg);
     displayAuditResults(rulesJSON, commitMsg);
