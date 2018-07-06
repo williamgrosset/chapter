@@ -10,6 +10,14 @@
 + Update `README.md`: demo
 + Add other GitHub badges (e.g code coverage, build status)
 
+### Badges
++ build passing
++ coverage
++ code size
++ license (MIT)
++ last commit
++ tweet
+
 ### Long Term
 + Ruling support for different size of changes (per commit)
 + Add ability to toggle server-side Git hook to require commit message changes
