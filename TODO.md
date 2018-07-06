@@ -20,8 +20,9 @@
 
 ### Long Term
 + Add ability to toggle server-side Git hook to require commit message changes
-+ 72-line break for description
 + Ruling support for different size of changes (per commit)
 
 ### Rules
-+ Issue Number
++ Require issue number
++ Exclude requirement of description/bullet points if `nit` commit
++ 72-line break for description
