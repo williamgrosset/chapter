@@ -5,7 +5,7 @@
 #include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
 #include <lib/rules/rule_retriever.hpp>
-#include <lib/ui/console_printer.hpp>
+#include <lib/ui/results_logger.hpp>
 
 std::ifstream readGitCommitMsgFile() {
     try {
