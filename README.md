@@ -27,7 +27,7 @@
 - [License](#license)
 
 ## Overview
-Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages amongst other developers. You determine your own conventions and structure of messages through a list of custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative.
+Chapter is a open-source, C++ tool that provides conventions for writing Git commit messages. After every `git commit`, the audit script will detect warnings and errors from your commit message. You determine your own conventions and structure of messages through a list of custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative amongst other developers.
 
 ## Usage
 1. Compile and move executable into your `$HOME/` directory:
@@ -102,7 +102,7 @@ Require formatting for messages related to documentation. Rule must be a **boole
 "doc_format": true
 ```
 
-#### Required Format
+#### Format
 ```md
 Docs: Insert summary text here 
 ```
