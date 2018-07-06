@@ -1,11 +1,6 @@
 #include <iostream>
 #include <boost/regex.hpp>
 
-/*
- * TODO:
- * + Create function for testing max/min length
- */
-
 const std::string VALID_MSG_CHARS = "\u0020-\u007E";
 
 void normalizeEndOfCapture(std::string& capture) {
