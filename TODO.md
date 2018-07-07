@@ -1,11 +1,8 @@
 ## TODO
 ### Before Open Source
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
-+ Complete logic for all rules
-+ Improve error handling for different cases and messages
-+ Clean-up `console_printer` and all nits
-+ Execute audit program on a `post-commit` hook 
-+ Add terminal UI for progress and success/errors
+  + Remove `model.bin` from repository
++ General run through for nits
 + Setup test suite
 + Update `README.md`: demo
 + Add other GitHub badges (e.g code coverage, build status)
