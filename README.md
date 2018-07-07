@@ -10,7 +10,6 @@
 ## Table of Contents
 - [Overview](#overview)
 - [Usage](#usage)
-  * [Badge](#badge)
 - [Rules](#rules)
   * [Typos](#typos)
   * [Summary Capitalization](#summary-capitalization)
@@ -141,8 +140,8 @@ Define maximum and minimum length of description. Rule must not exist (descripti
 ```md
 Insert summary text here
 
-Insert description here regarding more details about the commit changes
-and whatever else.
+Insert description here regarding more details about the commit changes.
+Identifying typos works easier when there are full sentences.
 ```
 
 ### Bullet Points
@@ -160,11 +159,11 @@ Bullet points are on their own line starting with one of the characters: `+`, `*
 ```md
 Insert summary text here
 
-Insert description here regarding more details about the commit changes
-and whatever else.
+Insert description here regarding more details about the commit changes.
+Identifying typos works easier when there are full sentences.
 
-+ Key points regarding feature
-+ Shorter than summary
++ Key points regarding feature.
++ Shorter than summary.
 + And anything else.
 ```
 
