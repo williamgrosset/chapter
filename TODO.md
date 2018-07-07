@@ -1,15 +1,15 @@
 ## TODO
 ### Before Open Source
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
-  + Remove `model.bin` from repository
-+ General run through for nits
++ Test location for `model_en.bin.spell`
++ Allow for any rule to not exist in `COMMIT_MSG_RULES.json`
++ General run through for nits and regex logic
 + Setup test suite
 + Update `README.md`: demo
-+ Add other GitHub badges (e.g code coverage, build status)
++ Simplify installation instructions
++ Complete other docs
 
 ### Badges
-+ build passing
-+ coverage
 + code size
 + license (MIT)
 + last commit
@@ -25,3 +25,7 @@
 + 72-line break for description
 + No emoji
 + Exclude requirement of description/bullet points if `nit` commit
+
+### `README.md` badges
++ Build status
++ Code coverage %
