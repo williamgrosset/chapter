@@ -9,7 +9,7 @@
 using json = nlohmann::json;
 
 void displayAuditResults(json rulesJSON, const std::string commitMsg) {
-    displayTypos(commitMsg);
+    getTypos(commitMsg);
 
     std::cout << "************   \U00002699 Commit message audit...   ************\n\n";
 
