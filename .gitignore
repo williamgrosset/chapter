@@ -33,3 +33,6 @@ env.json
 *.exe
 *.out
 *.app
+
+# JamSpell
+*.spell

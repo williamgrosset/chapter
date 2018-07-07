@@ -6,6 +6,11 @@
 #include <jamspell/spell_corrector.hpp>
 
 void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) {
+    NJamSpell::TSpellCorrector corrector;
+    corrector.LoadLangModel("model.bin");
+    std::string msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commitMsg)));
+    printf("%s\n\n\n", msg.c_str());
+
     std::cout << "************   \U00002699 Commit message audit...   ************\n\n";
 
     if (verifyIfRuleErrorExists(rulesJSON)) {

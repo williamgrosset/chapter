@@ -11,4 +11,4 @@ run: chapter.o
 		./chapter.o
 
 .phony clean:
-		rm -rf *.o
+		rm -rf *.o *.spell
