@@ -7,6 +7,8 @@
 #include <lib/rules/rule_retriever.hpp>
 #include <lib/ui/results_logger.hpp>
 
+using json = nlohmann::json;
+
 std::ifstream readGitCommitMsgFile() {
     try {
         char buffer[255];
@@ -53,7 +55,7 @@ void removeComments(std::string& msg) {
 
 int main(int argc, char* argv[]) {
     std::string commitMsg = convertFileToStr(readGitCommitMsgFile()); 
-    nlohmann::json rulesJSON = convertFileToJSON(readConfigFile());
+    json rulesJSON = convertFileToJSON(readConfigFile());
 
     removeComments(commitMsg);
     displayAuditResults(rulesJSON, commitMsg);

@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <nlohmann/json.hpp>
 
+using json = nlohmann::json;
+
 bool ruleErrorExists = false;
 
 std::ifstream readConfigFile() {
@@ -24,7 +26,7 @@ std::ifstream readConfigFile() {
     }
 }
 
-nlohmann::json convertFileToJSON(std::ifstream f) {
+json convertFileToJSON(std::ifstream f) {
     nlohmann::json j;
 
     try {
