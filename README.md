@@ -141,7 +141,7 @@ Define maximum and minimum length of description. Rule must not exist (descripti
 Insert summary text here
 
 Insert description here regarding more details about the commit changes.
-Identifying typos works easier when there are full sentences.
+Identifying typos works best when there are full sentences.
 ```
 
 ### Bullet Points
@@ -160,11 +160,11 @@ Bullet points are on their own line starting with one of the characters: `+`, `*
 Insert summary text here
 
 Insert description here regarding more details about the commit changes.
-Identifying typos works easier when there are full sentences.
+Identifying typos works best when there are full sentences.
 
 + Key points regarding feature.
 + Shorter than summary.
-+ And anything else.
++ Any other details.
 ```
 
 ## Articles
