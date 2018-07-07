@@ -34,7 +34,7 @@ Chapter is an open-source, C++ tool that provides conventions for Git commit mes
 $ make fresh
 $ mv ./chapter.o $HOME/
 ```
-2. Update the `post-commit` hook in your project directory:
+2. Update the `post-commit` hook in your project directory (`project/.git/hooks/post-commit`):
 ```bash
 #!/bin/bash
 $HOME/chapter.o
