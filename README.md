@@ -29,17 +29,21 @@
 Chapter is an open-source, C++ tool that provides conventions for Git commit messages. After every `git commit`, an audit script will display warnings and errors in your terminal regarding your commit message. You determine your message preferences through a set of custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative amongst other developers.
 
 ## Usage
-1. Compile and move executable into your `$HOME/` directory:
+1. [Download model](https://github.com/bakwc/JamSpell/tree/master#download-models) from [JamSpell](https://github.com/bakwc/JamSpell) and move into your `$HOME/` directory:
+```bash
+$ mv model_en.bin $HOME/model_en.bin
+```
+2. Compile and move executable into your `$HOME/` directory:
 ```bash
 $ make fresh
 $ mv ./chapter.o $HOME/
 ```
-2. Update the `post-commit` hook in your project directory (`project/.git/hooks/post-commit`):
+3. Update the `post-commit` hook in your project directory (`project/.git/hooks/post-commit`):
 ```bash
 #!/bin/bash
 $HOME/chapter.o
 ```
-3. Create the `COMMIT_MSG_RULES.json` file in your project directory. See [Rules](#rules) below.
+4. Create the `COMMIT_MSG_RULES.json` file in your project directory. See [Rules](#rules) below.
 
 ### Badge
 Show the world that you use Chapter: [![commit style: chapter](https://img.shields.io/badge/commit%20style-chapter-red.svg)](https://github.com/williamgrosset/chapter)

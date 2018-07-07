@@ -35,4 +35,5 @@ env.json
 *.app
 
 # JamSpell
+*.bin
 *.spell
