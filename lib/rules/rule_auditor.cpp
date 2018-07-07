@@ -290,10 +290,3 @@ bool isSummaryMinLength(const std::string msg, const int length) {
 
     return false;
 }
-
-bool containsTypos(const std::string msg) {
-    // TODO:
-    //  + Generate warning (instead of error) outlining all typos
-    //  + Ignore nit and WIP
-    return true;
-}
