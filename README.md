@@ -31,8 +31,8 @@ Chapter is an open-source, C++ tool that provides conventions for Git commit mes
 ## Usage
 1. Compile and move executable into your `$HOME/` directory:
 ```bash
-make fresh
-mv ./chapter.o $HOME/
+$ make fresh
+$ mv ./chapter.o $HOME/
 ```
 2. Update the `post-commit` hook in your project directory:
 ```bash
