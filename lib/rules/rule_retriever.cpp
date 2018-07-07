@@ -27,7 +27,7 @@ std::ifstream readConfigFile() {
 }
 
 json convertFileToJSON(std::ifstream f) {
-    nlohmann::json j;
+    json j;
 
     try {
         f >> j;
@@ -39,7 +39,7 @@ json convertFileToJSON(std::ifstream f) {
     return j;
 }
 
-int getSummaryMinLength(nlohmann::json rulesJSON) {
+int getSummaryMinLength(json rulesJSON) {
     try {
         const int minLength = rulesJSON["sum_min_len"];
 
@@ -55,7 +55,7 @@ int getSummaryMinLength(nlohmann::json rulesJSON) {
     }
 }
 
-int getSummaryMaxLength(nlohmann::json rulesJSON) {
+int getSummaryMaxLength(json rulesJSON) {
     try {
         const int maxLength = rulesJSON["sum_max_len"];
 
@@ -71,9 +71,9 @@ int getSummaryMaxLength(nlohmann::json rulesJSON) {
     }
 }
 
-bool requiresDescription(nlohmann::json rulesJSON) {
+bool requiresDescription(json rulesJSON) {
     try {
-        nlohmann::json j = rulesJSON["desc"];
+        json j = rulesJSON["desc"];
 
         if (j.is_null()) {
             return false;
@@ -89,7 +89,7 @@ bool requiresDescription(nlohmann::json rulesJSON) {
     }
 }
 
-int getDescriptionMaxLength(nlohmann::json rulesJSON) {
+int getDescriptionMaxLength(json rulesJSON) {
     try {
         const int descMaxLength = rulesJSON["desc"]["max_len"];
 
@@ -105,7 +105,7 @@ int getDescriptionMaxLength(nlohmann::json rulesJSON) {
     }
 }
 
-int getDescriptionMinLength(nlohmann::json rulesJSON) {
+int getDescriptionMinLength(json rulesJSON) {
     try {
         const int descMinLength = rulesJSON["desc"]["min_len"];
 
@@ -121,9 +121,9 @@ int getDescriptionMinLength(nlohmann::json rulesJSON) {
     }
 }
 
-bool requiresBulletPoints(nlohmann::json rulesJSON) {
+bool requiresBulletPoints(json rulesJSON) {
     try {
-        nlohmann::json j = rulesJSON["bullet_points"];
+        json j = rulesJSON["bullet_points"];
 
         if (j.is_null()) {
             return false;
@@ -139,7 +139,7 @@ bool requiresBulletPoints(nlohmann::json rulesJSON) {
     }
 }
 
-int getBulletPointsCount(nlohmann::json rulesJSON) {
+int getBulletPointsCount(json rulesJSON) {
     try {
         const int bulletPointsCount = rulesJSON["bullet_points"]["count"];
 
@@ -155,7 +155,7 @@ int getBulletPointsCount(nlohmann::json rulesJSON) {
     }
 }
 
-int getBulletPointsMinLength(nlohmann::json rulesJSON) {
+int getBulletPointsMinLength(json rulesJSON) {
     try {
         const int minLength = rulesJSON["bullet_points"]["min_len"];
 
@@ -171,7 +171,7 @@ int getBulletPointsMinLength(nlohmann::json rulesJSON) {
     }
 }
 
-int getBulletPointsMaxLength(nlohmann::json rulesJSON) {
+int getBulletPointsMaxLength(json rulesJSON) {
     try {
         const int maxLength = rulesJSON["bullet_points"]["max_len"];
 
@@ -187,7 +187,7 @@ int getBulletPointsMaxLength(nlohmann::json rulesJSON) {
     }
 }
 
-bool identifyTypos(nlohmann::json rulesJSON) {
+bool identifyTypos(json rulesJSON) {
     try {
         return rulesJSON["identify_typos"];
     } catch (const std::exception& e) {
@@ -197,7 +197,7 @@ bool identifyTypos(nlohmann::json rulesJSON) {
     }
 }
 
-bool requiresSummaryCapital(nlohmann::json rulesJSON) {
+bool requiresSummaryCapital(json rulesJSON) {
     try {
         return rulesJSON["sum_capital"];
     } catch (const std::exception& e) {
@@ -207,7 +207,7 @@ bool requiresSummaryCapital(nlohmann::json rulesJSON) {
     }
 }
 
-bool requiresDocFormat(nlohmann::json rulesJSON) {
+bool requiresDocFormat(json rulesJSON) {
     try {
         return rulesJSON["doc_format"];
     } catch (const std::exception& e) {
@@ -217,7 +217,7 @@ bool requiresDocFormat(nlohmann::json rulesJSON) {
     }
 }
 
-bool requiresNitFormat(nlohmann::json rulesJSON) {
+bool requiresNitFormat(json rulesJSON) {
     try {
         return rulesJSON["nit_format"];
     } catch (const std::exception& e) {
@@ -227,7 +227,7 @@ bool requiresNitFormat(nlohmann::json rulesJSON) {
     }
 }
 
-bool requiresWIPFormat(nlohmann::json rulesJSON) {
+bool requiresWIPFormat(json rulesJSON) {
     try {
         return rulesJSON["wip_format"];
     } catch (const std::exception& e) {
@@ -237,7 +237,7 @@ bool requiresWIPFormat(nlohmann::json rulesJSON) {
     }
 }
 
-bool verifyIfRuleErrorExists(nlohmann::json rulesJSON) {
+bool verifyIfRuleErrorExists(json rulesJSON) {
     if (requiresBulletPoints(rulesJSON)) {
         getBulletPointsCount(rulesJSON);
         getBulletPointsMaxLength(rulesJSON);

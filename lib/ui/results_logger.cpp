@@ -6,7 +6,9 @@
 #include <lib/rules/typo_handler.hpp>
 #include <jamspell/spell_corrector.hpp>
 
-void displayAuditResults(nlohmann::json rulesJSON, const std::string commitMsg) {
+using json = nlohmann::json;
+
+void displayAuditResults(json rulesJSON, const std::string commitMsg) {
     displayTypos(commitMsg);
 
     std::cout << "************   \U00002699 Commit message audit...   ************\n\n";
