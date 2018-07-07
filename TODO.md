@@ -9,12 +9,6 @@
 + Simplify installation instructions
 + Complete other docs
 
-### Badges
-+ code size
-+ license (MIT)
-+ last commit
-+ tweet
-
 ### Long Term
 + Add ability to toggle server-side Git hook to require commit message changes
 + Ruling support for different size of changes (per commit)
@@ -29,3 +23,4 @@
 ### `README.md` badges
 + Build status
 + Code coverage %
++ Code size
