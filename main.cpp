@@ -58,6 +58,8 @@ int main(int argc, char* argv[]) {
     json rulesJSON = convertFileToJSON(readConfigFile());
 
     removeComments(commitMsg);
+
+    std::cout << "Commit message audit...\n\n";
     displayAuditResults(rulesJSON, commitMsg);
 
     return 0;

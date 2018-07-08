@@ -9,10 +9,6 @@
 using json = nlohmann::json;
 
 void displayAuditResults(json rulesJSON, const std::string commitMsg) {
-    getTypos(getDescription(commitMsg));
-
-    std::cout << "************   \U00002699 Commit message audit...   ************\n\n";
-
     if (verifyIfRuleErrorExists(rulesJSON)) {
         std::cout << std::endl << "    Please fix your rules configuration file for" << std::endl
                   << "    correct attributes and value types." << std::endl << std::endl
@@ -158,6 +154,4 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
             std::cout << "  \U0001F3C6 No errors or warnings found! \n";
         }
     }
-
-    std::cout << "\n************        \U00002699 End of audit.        ************\n";
 }
