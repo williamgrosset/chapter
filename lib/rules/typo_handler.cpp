@@ -7,13 +7,6 @@
 #include <lib/rules/rule_auditor.hpp>
 #include <jamspell/spell_corrector.hpp>
 
-void displayTypos(const std::string commitMsg) {
-    NJamSpell::TSpellCorrector corrector;
-    corrector.LoadLangModel("model_en.bin");
-    std::string msg = NJamSpell::WideToUTF8(corrector.FixFragment(NJamSpell::UTF8ToWide(commitMsg)));
-    printf("%s\n\n\n", msg.c_str());
-}
-
 std::wstring convertStrToWStr(std::string str) {
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
     return converter.from_bytes(str);
@@ -37,11 +30,6 @@ std::vector<std::wstring> splitWStr(std::wstring wstr) {
     return parts;
 }
 
-/*
- * getTypos(getSummary(commitMsg))
- * getTypos(getDescription(commitMsg))
- * getTypos(getBulletPoints(commitMsg))
- */
 std::vector<std::string> getTypos(std::string msgPartial) {
     NJamSpell::TSpellCorrector corrector;
     corrector.LoadLangModel("model_en.bin");
