@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     removeComments(commitMsg);
 
     std::cout << "Commit message audit...\n\n";
-    displayAuditResults(rulesJSON, commitMsg);
+    printAuditResults(rulesJSON, commitMsg);
 
     return 0;
 }
