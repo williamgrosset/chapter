@@ -32,7 +32,12 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
                 int size = typos.size();
 
                 if (size > 0) {
-                    std::cout << "  \U0001F530 Warning: " << size << " potential typos found in summary." << std::endl;
+                    if (!hasErrorOrWarning) hasErrorOrWarning = true;
+                    std::cout << "  \U0001F530 Warning: Potential typos found in summary:" << std::endl;
+
+                    for (int i = 0; i < size; i++) {
+                        std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
+                    }
                 }
             }
 
@@ -41,7 +46,12 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
                 int size = typos.size();
 
                 if (size > 0) {
-                    std::cout << "  \U0001F530 Warning: " << size << " potential typos found in description." << std::endl;
+                    if (!hasErrorOrWarning) hasErrorOrWarning = true;
+                    std::cout << "  \U0001F530 Warning: Potential typos found in description:" << std::endl;
+
+                    for (int i = 0; i < size; i++) {
+                        std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
+                    }
                 }
             }
 
@@ -53,10 +63,17 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
                     int size = typos.size();
 
                     if (size > 0) {
-                        std::cout << "  \U0001F530 Warning: " << size << " potential typos found in bullet points." << std::endl;
+                        if (!hasErrorOrWarning) hasErrorOrWarning = true;
+                        std::cout << "  \U0001F530 Warning: Potential typos found in bullet points:" << std::endl;
+
+                        for (int i = 0; i < size; i++) {
+                            std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
+                        }
                     }
                 }
             }
+
+            if (hasErrorOrWarning) std::cout << std::endl;
         }
 
         if (reqNitFormat && reqWIPFormat && reqDocFormat) {

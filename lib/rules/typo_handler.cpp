@@ -64,7 +64,7 @@ std::vector<std::string> getTypos(std::string msgPartial) {
             std::remove_copy_if(parts[i].begin(), parts[i].end(), std::back_inserter(word), std::ptr_fun<int, int>(&std::ispunct));
 
             // Compare with best-case candidate
-            if (candidates[0].compare(word) != 0) {
+            if (parts[i] != L"+" && parts[i] != L"*" && parts[i] != L"-" && candidates[0].compare(word) != 0) {
                 // Convert wstring back to string
                 std::string typo = convertWStrToStr(word);
                 typos.push_back(typo);
