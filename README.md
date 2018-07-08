@@ -92,7 +92,7 @@ Require summary to be capitalized. Rule must be a **boolean**:
 ```
 
 ### Summary Length
-Define maximum and minimum length of summary. Both rules must be a positive **integer**:
+Define maximum and minimum length of summary. Both rules are **required** and must be a positive **integer**:
 ```json
 "sum_max_len": 50,
 "sum_min_len": 18

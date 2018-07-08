@@ -32,7 +32,7 @@ json convertFileToJSON(std::ifstream f) {
     try {
         f >> j;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Converting file to JSON failed. Ensure correct syntax.\n";
+        std::cout << "  \U0001F6A8 Converting configuration file to JSON failed.\n";
         std::exit(EXIT_FAILURE);
     }
 
@@ -41,7 +41,7 @@ json convertFileToJSON(std::ifstream f) {
 
 int getSummaryMinLength(json rulesJSON) {
     try {
-        const int minLength = rulesJSON["sum_min_len"];
+        json minLength = rulesJSON["sum_min_len"];
 
         if (minLength <= 1) {
             throw std::exception();
@@ -189,7 +189,13 @@ int getBulletPointsMaxLength(json rulesJSON) {
 
 bool identifyTypos(json rulesJSON) {
     try {
-        return rulesJSON["identify_typos"];
+        json j = rulesJSON["identify_typos"];
+
+        if (j.is_null()) {
+            return false;
+        }
+
+        return bool(j);
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Identify typos must be a boolean.\n";
         if (!ruleErrorExists) ruleErrorExists = true;
@@ -199,7 +205,13 @@ bool identifyTypos(json rulesJSON) {
 
 bool requiresSummaryCapital(json rulesJSON) {
     try {
-        return rulesJSON["sum_capital"];
+        json j = rulesJSON["sum_capital"];
+
+        if (j.is_null()) {
+            return false;
+        }
+
+        return bool(j);
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Summary capital must be a boolean.\n";
         if (!ruleErrorExists) ruleErrorExists = true;
@@ -209,7 +221,13 @@ bool requiresSummaryCapital(json rulesJSON) {
 
 bool requiresDocFormat(json rulesJSON) {
     try {
-        return rulesJSON["doc_format"];
+        json j = rulesJSON["doc_format"];
+
+        if (j.is_null()) {
+            return false;
+        }
+
+        return bool(j);
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Documentation format must be a boolean.\n";
         if (!ruleErrorExists) ruleErrorExists = true;
@@ -219,7 +237,13 @@ bool requiresDocFormat(json rulesJSON) {
 
 bool requiresNitFormat(json rulesJSON) {
     try {
-        return rulesJSON["nit_format"];
+        json j = rulesJSON["nit_format"];
+
+        if (j.is_null()) {
+            return false;
+        }
+
+        return bool(j);
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: Nit format must be a boolean.\n";
         if (!ruleErrorExists) ruleErrorExists = true;
@@ -229,7 +253,13 @@ bool requiresNitFormat(json rulesJSON) {
 
 bool requiresWIPFormat(json rulesJSON) {
     try {
-        return rulesJSON["wip_format"];
+        json j = rulesJSON["wip_format"];
+
+        if (j.is_null()) {
+            return false;
+        }
+
+        return bool(j);
     } catch (const std::exception& e) {
         std::cout << "  \U0001F6A8 Rule Error: WIP format must be a boolean.\n";
         if (!ruleErrorExists) ruleErrorExists = true;
