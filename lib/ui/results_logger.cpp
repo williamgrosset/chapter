@@ -23,7 +23,41 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
         bool reqNitFormat = requiresNitFormat(rulesJSON);
         bool reqWIPFormat = requiresWIPFormat(rulesJSON);
         bool reqDocFormat = requiresDocFormat(rulesJSON);
+        bool reqIdentifyTypos = identifyTypos(rulesJSON);
         bool hasErrorOrWarning = false;
+
+        if (reqIdentifyTypos) {
+            if (containsSummary(commitMsg)) {
+                std::vector<std::string> typos = getTypos(getSummary(commitMsg));
+                int size = typos.size();
+
+                if (size > 0) {
+                    std::cout << "  \U0001F530 Warning: " << size << " potential typos found in summary." << std::endl;
+                }
+            }
+
+            if (requiresDescription(rulesJSON) && containsDescription(commitMsg)) {
+                std::vector<std::string> typos = getTypos(getDescription(commitMsg));
+                int size = typos.size();
+
+                if (size > 0) {
+                    std::cout << "  \U0001F530 Warning: " << size << " potential typos found in description." << std::endl;
+                }
+            }
+
+            if (requiresBulletPoints(rulesJSON)) {
+                int bulletPointsCount = getBulletPointsCount(rulesJSON);
+
+                if (containsBulletPoints(commitMsg, bulletPointsCount)) {
+                    std::vector<std::string> typos = getTypos(getBulletPoints(commitMsg));
+                    int size = typos.size();
+
+                    if (size > 0) {
+                        std::cout << "  \U0001F530 Warning: " << size << " potential typos found in bullet points." << std::endl;
+                    }
+                }
+            }
+        }
 
         if (reqNitFormat && reqWIPFormat && reqDocFormat) {
             if (requiresSummaryCapital(rulesJSON) && !isFirstLetterCapitalized(commitMsg)) {

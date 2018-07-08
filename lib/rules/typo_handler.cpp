@@ -66,7 +66,7 @@ std::vector<std::string> getTypos(std::string msgPartial) {
             // Compare with best-case candidate
             if (candidates[0].compare(word) != 0) {
                 // Convert wstring back to string
-                std::string typo = convertWStrToStr(result);
+                std::string typo = convertWStrToStr(word);
                 typos.push_back(typo);
             }
         }

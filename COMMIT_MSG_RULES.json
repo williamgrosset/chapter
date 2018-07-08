@@ -9,7 +9,7 @@
         "min_len": 40
     },
     "doc_format": true,
-    "identify_typos": false,
+    "identify_typos": true,
     "nit_format": true,
     "sum_capital": true,
     "sum_max_len": 50,
