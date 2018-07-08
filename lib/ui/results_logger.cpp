@@ -38,6 +38,8 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
                     for (int i = 0; i < size; i++) {
                         std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
                     }
+
+                    std::cout << std::endl;
                 }
             }
 
@@ -52,6 +54,8 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
                     for (int i = 0; i < size; i++) {
                         std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
                     }
+
+                    std::cout << std::endl;
                 }
             }
 
@@ -69,11 +73,11 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
                         for (int i = 0; i < size; i++) {
                             std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
                         }
+
+                        std::cout << std::endl;
                     }
                 }
             }
-
-            if (hasErrorOrWarning) std::cout << std::endl;
         }
 
         if (reqNitFormat && reqWIPFormat && reqDocFormat) {

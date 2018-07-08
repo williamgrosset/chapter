@@ -215,7 +215,7 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 
 bool isFirstLetterCapitalized(const std::string msg) {
     const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Docs:" };
-    const boost::regex summaryPattern("([" + VALID_MSG_CHARS + "]+)[\n" + VALID_MSG_CHARS + "]*");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
     boost::smatch summaryResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
@@ -248,12 +248,12 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool containsSummary(const std::string msg) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
     return regex_match(msg, summaryPattern);
 }
 
 std::string getSummary(const std::string msg) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
     boost::smatch summaryResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
@@ -266,7 +266,7 @@ std::string getSummary(const std::string msg) {
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
     boost::smatch summaryResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
@@ -279,7 +279,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
+    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
     boost::smatch summaryResult;
 
     if (boost::regex_search(msg, summaryResult, summaryPattern)) {
