@@ -8,6 +8,24 @@
 
 using json = nlohmann::json;
 
+bool hasErrorOrWarning = false;
+
+void printTypos(std::string str, std::string section) {
+    std::vector<std::string> typos = getTypos(str);
+    int size = typos.size();
+
+    if (size > 0) {
+        if (!hasErrorOrWarning) hasErrorOrWarning = true;
+        std::cout << "  \U0001F530 Warning: Potential typos found in " << section << ": " << std::endl;
+
+        for (int i = 0; i < size; i++) {
+            std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
+        }
+
+        std::cout << std::endl;
+    }
+}
+
 void displayAuditResults(json rulesJSON, const std::string commitMsg) {
     if (verifyIfRuleErrorExists(rulesJSON)) {
         std::cout << std::endl << "    Please fix your rules configuration file for" << std::endl
@@ -20,58 +38,20 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
         bool reqWIPFormat = requiresWIPFormat(rulesJSON);
         bool reqDocFormat = requiresDocFormat(rulesJSON);
         bool reqIdentifyTypos = identifyTypos(rulesJSON);
-        bool hasErrorOrWarning = false;
 
         if (reqIdentifyTypos) {
             if (containsSummary(commitMsg)) {
-                std::vector<std::string> typos = getTypos(getSummary(commitMsg));
-                int size = typos.size();
-
-                if (size > 0) {
-                    if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                    std::cout << "  \U0001F530 Warning: Potential typos found in summary:" << std::endl;
-
-                    for (int i = 0; i < size; i++) {
-                        std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
-                    }
-
-                    std::cout << std::endl;
-                }
+                printTypos(getSummary(commitMsg), "summary");
             }
 
             if (requiresDescription(rulesJSON) && containsDescription(commitMsg)) {
-                std::vector<std::string> typos = getTypos(getDescription(commitMsg));
-                int size = typos.size();
-
-                if (size > 0) {
-                    if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                    std::cout << "  \U0001F530 Warning: Potential typos found in description:" << std::endl;
-
-                    for (int i = 0; i < size; i++) {
-                        std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
-                    }
-
-                    std::cout << std::endl;
-                }
+                printTypos(getDescription(commitMsg), "description");
             }
 
             if (requiresBulletPoints(rulesJSON)) {
                 int bulletPointsCount = getBulletPointsCount(rulesJSON);
-
                 if (containsBulletPoints(commitMsg, bulletPointsCount)) {
-                    std::vector<std::string> typos = getTypos(getBulletPoints(commitMsg));
-                    int size = typos.size();
-
-                    if (size > 0) {
-                        if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                        std::cout << "  \U0001F530 Warning: Potential typos found in bullet points:" << std::endl;
-
-                        for (int i = 0; i < size; i++) {
-                            std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
-                        }
-
-                        std::cout << std::endl;
-                    }
+                    printTypos(getBulletPoints(commitMsg), "bullet points");
                 }
             }
         }
@@ -151,7 +131,7 @@ void displayAuditResults(json rulesJSON, const std::string commitMsg) {
         }
 
         if (!hasErrorOrWarning) {
-            std::cout << "  \U0001F3C6 No errors or warnings found! \n";
+            std::cout << "  \U0001F3C6 No warnings or errors found! \n";
         }
     }
 }
