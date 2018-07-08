@@ -2,7 +2,6 @@
 ### Before Open Source
 + Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
 + Test location for `model_en.bin.spell`
-+ Allow for any rule to not exist in `COMMIT_MSG_RULES.json`
 + General run through for nits and regex logic
 + Setup test suite
 + Update `README.md`: demo
