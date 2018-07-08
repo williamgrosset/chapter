@@ -37,6 +37,8 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
         bool reqNitFormat = requiresNitFormat(rulesJSON);
         bool reqWIPFormat = requiresWIPFormat(rulesJSON);
         bool reqDocFormat = requiresDocFormat(rulesJSON);
+        bool reqDescription = requiresDescription(rulesJSON);
+        bool reqBulletPoints = requiresBulletPoints(rulesJSON);
         bool reqIdentifyTypos = identifyTypos(rulesJSON);
 
         if (reqIdentifyTypos) {
@@ -44,11 +46,11 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
                 printTypos(getSummary(commitMsg), "summary");
             }
 
-            if (requiresDescription(rulesJSON) && containsDescription(commitMsg)) {
+            if (reqDescription && containsDescription(commitMsg)) {
                 printTypos(getDescription(commitMsg), "description");
             }
 
-            if (requiresBulletPoints(rulesJSON)) {
+            if (reqBulletPoints) {
                 int bulletPointsCount = getBulletPointsCount(rulesJSON);
                 if (containsBulletPoints(commitMsg, bulletPointsCount)) {
                     printTypos(getBulletPoints(commitMsg), "bullet points");
@@ -63,17 +65,17 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
             }
         }
 
-        if (requiresNitFormat(rulesJSON) && !containsCorrectNitFormat(commitMsg)) {
+        if (reqNitFormat && !containsCorrectNitFormat(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
             std::cout << "  \U0000274C Error: \"Nit:\" commits must have the correct format." << "\n";
         }
 
-        if (requiresWIPFormat(rulesJSON) && !containsCorrectWIPFormat(commitMsg)) {
+        if (reqWIPFormat && !containsCorrectWIPFormat(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
             std::cout << "  \U0000274C Error: \"WIP:\" commits must have the correct format." << "\n";
         }
 
-        if (requiresDocFormat(rulesJSON) && !containsCorrectDocFormat(commitMsg)) {
+        if (reqDocFormat && !containsCorrectDocFormat(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
             std::cout << "  \U0000274C Error: \"Documentation:\" commits must have the correct format." << "\n";
         }
@@ -88,7 +90,7 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
             std::cout << "  \U0000274C Error: Summary must not exceed " << summaryMaxLength << " characters.\n";
         }
 
-        if (requiresDescription(rulesJSON)) {
+        if (reqDescription) {
             if (containsDescription(commitMsg)) {
                 int descMinLength = getDescriptionMinLength(rulesJSON);
                 int descMaxLength = getDescriptionMaxLength(rulesJSON);
@@ -108,7 +110,7 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
             }
         }
 
-        if (requiresBulletPoints(rulesJSON)) {
+        if (reqBulletPoints) {
             int bulletPointsCount = getBulletPointsCount(rulesJSON);
 
             if (containsBulletPoints(commitMsg, bulletPointsCount)) {
