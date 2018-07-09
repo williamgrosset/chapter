@@ -37,3 +37,4 @@ env.json
 # JamSpell
 *.bin
 *.spell
+*.gz

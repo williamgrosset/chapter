@@ -43,7 +43,7 @@ bool isWStrExcluded(const std::wstring wstr) {
 
 std::vector<std::string> getTypos(std::string msgPartial) {
     NJamSpell::TSpellCorrector corrector;
-    corrector.LoadLangModel("model_en.bin");
+    corrector.LoadLangModel("en.bin");
 
     // Must be lowercase for checking typos
     std::transform(msgPartial.begin(), msgPartial.end(), msgPartial.begin(), ::tolower);
