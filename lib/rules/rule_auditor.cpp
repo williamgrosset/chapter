@@ -123,7 +123,7 @@ bool containsCorrectDocFormat(const std::string msg) {
     const std::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s",
                                       ECMAScript | icase);
 
-    if (regex_match(msg, docPattern)) {
+    if (std::regex_search(msg, docPattern)) {
         if (msg.substr(0, 6).compare("Docs: ") != 0) {
             return false;
         }
@@ -136,7 +136,7 @@ bool containsCorrectNitFormat(const std::string msg) {
     using namespace std::regex_constants;
     const std::regex nitPattern("\\s?(nit):?\\s", ECMAScript | icase);
 
-    if (regex_match(msg, nitPattern)) {
+    if (std::regex_search(msg, nitPattern)) {
         std::cout << "Found a match!\n";
         if (msg.compare(0, 5, "Nit: ") != 0) {
             return false;
@@ -150,7 +150,7 @@ bool containsCorrectWIPFormat(const std::string msg) {
     using namespace std::regex_constants;
     const std::regex WIPPattern("\\s?(wip|work\\sin\\sprogress):?\\s", ECMAScript | icase);
 
-    if (regex_match(msg, WIPPattern)) {
+    if (std::regex_search(msg, WIPPattern)) {
         if (msg.substr(0, 5).compare("WIP: ") != 0) {
             return false;
         }
