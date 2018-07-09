@@ -54,12 +54,12 @@ void removeComments(std::string& msg) {
 }
 
 int main(int argc, char* argv[]) {
+    std::cout << "Commit message audit...\n\n";
+
     std::string commitMsg = convertFileToStr(readGitCommitMsgFile()); 
     json rulesJSON = convertFileToJSON(readConfigFile());
 
     removeComments(commitMsg);
-
-    std::cout << "Commit message audit...\n\n";
     printAuditResults(rulesJSON, commitMsg);
 
     return 0;
