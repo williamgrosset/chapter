@@ -9,6 +9,7 @@
 + Complete other docs
 
 ### Long Term
++ Function documentation in `.hpp` files
 + Add ability to toggle server-side Git hook to require commit message changes
 + Ruling support for different size of changes (per commit)
 + Ruling support for excluded strings when identifying typos (allow regex patterns)
