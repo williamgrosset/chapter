@@ -28,7 +28,7 @@
 - [License](#license)
 
 ## Demo
-![Chapter](https://media.giphy.com/media/2uIcCZiadRGhWWOjqa/giphy.gif)
+![Chapter](https://github.com/williamgrosset/chapter/blob/master/example.gif)
 
 ## Overview
 **SEE DISCLAIMER.** Chapter is an open-source, C++ tool that provides conventions for Git commit messages. After every `git commit`, an audit script will display warnings and errors in your terminal regarding your commit message. Choose your message preferences through a set of custom rules defined in a `.json` file. Adding this tool to your project can help ensure that commit messages become standardized and informative.
