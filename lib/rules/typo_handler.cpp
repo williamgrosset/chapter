@@ -10,13 +10,13 @@
 #include <jamspell/spell_corrector.hpp>
 
 std::string getHomePath() {
-    char* homedir;
+    char* homeDir;
 
-    if ((homedir = getenv("HOME")) == NULL) {
-        homedir = getpwuid(getuid())->pw_dir;
+    if ((homeDir = getenv("HOME")) == NULL) {
+        homeDir = getpwuid(getuid())->pw_dir;
     }
 
-    std::string path(homedir);
+    std::string path(homeDir);
     return path;
 }
 

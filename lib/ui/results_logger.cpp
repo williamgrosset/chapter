@@ -9,13 +9,15 @@ using json = nlohmann::json;
 
 bool hasErrorOrWarning = false;
 
-void printTypos(std::string str, std::string section) {
-    std::vector<std::string> typos = getTypos(str);
-    int size = typos.size();
+void printTypos(const std::string str, const std::string section) {
+    const std::vector<std::string> typos = getTypos(str);
+    const int size = typos.size();
 
     if (size > 0) {
         if (!hasErrorOrWarning) hasErrorOrWarning = true;
-        std::cout << "  \U0001F530 Warning: Potential typos found in " << section << ": " << std::endl;
+        std::cout << "  \U0001F530 Warning: " << size << " potential "
+                  << (size > 1 ? "typos" : "typo")
+                  << " found in " << section << ": " << std::endl;
 
         for (int i = 0; i < size; i++) {
             std::cout << "        " << i + 1 << ". " << typos[i] << std::endl;
@@ -31,19 +33,19 @@ void printAuditResults(const std::string commitMsg, json rulesJSON) {
                   << "    correct attributes and value types." << std::endl << std::endl
                   << "    See https://github.com/williamgrosset/chapter/README.md" << std::endl;
     } else {
-        int summaryMinLength = getSummaryMinLength(rulesJSON);
-        int summaryMaxLength = getSummaryMaxLength(rulesJSON);
-        bool reqNitFormat = requiresNitFormat(rulesJSON);
-        bool reqWIPFormat = requiresWIPFormat(rulesJSON);
-        bool reqDocFormat = requiresDocFormat(rulesJSON);
-        bool reqDescription = requiresDescription(rulesJSON);
-        bool reqBulletPoints = requiresBulletPoints(rulesJSON);
-        bool reqIdentifyTypos = identifyTypos(rulesJSON);
-        std::string description = getDescription(commitMsg);
+        const int summaryMinLength = getSummaryMinLength(rulesJSON);
+        const int summaryMaxLength = getSummaryMaxLength(rulesJSON);
+        const bool reqNitFormat = requiresNitFormat(rulesJSON);
+        const bool reqWIPFormat = requiresWIPFormat(rulesJSON);
+        const bool reqDocFormat = requiresDocFormat(rulesJSON);
+        const bool reqDescription = requiresDescription(rulesJSON);
+        const bool reqBulletPoints = requiresBulletPoints(rulesJSON);
+        const bool reqIdentifyTypos = identifyTypos(rulesJSON);
+        const std::string description = getDescription(commitMsg);
 
         if (reqIdentifyTypos) {
-            std::string summary = getSummary(commitMsg);
-            std::string description = getDescription(commitMsg);
+            const std::string summary = getSummary(commitMsg);
+            const std::string description = getDescription(commitMsg);
 
             if (summary.compare("") != 0) {
                 printTypos(summary, "summary");
@@ -54,7 +56,7 @@ void printAuditResults(const std::string commitMsg, json rulesJSON) {
             }
 
             if (reqBulletPoints) {
-                int bulletPointsCount = getBulletPointsCount(rulesJSON);
+                const int bulletPointsCount = getBulletPointsCount(rulesJSON);
                 if (containsBulletPoints(commitMsg, bulletPointsCount)) {
                     printTypos(getBulletPoints(commitMsg), "bullet points");
                 }
@@ -93,8 +95,8 @@ void printAuditResults(const std::string commitMsg, json rulesJSON) {
 
         if (reqDescription) {
             if (description.compare("") != 0) {
-                int descMinLength = getDescriptionMinLength(rulesJSON);
-                int descMaxLength = getDescriptionMaxLength(rulesJSON);
+                const int descMinLength = getDescriptionMinLength(rulesJSON);
+                const int descMaxLength = getDescriptionMaxLength(rulesJSON);
 
                 if (isDescriptionMinLength(commitMsg, descMinLength)) {
                     if (!hasErrorOrWarning) hasErrorOrWarning = true;
@@ -112,11 +114,11 @@ void printAuditResults(const std::string commitMsg, json rulesJSON) {
         }
 
         if (reqBulletPoints) {
-            int bulletPointsCount = getBulletPointsCount(rulesJSON);
+            const int bulletPointsCount = getBulletPointsCount(rulesJSON);
 
             if (containsBulletPoints(commitMsg, bulletPointsCount)) {
-                int bpMinLength = getBulletPointsMinLength(rulesJSON);
-                int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
+                const int bpMinLength = getBulletPointsMinLength(rulesJSON);
+                const int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
 
                 if (isBulletPointsMinLength(commitMsg, bpMinLength)) {
                     if (!hasErrorOrWarning) hasErrorOrWarning = true;

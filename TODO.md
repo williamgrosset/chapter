@@ -1,6 +1,5 @@
 ## TODO
 ### Before Open Source
-+ Test location and installation for `en.bin.spell`
 + General run through for nits (e.g consts) and regex logic
 + Update `README.md`: demo
 + Clean-up repo and remove `test.txt`
@@ -13,6 +12,7 @@
 + Add ability to toggle server-side Git hook to require commit message changes
 + Ruling support for different size of changes (per commit)
 + Ruling support for excluded strings when identifying typos (allow regex patterns)
++ Update terminal UI (e.g total # of errors/warnings detected)
 
 ### Rules
 + Require issue number

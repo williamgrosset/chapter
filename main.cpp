@@ -2,7 +2,6 @@
 #include <fstream>
 #include <iostream>
 #include <unistd.h>
-#include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
 #include <lib/rules/rule_retriever.hpp>
 #include <lib/ui/results_logger.hpp>
