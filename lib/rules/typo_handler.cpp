@@ -1,10 +1,24 @@
 #include <locale>
 #include <codecvt>
 #include <ctype.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 #include <nlohmann/json.hpp>
 #include <lib/rules/rule_retriever.hpp>
 #include <lib/rules/rule_auditor.hpp>
 #include <jamspell/spell_corrector.hpp>
+
+std::string getHomePath() {
+    char* homedir;
+
+    if ((homedir = getenv("HOME")) == NULL) {
+        homedir = getpwuid(getuid())->pw_dir;
+    }
+
+    std::string path(homedir);
+    return path;
+}
 
 std::wstring convertStrToWStr(std::string str) {
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
@@ -43,7 +57,7 @@ bool isWStrExcluded(const std::wstring wstr) {
 
 std::vector<std::string> getTypos(std::string msgPartial) {
     NJamSpell::TSpellCorrector corrector;
-    corrector.LoadLangModel("en.bin");
+    corrector.LoadLangModel(getHomePath() + "/en.bin");
 
     // Must be lowercase for checking typos
     std::transform(msgPartial.begin(), msgPartial.end(), msgPartial.begin(), ::tolower);
