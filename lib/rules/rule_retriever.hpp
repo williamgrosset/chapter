@@ -1,5 +1,3 @@
-std::ifstream readConfigFile();
-nlohmann::json convertFileToJSON(std::ifstream f);
 int getBulletPointsCount(nlohmann::json rulesJSON);
 int getBulletPointsMaxLength(nlohmann::json rulesJSON);
 int getBulletPointsMinLength(nlohmann::json rulesJSON);
@@ -15,3 +13,5 @@ bool requiresNitFormat(nlohmann::json rulesJSON);
 bool requiresSummaryCapital(nlohmann::json rulesJSON);
 bool requiresWIPFormat(nlohmann::json rulesJSON);
 bool verifyIfRuleErrorExists(nlohmann::json rulesJSON);
+nlohmann::json convertFileToJSON(std::ifstream f);
+std::ifstream readConfigFile();
