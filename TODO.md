@@ -1,14 +1,15 @@
 ## TODO
 ### Before Open Source
-+ Test location and installation for `model_en.bin.spell`
-+ General run through for nits and regex logic
++ Test location and installation for `en.bin.spell`
++ General run through for nits (e.g consts) and regex logic
 + Update `README.md`: demo
++ Clean-up repo and remove `test.txt`
 
 ### Long Term
 + Function documentation in `.hpp` files
-+ Setup test suite
-+ Simplify installation instructions
-+ Complete `CONTRIBUTING.md` doc
++ Setup test suite and document general audit execution
++ Complete `CONTRIBUTING.md` document
++ Simplify installation instructions (2 steps max)
 + Add ability to toggle server-side Git hook to require commit message changes
 + Ruling support for different size of changes (per commit)
 + Ruling support for excluded strings when identifying typos (allow regex patterns)

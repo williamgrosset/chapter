@@ -34,7 +34,7 @@
 **SEE DISCLAIMER.** Chapter is an open-source, C++ tool that provides conventions for Git commit messages. After every `git commit`, an audit script will display warnings and errors in your terminal regarding your commit message. You determine your message preferences through a set of custom rules. Adding this tool to your project can help ensure that commit messages become standardized and informative amongst other developers.
 
 ## Usage
-1. Download model from [JamSpell](https://github.com/bakwc/JamSpell), compile, and move files into your `$HOME/` directory:
+1. Clone repository, compile, and move files into your `$HOME/` directory:
 ```bash
 $ git clone https://williamgrosset/chapter.git && cd chapter/
 $ make fresh
