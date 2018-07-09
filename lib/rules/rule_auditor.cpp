@@ -1,6 +1,8 @@
 #include <iostream>
 #include <regex>
 
+using namespace std::regex_constants;
+
 const std::string VALID_MSG_CHARS = "\u0020-\u007E";
 
 void normalizeEndOfCapture(std::string& capture) {
@@ -119,41 +121,31 @@ bool isBulletPointsMinLength(const std::string msg, const int length) {
 }
 
 bool containsCorrectDocFormat(const std::string msg) {
-    using namespace std::regex_constants;
     const std::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s",
                                       ECMAScript | icase);
 
     if (std::regex_search(msg, docPattern)) {
-        if (msg.substr(0, 6).compare("Docs: ") != 0) {
-            return false;
-        }
+        return msg.substr(0, 6).compare("Docs: ") == 0;
     }
 
     return true;
 }
 
 bool containsCorrectNitFormat(const std::string msg) {
-    using namespace std::regex_constants;
     const std::regex nitPattern("\\s?(nit):?\\s", ECMAScript | icase);
 
     if (std::regex_search(msg, nitPattern)) {
-        std::cout << "Found a match!\n";
-        if (msg.compare(0, 5, "Nit: ") != 0) {
-            return false;
-        }
+        return msg.compare(0, 5, "Nit: ") == 0;
     }
 
     return true;
 }
 
 bool containsCorrectWIPFormat(const std::string msg) {
-    using namespace std::regex_constants;
     const std::regex WIPPattern("\\s?(wip|work\\sin\\sprogress):?\\s", ECMAScript | icase);
 
     if (std::regex_search(msg, WIPPattern)) {
-        if (msg.substr(0, 5).compare("WIP: ") != 0) {
-            return false;
-        }
+        return msg.substr(0, 5).compare("WIP: ") == 0;
     }
 
     return true;
@@ -256,9 +248,7 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
     std::smatch summaryResult;
 
     if (std::regex_search(msg, summaryResult, summaryPattern)) {
-        const std::string summary(summaryResult[1].str());
-
-        return summary.length() > length;
+        return summaryResult[1].str().length() > length;
     }
 
     return false;
@@ -269,9 +259,7 @@ bool isSummaryMinLength(const std::string msg, const int length) {
     std::smatch summaryResult;
 
     if (std::regex_search(msg, summaryResult, summaryPattern)) {
-        const std::string summary(summaryResult[1].str());
-
-        return summary.length() < length;
+        return summaryResult[1].str().length() < length;
     }
 
     return false;
