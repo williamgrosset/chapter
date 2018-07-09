@@ -40,14 +40,18 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
         bool reqDescription = requiresDescription(rulesJSON);
         bool reqBulletPoints = requiresBulletPoints(rulesJSON);
         bool reqIdentifyTypos = identifyTypos(rulesJSON);
+        std::string description = getDescription(commitMsg);
 
         if (reqIdentifyTypos) {
-            if (containsSummary(commitMsg)) {
-                printTypos(getSummary(commitMsg), "summary");
+            std::string summary = getSummary(commitMsg);
+            std::string description = getDescription(commitMsg);
+
+            if (summary.compare("") != 0) {
+                printTypos(summary, "summary");
             }
 
-            if (reqDescription && containsDescription(commitMsg)) {
-                printTypos(getDescription(commitMsg), "description");
+            if (reqDescription && description.compare("") != 0) {
+                printTypos(description, "description");
             }
 
             if (reqBulletPoints) {
@@ -58,11 +62,9 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
             }
         }
 
-        if (reqNitFormat && reqWIPFormat && reqDocFormat) {
-            if (requiresSummaryCapital(rulesJSON) && !isFirstLetterCapitalized(commitMsg)) {
-                if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                std::cout << "  \U0000274C Error: First letter of summary must be capitalized." << "\n";
-            }
+        if (requiresSummaryCapital(rulesJSON) && !isFirstLetterCapitalized(commitMsg)) {
+            if (!hasErrorOrWarning) hasErrorOrWarning = true;
+            std::cout << "  \U0000274C Error: First letter of summary must be capitalized." << "\n";
         }
 
         if (reqNitFormat && !containsCorrectNitFormat(commitMsg)) {
@@ -91,7 +93,7 @@ void printAuditResults(json rulesJSON, const std::string commitMsg) {
         }
 
         if (reqDescription) {
-            if (containsDescription(commitMsg)) {
+            if (description.compare("") != 0) {
                 int descMinLength = getDescriptionMinLength(rulesJSON);
                 int descMaxLength = getDescriptionMaxLength(rulesJSON);
 

@@ -2,8 +2,6 @@ bool containsBulletPoints(const std::string commitMsg, const int count);
 bool containsCorrectDocFormat(const std::string commitMsg);
 bool containsCorrectNitFormat(const std::string commitMsg);
 bool containsCorrectWIPFormat(const std::string commitMsg);
-bool containsDescription(const std::string commitMsg);
-bool containsSummary(const std::string commitMsg);
 bool isBulletPointsMinLength(const std::string commitMsg, const int length);
 bool isBulletPointsMaxLength(const std::string commitMsg, const int length);
 bool isDescriptionMinLength(const std::string commitMsg, const int length);

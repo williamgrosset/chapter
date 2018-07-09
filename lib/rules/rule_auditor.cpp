@@ -1,5 +1,5 @@
 #include <iostream>
-#include <boost/regex.hpp>
+#include <regex>
 
 const std::string VALID_MSG_CHARS = "\u0020-\u007E";
 
@@ -63,11 +63,11 @@ int getBulletPointCount(const std::string points) {
 }
 
 bool containsBulletPoints(const std::string msg, const int requiredCount) {
-    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch pointResult;
+    const std::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch pointResult;
 
-    if (boost::regex_search(msg, pointResult, pointPattern)) {
-        std::string points(pointResult[1].first, pointResult[1].second);
+    if (std::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].str());
         removeDescFromPoints(points);
 
         return getBulletPointCount(points) == requiredCount;
@@ -77,26 +77,25 @@ bool containsBulletPoints(const std::string msg, const int requiredCount) {
 }
 
 std::string getBulletPoints(const std::string msg) {
-    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch pointResult;
+    const std::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch pointResult;
 
-    if (boost::regex_search(msg, pointResult, pointPattern)) {
-        std::string points(pointResult[1].first, pointResult[1].second);
+    if (std::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].str());
         removeDescFromPoints(points);
 
         return points;
     }
 
-    // Throw error for not containing bullet points
     return "";
 }
 
 bool isBulletPointsMaxLength(const std::string msg, const int length) {
-    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch pointResult;
+    const std::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch pointResult;
 
-    if (boost::regex_search(msg, pointResult, pointPattern)) {
-        std::string points(pointResult[1].first, pointResult[1].second);
+    if (std::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].str());
         removeDescFromPoints(points);
 
         return points.length() - getBulletPointCount(points) > length;
@@ -106,11 +105,11 @@ bool isBulletPointsMaxLength(const std::string msg, const int length) {
 }
 
 bool isBulletPointsMinLength(const std::string msg, const int length) {
-    const boost::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch pointResult;
+    const std::regex pointPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch pointResult;
 
-    if (boost::regex_search(msg, pointResult, pointPattern)) {
-        std::string points(pointResult[1].first, pointResult[1].second);
+    if (std::regex_search(msg, pointResult, pointPattern)) {
+        std::string points(pointResult[1].str());
         removeDescFromPoints(points);
 
         return points.length() - getBulletPointCount(points) < length;
@@ -120,8 +119,9 @@ bool isBulletPointsMinLength(const std::string msg, const int length) {
 }
 
 bool containsCorrectDocFormat(const std::string msg) {
-    const boost::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s",
-                                      boost::regex::icase);
+    using namespace std::regex_constants;
+    const std::regex docPattern("\\s?(documentation|doc[s]|todo|readme|[a-zA-Z0-9]+\\.md|[a-zA-Z0-9]+\\.txt):?\\s",
+                                      ECMAScript | icase);
 
     if (regex_match(msg, docPattern)) {
         if (msg.substr(0, 6).compare("Docs: ") != 0) {
@@ -133,10 +133,12 @@ bool containsCorrectDocFormat(const std::string msg) {
 }
 
 bool containsCorrectNitFormat(const std::string msg) {
-    const boost::regex nitPattern("\\s?(nit):?\\s", boost::regex::icase);
+    using namespace std::regex_constants;
+    const std::regex nitPattern("\\s?(nit):?\\s", ECMAScript | icase);
 
     if (regex_match(msg, nitPattern)) {
-        if (msg.substr(0, 5).compare("Nit: ") != 0) {
+        std::cout << "Found a match!\n";
+        if (msg.compare(0, 5, "Nit: ") != 0) {
             return false;
         }
     }
@@ -145,7 +147,8 @@ bool containsCorrectNitFormat(const std::string msg) {
 }
 
 bool containsCorrectWIPFormat(const std::string msg) {
-    const boost::regex WIPPattern("\\s?(wip|work\\sin\\sprogress):?\\s", boost::regex::icase);
+    using namespace std::regex_constants;
+    const std::regex WIPPattern("\\s?(wip|work\\sin\\sprogress):?\\s", ECMAScript | icase);
 
     if (regex_match(msg, WIPPattern)) {
         if (msg.substr(0, 5).compare("WIP: ") != 0) {
@@ -156,41 +159,26 @@ bool containsCorrectWIPFormat(const std::string msg) {
     return true;
 }
 
-bool containsDescription(const std::string msg) {
-    const boost::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch descResult;
-
-    if (boost::regex_search(msg, descResult, descPattern)) {
-        std::string description(descResult[1].first, descResult[1].second);
-        removePointsFromDesc(description);
-
-        return description.length() > 0;
-    }
-
-    return false;
-}
-
 std::string getDescription(const std::string msg) {
-    const boost::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch descResult;
+    const std::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch descResult;
 
-    if (boost::regex_search(msg, descResult, descPattern)) {
-        std::string description(descResult[1].first, descResult[1].second);
+    if (std::regex_search(msg, descResult, descPattern)) {
+        std::string description(descResult[1].str());
         removePointsFromDesc(description);
 
         return description;
     }
 
-    // TODO: Throw error for not containing description
     return "";
 }
 
 bool isDescriptionMaxLength(const std::string msg, const int length) {
-    const boost::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch descResult;
+    const std::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch descResult;
 
-    if (boost::regex_search(msg, descResult, descPattern)) {
-        std::string description(descResult[1].first, descResult[1].second);
+    if (std::regex_search(msg, descResult, descPattern)) {
+        std::string description(descResult[1].str());
         removePointsFromDesc(description);
 
         return description.length() > length;
@@ -200,11 +188,11 @@ bool isDescriptionMaxLength(const std::string msg, const int length) {
 }
 
 bool isDescriptionMinLength(const std::string msg, const int length) {
-    const boost::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
-    boost::smatch descResult;
+    const std::regex descPattern("^(?:[" + VALID_MSG_CHARS + "]+\\n\\n){1}([" + VALID_MSG_CHARS + "\\n]+)");
+    std::smatch descResult;
 
-    if (boost::regex_search(msg, descResult, descPattern)) {
-        std::string description(descResult[1].first, descResult[1].second);
+    if (std::regex_search(msg, descResult, descPattern)) {
+        std::string description(descResult[1].str());
         removePointsFromDesc(description);
 
         return description.length() < length;
@@ -215,11 +203,11 @@ bool isDescriptionMinLength(const std::string msg, const int length) {
 
 bool isFirstLetterCapitalized(const std::string msg) {
     const std::vector<std::string> excludedStrings = { "Nit:", "WIP:", "Docs:" };
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
-    boost::smatch summaryResult;
+    const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
+    std::smatch summaryResult;
 
-    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
-        std::string summary(summaryResult[1].first, summaryResult[1].second);
+    if (std::regex_search(msg, summaryResult, summaryPattern)) {
+        std::string summary(summaryResult[1].str());
 
         // If one of excludedStrings is included, remove from string
         for (const std::string formatWord : excludedStrings) {
@@ -231,11 +219,11 @@ bool isFirstLetterCapitalized(const std::string msg) {
         }
 
         // Capture initial word in summary 
-        const boost::regex wordPattern("$\\s?([a-zA-Z]+).*");
-        boost::smatch initialWordResult;
+        const std::regex wordPattern("$\\s?([a-zA-Z]+).*");
+        std::smatch initialWordResult;
 
-        if (boost::regex_search(summary, initialWordResult, wordPattern)) {
-            const std::string initialWord(initialWordResult[1].first, initialWordResult[1].second);
+        if (std::regex_search(summary, initialWordResult, wordPattern)) {
+            const std::string initialWord(initialWordResult[1].str());
 
             return isupper(initialWord[0]);
         }
@@ -248,29 +236,27 @@ bool isFirstLetterCapitalized(const std::string msg) {
 }
 
 bool containsSummary(const std::string msg) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
-    return regex_match(msg, summaryPattern);
+    const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
+    return std::regex_search(msg, summaryPattern);
 }
 
 std::string getSummary(const std::string msg) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
-    boost::smatch summaryResult;
+    const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
+    std::smatch summaryResult;
 
-    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
-        const std::string summary(summaryResult[1].first, summaryResult[1].second);
-        return summary;
+    if (std::regex_search(msg, summaryResult, summaryPattern)) {
+        return summaryResult[1].str();
     }
 
-    // TODO: Throw error for not containg summary
     return "";
 }
 
 bool isSummaryMaxLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
-    boost::smatch summaryResult;
+    const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
+    std::smatch summaryResult;
 
-    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
-        const std::string summary(summaryResult[1].first, summaryResult[1].second);
+    if (std::regex_search(msg, summaryResult, summaryPattern)) {
+        const std::string summary(summaryResult[1].str());
 
         return summary.length() > length;
     }
@@ -279,11 +265,11 @@ bool isSummaryMaxLength(const std::string msg, const int length) {
 }
 
 bool isSummaryMinLength(const std::string msg, const int length) {
-    const boost::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
-    boost::smatch summaryResult;
+    const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}.*");
+    std::smatch summaryResult;
 
-    if (boost::regex_search(msg, summaryResult, summaryPattern)) {
-        const std::string summary(summaryResult[1].first, summaryResult[1].second);
+    if (std::regex_search(msg, summaryResult, summaryPattern)) {
+        const std::string summary(summaryResult[1].str());
 
         return summary.length() < length;
     }
