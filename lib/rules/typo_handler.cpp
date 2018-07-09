@@ -30,6 +30,18 @@ std::vector<std::wstring> splitWStr(std::wstring wstr) {
     return parts;
 }
 
+bool isWStrExcluded(const std::wstring wstr) {
+    const std::vector<std::wstring> EXCLUDED_WSTRINGS = {L"+", L"*", L"-", L"nit", L"wip", L"doc"};
+
+    for (const std::wstring exclusion : EXCLUDED_WSTRINGS) {
+        if (wstr.compare(exclusion) == 0) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 std::vector<std::string> getTypos(std::string msgPartial) {
     NJamSpell::TSpellCorrector corrector;
     corrector.LoadLangModel("model_en.bin");
@@ -52,7 +64,7 @@ std::vector<std::string> getTypos(std::string msgPartial) {
             std::remove_copy_if(parts[i].begin(), parts[i].end(), std::back_inserter(word), std::ptr_fun<int, int>(&std::ispunct));
 
             // Compare with best-case candidate
-            if (parts[i] != L"+" && parts[i] != L"*" && parts[i] != L"-" && candidates[0].compare(word) != 0) {
+            if (!isWStrExcluded(word) && candidates[0].compare(word) != 0) {
                 // Convert wstring back to string
                 std::string typo = convertWStrToStr(word);
                 typos.push_back(typo);
