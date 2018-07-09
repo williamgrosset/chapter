@@ -1,15 +1,14 @@
 ## TODO
 ### Before Open Source
-+ Integrate with an open source proof-reading tool (e.g https://github.com/bakwc/JamSpell)
-+ Test location for `model_en.bin.spell`
++ Test location and installation for `model_en.bin.spell`
 + General run through for nits and regex logic
-+ Setup test suite
 + Update `README.md`: demo
-+ Simplify installation instructions
-+ Complete other docs
 
 ### Long Term
 + Function documentation in `.hpp` files
++ Setup test suite
++ Simplify installation instructions
++ Complete `CONTRIBUTING.md` doc
 + Add ability to toggle server-side Git hook to require commit message changes
 + Ruling support for different size of changes (per commit)
 + Ruling support for excluded strings when identifying typos (allow regex patterns)
