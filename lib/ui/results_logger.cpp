@@ -1,5 +1,4 @@
 #include <ctype.h>
-#include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
 #include <lib/rules/rule_retriever.hpp>
 #include <lib/rules/rule_auditor.hpp>

@@ -1,7 +1,6 @@
 #include <locale>
 #include <codecvt>
 #include <ctype.h>
-#include <boost/regex.hpp>
 #include <nlohmann/json.hpp>
 #include <lib/rules/rule_retriever.hpp>
 #include <lib/rules/rule_auditor.hpp>
@@ -64,7 +63,7 @@ std::vector<std::string> getTypos(std::string msgPartial) {
             std::remove_copy_if(parts[i].begin(), parts[i].end(), std::back_inserter(word), std::ptr_fun<int, int>(&std::ispunct));
 
             // Compare with best-case candidate
-            if (!isWStrExcluded(word) && candidates[0].compare(word) != 0) {
+            if (!isWStrExcluded(parts[i]) && !isWStrExcluded(word) && candidates[0].compare(word) != 0) {
                 // Convert wstring back to string
                 std::string typo = convertWStrToStr(word);
                 typos.push_back(typo);
