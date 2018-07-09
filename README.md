@@ -38,7 +38,7 @@
 ```bash
 $ git clone https://williamgrosset/chapter.git && cd chapter/
 $ make fresh
-$ mv chapter.o en.bin en.bin.spell $HOME/
+$ mv chapter.o en.bin $HOME/
 ```
 2. Update the `post-commit` hook in your project directory (`project/.git/hooks/post-commit`):
 ```bash
