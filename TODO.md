@@ -1,12 +1,6 @@
 ## TODO
-### Before Open Source
-+ General run through for nits (e.g consts) and regex logic
-+ Update `README.md`: demo
-+ Clean-up repo and remove `test.txt`
-
-### Long Term
 + Function documentation in `.hpp` files
-+ Setup test suite and document general audit execution
++ Setup test suite (add build status and code coverage % in `README`)
 + Complete `CONTRIBUTING.md` document
 + Simplify installation instructions (2 steps max)
 + Add ability to toggle server-side Git hook to require commit message changes
@@ -17,10 +11,6 @@
 ### Rules
 + Require issue number
 + 72-line break for description
-+ No emoji
++ Support indentation for bullet points on second line
 + Exclude requirement of description/bullet points if `nit` commit
-
-### `README.md` badges
-+ Build status
-+ Code coverage %
-+ Code size
++ No emoji in message
