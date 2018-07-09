@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
     json rulesJSON = convertFileToJSON(readConfigFile());
 
     removeComments(commitMsg);
-    printAuditResults(rulesJSON, commitMsg);
+    printAuditResults(commitMsg, rulesJSON);
 
     return 0;
 }
