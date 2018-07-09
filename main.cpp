@@ -15,7 +15,7 @@ std::ifstream readGitCommitMsgFile() {
 
         if (cwd) {
             std::string s_cwd(cwd);
-            std::ifstream f(s_cwd + "/test.txt");
+            std::ifstream f(s_cwd + "/.git/COMMIT_EDITMSG");
             return f;
         } else {
             throw std::exception();
