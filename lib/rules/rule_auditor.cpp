@@ -211,13 +211,11 @@ bool isFirstLetterCapitalized(const std::string msg) {
         }
 
         // Capture initial word in summary 
-        const std::regex wordPattern("$\\s?([a-zA-Z]+).*");
+        const std::regex wordPattern("^\\s?([a-zA-Z]+).*");
         std::smatch initialWordResult;
 
         if (std::regex_search(summary, initialWordResult, wordPattern)) {
-            const std::string initialWord(initialWordResult[1].str());
-
-            return isupper(initialWord[0]);
+            return isupper(initialWordResult[1].str()[0]);
         }
 
         // Return true if first set of characters is not a word
