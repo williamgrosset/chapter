@@ -227,11 +227,6 @@ bool isFirstLetterCapitalized(const std::string msg) {
     return false;
 }
 
-bool containsSummary(const std::string msg) {
-    const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
-    return std::regex_search(msg, summaryPattern);
-}
-
 std::string getSummary(const std::string msg) {
     const std::regex summaryPattern("^([" + VALID_MSG_CHARS + "]+\n?){1}");
     std::smatch summaryResult;
