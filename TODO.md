@@ -1,5 +1,7 @@
 ## TODO
 + Function documentation in `.hpp` files
++ Test Linux environment and add prerequisites (e.g `C++11`, Make version)
++ Continue audit of testing regex patterns
 + Setup test suite (add build status and code coverage % in `README`)
 + Complete `CONTRIBUTING.md` document
 + Simplify installation instructions (2 steps max)
