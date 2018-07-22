@@ -57,21 +57,21 @@ Show the world that you use Chapter: [![commit style: chapter](https://img.shiel
 Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your project's top-level directory. Rules determine the structure and behaviour of commit messages. Rules can be turned-off and have their values modified to preference. The entire list of rules defined in the JSON file can be seen below:
 ```json
 {
-    "bullet_points": {
-        "count": 3,
-        "max_len": 50,
-        "min_len": 12
-    },
+    "sum_max_len": 50,
+    "sum_min_len": 18,
     "desc": {
-        "max_len": 72,
+        "max_len": 110,
         "min_len": 40
     },
-    "doc_format": false,
+    "bullet_points": {
+        "count": 3,
+        "max_len": 70,
+        "min_len": 24
+    },
+    "doc_format": true,
     "identify_typos": true,
     "nit_format": true,
     "sum_capital": true,
-    "sum_max_len": 50,
-    "sum_min_len": 18,
     "wip_format": true
 }
 ```
