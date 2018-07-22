@@ -267,25 +267,38 @@ bool requiresWIPFormat(json rulesJSON) {
     }
 }
 
+void verifyLengthRule(int maxLength, int minLength, const std::string attribute) {
+    if (maxLength < minLength) {
+        std::cout << "  \U0001F6A8 Rule Error: Max length must be less than min length for " << attribute << ".\n";
+        if (!ruleErrorExists) ruleErrorExists = true;
+    }
+}
+
 bool verifyIfRuleErrorExists(json rulesJSON) {
     if (requiresBulletPoints(rulesJSON)) {
         getBulletPointsCount(rulesJSON);
-        getBulletPointsMaxLength(rulesJSON);
-        getBulletPointsMinLength(rulesJSON);
+        int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
+        int bpMinLength = getBulletPointsMinLength(rulesJSON);
+
+        verifyLengthRule(bpMaxLength, bpMinLength, "bullet points");
     }
 
     if (requiresDescription(rulesJSON)) {
-        getDescriptionMaxLength(rulesJSON);
-        getDescriptionMinLength(rulesJSON);
+        int descMaxLength = getDescriptionMaxLength(rulesJSON);
+        int descMinLength = getDescriptionMinLength(rulesJSON);
+
+        verifyLengthRule(descMaxLength, descMinLength, "description");
     }
 
-    getSummaryMaxLength(rulesJSON);
-    getSummaryMinLength(rulesJSON);
-    identifyTypos(rulesJSON);
+    int sumMaxLength = getSummaryMaxLength(rulesJSON);
+    int sumMinLength = getSummaryMinLength(rulesJSON);
+
+    verifyLengthRule(sumMaxLength, sumMinLength, "summary");
     requiresSummaryCapital(rulesJSON);
     requiresDocFormat(rulesJSON);
     requiresNitFormat(rulesJSON);
     requiresWIPFormat(rulesJSON);
+    identifyTypos(rulesJSON);
 
     return ruleErrorExists;
 }
