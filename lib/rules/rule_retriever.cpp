@@ -267,7 +267,7 @@ bool requiresWIPFormat(json rulesJSON) {
     }
 }
 
-void verifyLengthRule(int maxLength, int minLength, const std::string attribute) {
+void verifyLengthRule(const int maxLength, const int minLength, const std::string attribute) {
     if (maxLength < minLength) {
         std::cout << "  \U0001F6A8 Rule Error: Max length must be less than min length for " << attribute << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
@@ -277,21 +277,21 @@ void verifyLengthRule(int maxLength, int minLength, const std::string attribute)
 bool doesRuleErrorExist(json rulesJSON) {
     if (requiresBulletPoints(rulesJSON)) {
         getBulletPointsCount(rulesJSON);
-        int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
-        int bpMinLength = getBulletPointsMinLength(rulesJSON);
+        const int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
+        const int bpMinLength = getBulletPointsMinLength(rulesJSON);
 
         verifyLengthRule(bpMaxLength, bpMinLength, "bullet points");
     }
 
     if (requiresDescription(rulesJSON)) {
-        int descMaxLength = getDescriptionMaxLength(rulesJSON);
-        int descMinLength = getDescriptionMinLength(rulesJSON);
+        const int descMaxLength = getDescriptionMaxLength(rulesJSON);
+        const int descMinLength = getDescriptionMinLength(rulesJSON);
 
         verifyLengthRule(descMaxLength, descMinLength, "description");
     }
 
-    int sumMaxLength = getSummaryMaxLength(rulesJSON);
-    int sumMinLength = getSummaryMinLength(rulesJSON);
+    const int sumMaxLength = getSummaryMaxLength(rulesJSON);
+    const int sumMinLength = getSummaryMinLength(rulesJSON);
 
     verifyLengthRule(sumMaxLength, sumMinLength, "summary");
     requiresSummaryCapital(rulesJSON);
