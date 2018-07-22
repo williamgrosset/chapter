@@ -68,10 +68,10 @@ Rules are defined in the `COMMIT_MSG_RULES.json` file that will be in your proje
         "max_len": 70,
         "min_len": 24
     },
-    "doc_format": true,
-    "identify_typos": true,
-    "nit_format": true,
     "sum_capital": true,
+    "identify_typos": true,
+    "doc_format": true,
+    "nit_format": true,
     "wip_format": true
 }
 ```
