@@ -21,7 +21,7 @@ std::ifstream readConfigFile() {
             throw std::exception();
         }
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Could not find COMMIT_MSG_RULES.json file.\n";
+        std::cout << "  \U0001F6A8 Could not find COMMIT_MSG_RULES.json file." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 }
@@ -32,7 +32,7 @@ json convertFileToJSON(std::ifstream f) {
     try {
         f >> j;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Converting configuration file to JSON failed.\n";
+        std::cout << "  \U0001F6A8 Converting configuration file to JSON failed." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 
@@ -49,7 +49,7 @@ int getSummaryMinLength(json rulesJSON) {
 
         return minLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Summary min length must be a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Summary min length must be a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -65,7 +65,7 @@ int getSummaryMaxLength(json rulesJSON) {
 
         return maxLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Summary max length must be a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Summary max length must be a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -83,7 +83,7 @@ bool requiresDescription(json rulesJSON) {
 
         return true;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Description must be an object with max_length and min_length.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Description must be an object with max_length and min_length." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -99,7 +99,7 @@ int getDescriptionMaxLength(json rulesJSON) {
 
         return descMaxLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Description max length must be a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Description max length must be a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -115,7 +115,7 @@ int getDescriptionMinLength(json rulesJSON) {
 
         return descMinLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Description min length must be a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Description min length must be a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -133,7 +133,7 @@ bool requiresBulletPoints(json rulesJSON) {
 
         return true;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points must be an object with count, max_length, and min_length.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points must be an object with count, max_length, and min_length." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -149,7 +149,7 @@ int getBulletPointsCount(json rulesJSON) {
 
         return bulletPointsCount;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points count must be zero or a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points count must be zero or a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -165,7 +165,7 @@ int getBulletPointsMinLength(json rulesJSON) {
 
         return minLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points min length must be a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points min length must be a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -181,7 +181,7 @@ int getBulletPointsMaxLength(json rulesJSON) {
 
         return maxLength;
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Bullet points max length must be a positive integer.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Bullet points max length must be a positive integer." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return -1;
     }
@@ -197,7 +197,7 @@ bool identifyTypos(json rulesJSON) {
 
         return bool(j);
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Identify typos must be a boolean.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Identify typos must be a boolean." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -213,7 +213,7 @@ bool requiresSummaryCapital(json rulesJSON) {
 
         return bool(j);
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Summary capital must be a boolean.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Summary capital must be a boolean." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -229,7 +229,7 @@ bool requiresDocFormat(json rulesJSON) {
 
         return bool(j);
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Documentation format must be a boolean.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Documentation format must be a boolean." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -245,7 +245,7 @@ bool requiresNitFormat(json rulesJSON) {
 
         return bool(j);
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: Nit format must be a boolean.\n";
+        std::cout << "  \U0001F6A8 Rule Error: Nit format must be a boolean." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -261,7 +261,7 @@ bool requiresWIPFormat(json rulesJSON) {
 
         return bool(j);
     } catch (const std::exception& e) {
-        std::cout << "  \U0001F6A8 Rule Error: WIP format must be a boolean.\n";
+        std::cout << "  \U0001F6A8 Rule Error: WIP format must be a boolean." << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
         return false;
     }
@@ -269,7 +269,7 @@ bool requiresWIPFormat(json rulesJSON) {
 
 void verifyLengthRule(int maxLength, int minLength, const std::string attribute) {
     if (maxLength < minLength) {
-        std::cout << "  \U0001F6A8 Rule Error: Max length must be less than min length for " << attribute << ".\n";
+        std::cout << "  \U0001F6A8 Rule Error: Max length must be less than min length for " << attribute << std::endl;
         if (!ruleErrorExists) ruleErrorExists = true;
     }
 }

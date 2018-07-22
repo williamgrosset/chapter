@@ -21,7 +21,7 @@ std::ifstream readGitCommitMsgFile() {
             throw std::exception();
         }
     } catch (const std::exception& e) {
-        std::cout << "\U0001F6A8 Could not find Git commit message file.\n";
+        std::cout << "\U0001F6A8 Could not find Git commit message file." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 }
@@ -53,7 +53,7 @@ void removeComments(std::string& msg) {
 }
 
 int main(int argc, char* argv[]) {
-    std::cout << "Commit message audit...\n\n";
+    std::cout << "Commit message audit..." << std::endl << std::endl;
 
     std::string commitMsg = convertFileToStr(readGitCommitMsgFile()); 
     json rulesJSON = convertFileToJSON(readConfigFile());

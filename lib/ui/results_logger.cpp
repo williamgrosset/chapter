@@ -65,32 +65,32 @@ void printAuditResults(const std::string commitMsg, const json rulesJSON) {
 
         if (requiresSummaryCapital(rulesJSON) && !isFirstLetterCapitalized(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
-            std::cout << "  \U0000274C Error: First letter of summary must be capitalized." << "\n";
+            std::cout << "  \U0000274C Error: First letter of summary must be capitalized." << std::endl;
         }
 
         if (reqNitFormat && !containsCorrectNitFormat(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
-            std::cout << "  \U0000274C Error: \"Nit:\" commits must have the correct format." << "\n";
+            std::cout << "  \U0000274C Error: \"Nit:\" commits must have the correct format." << std::endl;
         }
 
         if (reqWIPFormat && !containsCorrectWIPFormat(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
-            std::cout << "  \U0000274C Error: \"WIP:\" commits must have the correct format." << "\n";
+            std::cout << "  \U0000274C Error: \"WIP:\" commits must have the correct format." << std::endl;
         }
 
         if (reqDocFormat && !containsCorrectDocFormat(commitMsg)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
-            std::cout << "  \U0000274C Error: \"Documentation:\" commits must have the correct format." << "\n";
+            std::cout << "  \U0000274C Error: \"Documentation:\" commits must have the correct format." << std::endl;
         }
 
         if (isSummaryMinLength(commitMsg, summaryMinLength)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
-            std::cout << "  \U0000274C Error: Summary must be above " << summaryMinLength << " characters.\n";
+            std::cout << "  \U0000274C Error: Summary must be above " << summaryMinLength << " characters" << std::endl;
         }
 
         if (isSummaryMaxLength(commitMsg, summaryMaxLength)) {
             if (!hasErrorOrWarning) hasErrorOrWarning = true;
-            std::cout << "  \U0000274C Error: Summary must not exceed " << summaryMaxLength << " characters.\n";
+            std::cout << "  \U0000274C Error: Summary must not exceed " << summaryMaxLength << " characters." << std::endl;
         }
 
         if (reqDescription) {
@@ -100,16 +100,16 @@ void printAuditResults(const std::string commitMsg, const json rulesJSON) {
 
                 if (isDescriptionMinLength(commitMsg, descMinLength)) {
                     if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                    std::cout << "  \U0000274C Error: Description must be above " << descMinLength << " characters.\n";
+                    std::cout << "  \U0000274C Error: Description must be above " << descMinLength << " characters." << std::endl;
                 }
 
                 if (isDescriptionMaxLength(commitMsg, descMaxLength)) {
                     if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                    std::cout << "  \U0000274C Error: Description must not exceed " << descMaxLength << " characters.\n";
+                    std::cout << "  \U0000274C Error: Description must not exceed " << descMaxLength << " characters." << std::endl;
                 }
             } else {
                 if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                std::cout << "  \U0000274C Error: Description is required. \n";
+                std::cout << "  \U0000274C Error: Description is required." << std::endl;
             }
         }
 
@@ -122,21 +122,21 @@ void printAuditResults(const std::string commitMsg, const json rulesJSON) {
 
                 if (isBulletPointsMinLength(commitMsg, bpMinLength)) {
                     if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                    std::cout << "  \U0000274C Error: Bullet points must be above " << bpMinLength << " characters.\n";
+                    std::cout << "  \U0000274C Error: Bullet points must be above " << bpMinLength << " characters." << std::endl;
                 }
 
                 if (isBulletPointsMaxLength(commitMsg, bpMaxLength)) {
                     if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                    std::cout << "  \U0000274C Error: Bullet points must not exceed " << bpMaxLength << " characters.\n";
+                    std::cout << "  \U0000274C Error: Bullet points must not exceed " << bpMaxLength << " characters." << std::endl;
                 }
             } else {
                 if (!hasErrorOrWarning) hasErrorOrWarning = true;
-                std::cout << "  \U0000274C Error: " << bulletPointsCount << " bullet points are required. \n";
+                std::cout << "  \U0000274C Error: " << bulletPointsCount << " bullet points are required." << std::endl;
             }
         }
 
         if (!hasErrorOrWarning) {
-            std::cout << "  \U0001F3C6 No warnings or errors found! \n";
+            std::cout << "  \U0001F3C6 No warnings or errors found!" << std::endl;
         }
     }
 }
