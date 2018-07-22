@@ -28,7 +28,7 @@ void printTypos(const std::string str, const std::string section) {
 }
 
 void printAuditResults(const std::string commitMsg, const json rulesJSON) {
-    if (verifyIfRuleErrorExists(rulesJSON)) {
+    if (doesRuleErrorExist(rulesJSON)) {
         std::cout << std::endl << "    Please fix your rules configuration file for" << std::endl
                   << "    correct attributes and value types." << std::endl << std::endl
                   << "    See https://github.com/williamgrosset/chapter/README.md" << std::endl;

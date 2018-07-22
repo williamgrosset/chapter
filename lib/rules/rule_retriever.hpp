@@ -12,6 +12,6 @@ bool requiresDocFormat(nlohmann::json rulesJSON);
 bool requiresNitFormat(nlohmann::json rulesJSON);
 bool requiresSummaryCapital(nlohmann::json rulesJSON);
 bool requiresWIPFormat(nlohmann::json rulesJSON);
-bool verifyIfRuleErrorExists(nlohmann::json rulesJSON);
+bool doesRuleErrorExist(nlohmann::json rulesJSON);
 nlohmann::json convertFileToJSON(std::ifstream f);
 std::ifstream readConfigFile();

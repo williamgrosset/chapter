@@ -274,7 +274,7 @@ void verifyLengthRule(int maxLength, int minLength, const std::string attribute)
     }
 }
 
-bool verifyIfRuleErrorExists(json rulesJSON) {
+bool doesRuleErrorExist(json rulesJSON) {
     if (requiresBulletPoints(rulesJSON)) {
         getBulletPointsCount(rulesJSON);
         int bpMaxLength = getBulletPointsMaxLength(rulesJSON);
